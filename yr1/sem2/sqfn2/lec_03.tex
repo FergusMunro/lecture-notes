@@ -1,0 +1,137 @@
+\subsection{Limits of Functions}
+
+
+Let $D \subseteq \mathbb{R}$ and $f : D \rightarrow \mathbb{R}$.
+
+\begin{definition}
+  Let $S \subseteq \mathbb{R}$ and $c \in \mathbb{R}$. We say $c$ is a {\bf cluster point} of $S$ if there exists $(x_n)_{n \in \mathbb{N}}$ in $S \setminus \{c\}$ such that $\lim_{n \rightarrow \infty} x_n = c$.
+\end{definition}
+\begin{definition}
+  Let $D \subseteq \mathbb{R}$ and $f : D \rightarrow \mathbb{R}$. Let $L \in \mathbb{R}$ and let $c$ be a cluster point of $D$.
+
+  We say { $f$ \bf converges to $L$} as $x$ tends to $c$, or $\lim_{x \rightarrow c} f(x) = L$ if
+  \[\forall \epsilon >0 \quad \exists \delta > 0 \quad \forall x \in D \quad \text{s.t.}\]
+  \[ \text{ if } 0 < | x - c| < \delta \text{ then } |f(x) - L | < \epsilon\]
+\end{definition}
+$ $ \\
+In the above definition, the definition of $f(c)$ is irrelevent.
+
+\begin{theorem}
+  Let $c \in \mathbb{R}$ be a cluster point of $D \subseteq \mathbb{R}$. Let $f: D \rightarrow \mathbb{R}$ and $L \in \mathbb{R}$. Then the following are equivalent:
+  \begin{itemize}
+    \item $\lim_{x \rightarrow c} f(x) = L$
+    \item For any sequence $(x_n)_{n \in \mathbb{N}}$ in $D \setminus \{c\}$ 
+      \[\lim_{n \rightarrow \infty} x_n = c \implies \lim_{n\rightarrow \infty} f(x_n) = L.\]
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+    \begin{itemize}
+      \item Suppose $\lim_{x \rightarrow c} f(x) = L$ and $\lim_{n \rightarrow \infty} x_n = c$. Now fix $\epsilon > 0$. Then we obtain a $\delta$ where
+        \[0 < |x - c| < \delta \implies |f(x) - L| < \epsilon.\]
+        Using this $\delta$, we obtain an $N$ such that
+        \[\forall n > N \quad |x_n - c| < \delta.\]
+        Then since $x_n \not = c$ for all $x$, the conditions for $f(x_n) \rightarrow L$ are met.
+      \item Since assuming an implication is difficult to work with, we instead prove the contrapositive: 
+        \begin{align*}
+        \lim_{x \rightarrow c} f(x) \not = L \wedge x_n \rightarrow c \implies \forall \epsilon > 0, \  \exists N, \ \forall n \geq N \\
+        |f(x_n) - L| > \epsilon
+        .\end{align*}
+        The negation of the limit of $f$ gives us an $\epsilon$ where for any $\delta$ we can find an $x$ such that $0 < |x - c| < \delta$ and $| f(x) - L| > \epsilon$. Then, using this $\epsilon$, fix $\delta >0$. Choose $N$ such that
+        \[| x - c| < \delta\]
+        and then the conclusion follows.
+    \end{itemize}
+\end{proof}
+
+\begin{prop}
+  Let $c$ be a cluster point of $D \subseteq \mathbb{R}$. Suppose there exists a sequence $(x_n)_{n\in \mathbb{N}}$ and $(y_n)_{n \in \mathbb{N}}$ in $D \setminus \{c\}$ such that
+  \begin{itemize}
+    \item $\lim_{n \rightarrow \infty} x_n = c$ and $\lim_{y \rightarrow \infty} = c$
+    \item $\lim_{n\rightarrow \infty} f(x_n) = A$ and $\lim_{n \rightarrow \infty} f(y_n)= B$ with $A \not = B$.
+  \end{itemize}
+
+  Then we conclude $\lim_{x \rightarrow c} f(x)$ cannot exist.
+\end{prop}
+\begin{proof}
+  Suppose the limit exists. Then since $x_n$ and $y_n$ have the same limit
+  \[\lim_{n \rightarrow \infty} f(x_n) = A = B = \lim_{n \rightarrow \infty} f(y_n)\]
+  which is a contradiction.
+\end{proof}
+
+\begin{prop}
+    Let $c$ be a cluster point of $D \subseteq \mathbb{R}$ and let $f : D \rightarrow \mathbb{R}$.
+
+    If $\lim_{x \rightarrow c} f(x) = L_1$ and $\lim_{x \rightarrow c} f(x) = L_2$ then
+    \[L_1 = L_2.\]
+\end{prop}
+\begin{proof}
+   $\lim_{x \rightarrow c} f(x) = L$ is equivalent to $f(x_n) \rightarrow L$ for $x_n \rightarrow c$. Then
+   \[\lim_{n \rightarrow \infty} f(x_n) = L_1 = L_2.\]
+   So $L_1 = L_2$ by uniqueness of limits.
+\end{proof}
+
+\begin{theorem} (Algebra of limits for functions)
+
+  Suppose $D \subseteq \mathbb{R}$ and $c$ is a cluster point of $D.$ Let $f , g: D \rightarrow \mathbb{R}$ be two functions.
+
+  Suppose $\lim_{x \rightarrow c} f(x) = L$ and $\lim_{x \rightarrow c} g(x) = M.$
+
+  Let $x \in \mathbb{R}$. Then
+  \begin{itemize}
+    \item $\lim_{x \rightarrow c}  \ \left(f(x) + g(x)\right) = L + M$
+    \item $\lim_{x \rightarrow c} \ \alpha f(x) = \alpha L$
+    \item $\lim_{x \rightarrow c} \ f(x) g(x) = LM$
+    \item If $M \not = 0$, then $\lim_{x \rightarrow c} \ \frac{f(x)}{g(x)} = \frac{L}{M}$
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+    By turning the limit of the function into a sequence limit, they can be easily proved using the algebra of limits.
+\end{proof}
+
+\begin{theorem}
+  Suppose $D \subseteq \mathbb{R}$, $c \in \mathbb{R}$ is a cluster point of $D$, $f : D \rightarrow \mathbb{R}$ and $\lim_{x \rightarrow c} f(x) = L$. Then
+  \begin{itemize}
+    \item If $f(x) \leq M \quad \forall x \in D$, then $L \leq M$
+    \item If $f(x) \geq M \quad \forall x \in D$, then $L \geq M$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+    Consider WLOG $f(x) \leq M$. Then for $x_n \rightarrow \infty$
+    \[\lim_{n \rightarrow \infty} f(x_n) \leq M\]
+    so since limits preserve non-strict inequalities, $L \leq M$.
+\end{proof}
+
+\begin{theorem}
+  Suppose $D \subseteq \mathbb{R}$, $c \in \mathbb{R}$ is a cluster point of $D$ and $f,g,h : D \rightarrow \mathbb{R}$ with
+  \[f(x) \leq g(x) \leq h(x) \quad \forall x \in D.\]
+  and
+  \[\lim_{x \rightarrow c} f(x) = L = \lim_{x \rightarrow c} h(x).\]
+  Then $\lim_{x \rightarrow c} g(x) = L$.
+\end{theorem}
+\begin{proof}
+    Consider $x_n \rightarrow c$. Then
+    \begin{align*}
+      f(x_n) &\leq g(x_n) \leq h(x_n) \\
+      \lim_{n \rightarrow \infty} f(x_n) &\leq \lim_{n \rightarrow \infty} g(x_n) \leq \lim_{n \rightarrow \infty} h(x_n)
+    .\end{align*}
+    so by sandwhich theorem the limit of $g$ at $c$ is $L$.
+\end{proof}
+
+Now we will consider the limit of a function to $\infty$.
+\begin{definition}
+    Let $D \subseteq \mathbb{R}$, $f : D \rightarrow \mathbb{R}$ and $L \in \mathbb{R}$. Suppose there exists a sequence $(a_n)_{n \in \mathbb{N}}$ in $D$ such that $\lim_{n \rightarrow \infty} a_n = \infty$.
+
+    We say $f$ converges to $L$ as $x \rightarrow \infty$ if
+    \[\forall \epsilon > 0 \quad \exists N \in \mathbb{R} \text{    s.t.  } \forall x \in D, \quad x > N \]
+    \[\quad |f(x) - L | < \epsilon.\]
+
+    Hence we write $\lim_{x \rightarrow \infty} f(x) = L$.
+\end{definition}
+
+\begin{definition}
+    Let $D \subseteq \mathbb{R}$, $c \in \mathbb{R}$ be a cluster point of $D$ and $f: D \rightarrow \mathbb{R}$
+
+    \begin{itemize}
+      \item We say $f$ diverges to $\infty$ as $x \rightarrow c$ if $\forall M \in \mathbb{R}$ $\exists \delta >0$ such that $\forall x \in D$ with $0 < | x - c| < \delta$ we have $f(x) > M$. In this case, we write $\lim_{x \rightarrow c} f(x) = \infty$.
+      \item We say $f$ diverges to $ - \infty$ as $x \rightarrow c$ if $\forall M \in \mathbb{R}$ $\exists \delta >0$ such that $\forall x \in D$ with $0 < | x - c| < \delta$ we have $f(x) < M$. In this case, we write $\lim_{x \rightarrow c} f(x) = - \infty$.
+    \end{itemize}
+\end{definition}

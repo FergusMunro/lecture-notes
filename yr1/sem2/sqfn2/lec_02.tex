@@ -1,0 +1,50 @@
+\subsection{Exponential and Trigonometic Functions}
+
+A power series with radius of convergence $R \in (0, \infty]$ gives a function $f:(-R,R) \rightarrow \mathbb{R}$. Many important functions can be defined in this way.
+
+\begin{definition}
+    For $x \in \mathbb{R}$, define
+    \[\exp(x) := \sum_{n=0}^{\infty} \frac{x^n}{n!}.\]
+\end{definition}
+
+\begin{prop}
+    The power series $\sum_{n=0}^{\infty} \frac{x^n}{n!}$ has infinite radius of convergence, thus the exponential function has domain equal to $\mathbb{R}$.
+\end{prop}
+
+\begin{prop}
+    \[\exp(x + y) = \exp(x)\exp(y).\]
+\end{prop}
+\begin{proof}
+    Non-examinable.
+\end{proof}
+
+\begin{corollary}
+    For any $x \in \mathbb{R}$,
+    \begin{itemize}
+        \item $\exp(x) > 0$
+        \item $\exp( - x) = \frac{1}{\exp(x)}$.
+    \end{itemize}
+\end{corollary}
+\begin{proof}
+    \begin{itemize}
+      \item We know $\exp(0) = 1$. Then
+        \begin{align*}
+          \exp(x - x) &= 1 \\
+              \exp(x) \exp(-x) &= 1
+              \exp(-x) &= \frac{1}{\exp(x)}
+        .\end{align*}
+    \item If $x \geq 0$, $\exp(x) \geq 1 > 0$. Then
+      \[\exp(-x) = \frac{1}{\exp(x)} > 0.\]
+    \end{itemize}
+\end{proof}
+
+
+\begin{definition}
+    For all $x \in \mathbb{R}$,
+    \[\cos(x) = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} x ^ {2n}.\]
+    \[\sin(x) =\sum_{n=0}^{\infty} \frac{(-1)^n}{(2n + 1)!} x ^{2n + 1}.\]
+\end{definition}
+
+\begin{remark}
+    We cannot find the radius of convergence using the ratio test, as many terms are equal to $0$. However, we can compare these series with the exponential function and show they are bounded by the comparison test.
+\end{remark}

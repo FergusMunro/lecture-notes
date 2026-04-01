@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Probability Models and Random Variables}{1}{section.1}%
+\contentsline {section}{\numberline {2}Important Families of Continuous Random Variables}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Uniform Distribution}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}The Normal Distribution}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Exponential Distribution}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}The Gamma Distribution}{5}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Generating a Random Sample from a given Distribution}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Methods for Generating $Unif(0,1)$ Random Variables}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}The Inverse CDF Method for Simulation}{6}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Modelling Data and Parameter Estimation}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Estimation by the Method of Moments}{7}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Estimates and Estimators}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Maximum Likelihook Estimation}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Assesment of Goodness of Fit}{8}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Joint Distributions}{9}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Joint PMFs and Joint PDFs}{9}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Marginal PDFs}{9}{subsection.6.2}%

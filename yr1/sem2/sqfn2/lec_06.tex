@@ -1,0 +1,52 @@
+\begin{corollary}
+Let $p: \mathbb{R} \rightarrow \mathbb{R}$ be a polynomial with 
+\[P(x) = a_n x^n + ... + a_1 x + a_0.\]
+Then $P$ is differentiable on $\mathbb{R}$ and
+\[p'(x) = n a_n x^{n - 1} + ... + a_1.\]
+\end{corollary}
+
+\subsection{The Chain Rule}
+\begin{theorem}
+    Let $D, E \subseteq \mathbb{R}$, $f : D \rightarrow \mathbb{R}$ and $g : E \rightarrow D$. Let $c \in E$ be an interior point, such that $g(c)$ is an interior point of $D$. If
+    \begin{itemize}
+      \item $g$ is differentiable at $c$
+      \item $f$ is differentiable at $g(c)$      \item 
+    \end{itemize}
+     then $f \circ g$ is differentiable at $c$ with
+     \[(f \circ g)'(c) = f'(g(c))g'(c).\]
+
+\end{theorem}
+\begin{proof}
+  Let $h \in \mathbb{R} \setminus \{0\}$ be such that $c + h \in E$. If $g(c + h) \not = g(c)$ then
+  \begin{align*}
+    \frac{(f \circ g)(c + h) - (f \circ g)(c)}{h} &= \frac{f(g(c + h)) - f(g(c))}{h} \\
+      &= \frac{f(g(c+h)) - f(g(c))}{g(c + h) - g(c)} \times \frac{g (c+h)- g(c)}{h}
+  .\end{align*}
+  Define $q : D \rightarrow \mathbb{R}$ by
+  \[q(y) = \left\{\begin{array}{lr}
+      \frac{f(y) - f(g(c))}{y - g(c)} & y \in D \setminus \{g(c)\}\\
+  f'(g(c)) & y = g(c)\\
+  \end{array} \right..\]
+  Then, if $g(c + h) \not = g(c)$,
+  \begin{align*}
+    \frac{(f \circ g)(c + h) - (f \circ g)(c)}{h} &= q(g(c + h)) \times \frac{g(c + h) - g(c)}{h}
+  .\end{align*}
+  If $g(c + h) = g(c)$, then it equals $0$. Then 
+  \begin{align*}
+    ( f \circ g)'(c) &= \lim_{h \rightarrow 0} q(g(c + h)) \lim_{h \rightarrow 0} \frac{g(c + h) - g(c)}{h} \\
+                     &= \lim_{h \rightarrow 0} q(g(c + h)) g'(c) \\
+                     &= \lim_{h \rightarrow 0} \frac{f(g(c + h)) - f(g(c))}{f(g(c + h)) - g(c)} g'(c) \\
+                     &= \lim_{h \rightarrow 0} \frac{f(g(c + h)) - f(g(c))}{h} g'(c) \\
+                     &= f'(g(c)) g'(c)
+  .\end{align*}
+\end{proof}
+
+\subsection{The derivative of inverse functions}
+
+
+\begin{theorem}
+  Let $D, E \subseteq \mathbb{R}$ and let $f : D \rightarrow E$ bijective function. Suppose $c \in D$ and $f(c) \in E$ are interior points. If $f$ is differentiable at $c$ with $f'(c) \not = 0$ then $f^{-1}$ is differentiable at $f(c)$ with
+  \[(f^{-1})'(f(c)) = \frac{1}{f'(c)}.\]
+\end{theorem}
+
+

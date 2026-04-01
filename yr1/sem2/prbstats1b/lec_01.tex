@@ -1,0 +1,23 @@
+\section{Probability Models and Random Variables}
+
+\begin{theorem}
+    Let $X$ be a continuous random variable with pdf $f_X(x)$ and $\mathbb{P}(a < X < b) = 1$. Suppose $g: (a, b) \rightarrow \mathbb{R}$ is continuous, strictly increasing and differentiable.
+
+    Then $Y = g(X)$ is a continuous random variable with PDF
+    \[f_Y(y) = \left\{
+    \begin{array}{lr}
+      f_X(g^{-1}(y)) \frac{dx}{dy} & g(a) < y < g(b)\\
+      0 & y \leq g(a) \text{ or } y \geq g(b)
+    \end{array}
+\right..\] 
+\end{theorem}
+\begin{proof}
+  Consider $\mathbb{P}(Y \leq y) = \mathbb{P}(g(X) \leq y) = \mathbb{P}(X \leq g^{-1}(y) )$. Then
+  \begin{align*}
+    \mathbb{P}(x \leq g^{-1}(y)) &= \int_{-\infty}^{g^{-1}(y)} f_X(x) dx \\
+                                 &= \int_{a}^{g^{-1}(y)} f_X(x) dx  \\
+                                 &= \int_{a}^{y} f_X(g^{-1}(y)) \frac{dx}{dy} dy 
+  .\end{align*}
+  Hence the pdf of $Y$ is 
+  \[f_Y(y) = f_X(g^{-1}(y)) \frac{dx}{dy}.\]
+\end{proof}

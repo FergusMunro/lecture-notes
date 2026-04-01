@@ -1,0 +1,39 @@
+\section{Joint Distributions}
+
+\subsection{Joint PMFs and Joint PDFs}
+
+\begin{definition}
+  We say random variables $X$ and $Y$ are jointly continuous if there eists a function $f_{X,Y} : \mathbb{R}^2 \rightarrow [0, \infty]$ such that for any region $A \subseteq \mathbb{R}^2$
+  \[\mathbb{P}((X, Y) \in A) = \int \int_A f_{X,Y}(x,y)\ dy \ dx.\]
+  The function $f_{X,Y}$ is called the joint PDF of $X$ and $Y$.
+\end{definition}
+
+\begin{definition}
+  The joint CDF of random variables $X$ and $Y$ is the function $F_{X,Y} : \mathbb{R}^2 \rightarrow [0,1]$ defined by
+  \[F_{X,Y} = \mathbb{P}(X \leq x, Y \leq y).\]
+  If $X$ and $Y$ are jointly continuous random variables with joint PDF $f_{X,Y}$ then
+  \[F_{X,Y}(x, y) = \int_{-\infty}^x \int_{-\infty}^y f_{X,Y}(u, v) \ dv \ du.\]
+\end{definition}
+
+\subsection{Marginal PDFs}
+
+\begin{prop}
+  If $X$ and $Y$ have joint PDF $f_{X,Y}$, then $X$ and $Y$ have PDFs
+  \[f_X(x) = \int_{-\infty}^\infty f_{X, Y}(x, y) dy.\]
+  and
+  \[f_Y(y) = \int_{-\infty}^\infty f_{X, Y}(x, y) dx.\]
+\end{prop}
+\begin{proof}
+  \begin{align*}
+    \mathbb{P}(a \leq X \leq b) &= \mathbb{P}(a \leq x \leq b, - \infty < Y < \infty) \\
+                                &= \int_{a}^{b} \int_{-\infty}^\infty f_{X,Y}(x, y) dy dx \\
+                                &= \int_{a}^{b} f_X(x) dx
+  .\end{align*}
+  Thus $f_X(x) = \int_{-\infty}^\infty f_{X,Y}(y) dy$ is the PDF of $X$.
+\end{proof}
+
+\begin{definition}
+  Let $X$ and $Y$ be continuous random variables with joint PDF $f_{X,Y}$ and marginal PDFs $f_X$ and $f_Y$. For a value $x$ with $f_X(x) > 0$, the {\bf conditional pdf} of $Y$ given $X = x$, written $f_{Y|X}(y | X = x)$ is
+  \[f_{Y|X}(y|x) = f_{Y |X}(y | X = x) = \frac{f_{X,Y}(x,y)}{f_X(x)} \quad \text{ for } y \in \mathbb{R}\]
+
+\end{definition}

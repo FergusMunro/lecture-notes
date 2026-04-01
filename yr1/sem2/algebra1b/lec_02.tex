@@ -1,0 +1,182 @@
+\begin{lemma} $ $
+
+    \begin{itemize}
+        \item The identity map $\id_V : V \rightarrow V$, defined $\id_V(v) = v$, is a linear operator over $V$.
+        \item If $\phi : V \rightarrow W$ is a linear map then
+            \[\phi(0) = 0, \\ \quad \phi(-v) = - \phi(v).\]
+        \item If $\phi : V \rightarrow W,$ $\psi : W \rightarrow U$ are linear maps then $\psi \circ \phi : V \rightarrow U$ is also a linear map
+        \item If $\phi: V\rightarrow W$ is a linear bijecion then $\phi^{-1} : W \rightarrow V$ is also linear.
+    \end{itemize}
+\end{lemma}
+\begin{proof} $ $
+
+    \begin{itemize}
+      \item $\id_V (\lambda v + \mu w) = \lambda v + \mu w = \lambda  \id_V(v) + \mu \id_V(w)$, hence $\id_V$ is a linear operator.
+      \item $\phi(0) = \phi( v + (-v)) = \phi(v) - \phi(v) = 0$
+      \item $\psi \circ \phi (\lambda v + \mu w) = \psi(\lambda \phi(v) + \mu \phi(w)) = \lambda \psi \circ \phi(v) + \mu \psi \circ \phi (w)$ hence $\psi \circ \phi$ is linear
+      \item Let $v, w \in W$. Hence $\phi (\phi^{-1}(w_i)) = w_i$ for arbitrary $w_i$.
+    \begin{align*}
+    \lambda v + \mu w
+        &= \lambda \phi(\phi^{-1}(v)) + \mu \phi(\phi^{-1}(w)) \\
+        &= \phi\big(\lambda \phi^{-1}(v) + \mu \phi^{-1}(w)\big).
+    \end{align*}
+        Then, by applying $\phi^{-1}$ to both sides
+    \begin{align*}
+    \phi^{-1}(\lambda v + \mu w)
+        &= (\phi^{-1} \circ \phi)(\lambda \phi^{-1}(v) + \mu \phi^{-1}(w)) \\
+        &= \lambda \phi^{-1}(v) + \mu \phi^{-1}(w).
+    \end{align*}
+    \end{itemize}
+\end{proof}
+
+\begin{definition}
+  A linear bijection $\phi : V \rightarrow W$ is called a (linear) {\bf isomorphism}. 
+
+  We say $V$ is {\bf isomorphic to} $W$ if an isomorphism $\phi : V\rightarrow W$ exists, written $V \cong W$.
+\end{definition}
+
+\subsection{Subspaces from Linear Maps}
+\begin{definition} Let $\phi : V  \rightarrow W$ be linear.
+
+  The {\bf kernel} of $\phi$ is $\ker \phi \subseteq V$ given
+    \[\ker\phi = \{v \in V \ \ | \ \ \phi(v) = 0\}.\]
+
+    The {\bf image} of $\phi$ is $\Ima \phi \subseteq W$ given by
+
+    \[\Ima \phi = \{ \phi(v) \ \ | \ \ v \in V\}\]
+    
+\end{definition}
+
+\begin{prop} Let $\phi : V \rightarrow W$ be linear. Then
+
+    \begin{itemize}
+        \item $\ker \phi \leq V$
+        \item $\Ima \phi \leq W$.
+    \end{itemize}
+    
+\end{prop}
+\begin{proof} $ $
+  \begin{itemize}
+      
+  \item Let $v, w \in \ker \phi$. Then
+    \[\phi(\lambda v + \mu w) = \lambda \phi(v) + \mu \phi(w) = 0\]
+    hence $\lambda v + \mu w \in \ker \phi$, so $\ker \phi \leq V$.
+  \item Let $\phi(v), \phi(w) \in \Ima \phi$. Then
+    \[\lambda \phi(v) + \mu \phi(w) = \phi(\lambda v + \mu w) \in \Ima V\]
+    Hence, $\Ima V \leq V$.
+    \end{itemize}
+\end{proof}
+
+\begin{prop}
+    A linear map $\phi : V \rightarrow W$ is injective if and only if $\ker \phi = \{0\}$
+\end{prop}
+\begin{proof} $ $
+
+  $(\Rightarrow)$ For any linear map, $\phi(0) = 0$ and $0$ is always in the kernel. Hence if $\phi(v) = 0 = \phi(0)$, by injectivity $v = 0$, so $\ker \phi = \{0\}$.
+
+  $(\Leftarrow)$ Suppose $\phi(v) = \phi(w)$, therefore $\phi(v - w) = 0$ by linearity and since $\ker \phi = \{0\}$, $v - w = 0$, meaning $\phi$ is injective.
+\end{proof}
+
+\begin{corollary}
+  A linear map $\phi : V \rightarrow W$ is an isomorphism if and only if $\ker \phi = \{0\}$ and $\Ima \phi = W$.
+\end{corollary}
+
+\section{Bases, Coordinates and Matrices}
+
+\subsection{On Lists}
+\begin{definition}
+  A {\bf list} of vectors in a vector space $V$ is a finite sequence $v_1,...,v_n$ of elements of $V$.
+  A {\bf sequence} is a map $\{1,...,n\} \rightarrow V$ defined $i \rightarrow v_i$
+\end{definition}
+
+There are some differences between lists and (sub)sets:
+\begin{itemize}
+  \item lists are ordered
+  \item lists allow the same element to appear more than once
+\end{itemize}
+
+\subsection{Spanning and Independent lists}
+
+\begin{definition}
+    Let $\alpha : v_1,...,v_n \in V$ be a list of vectors in a vector space $V$ over $\mathbb{F}$.
+
+  The {\bf span} of $\alpha$ is given by
+  \[span \ \alpha = span \{v_1,...,v_n\} := \left\{ \sum_{i=1}^n \lambda_i v_i \\ | \\ \lambda_1,...,\lambda_n \in \mathbb{F}\right\} \leq V.\]
+
+  More generally, for $S \subseteq V$, the span of $S$ is
+  \[span S := \left\{ \sum_{i=1}^n \lambda_i s_i \\ | \\ s_1,...,s_n \in S, \lambda_1,...,\lambda_n \in \mathbb{F}, n \in \mathbb{N} \right\} \leq V.\]
+\end{definition}
+
+$span \ S$ is the smallest subspace of $V$ containing $S:$
+\[span \ S = \bigcap_{u\leq V \ | \ S \subseteq u} u.\]
+
+\begin{definition}
+    Let $\alpha : v_1,..., v_n \in V$ be a list of vectors in a vector space $V$ over $\mathbb{F}$.
+    \begin{itemize}
+    \item $\alpha$ is {\bf (linearly) independent} if, whenever 
+      $\lambda_1,...,\lambda_n \in \mathbb{F}$ have
+      \[\sum_{i=1}^n \lambda_i v_i = 0 \text{ then } \lambda_1 = ... = \lambda_n = 0.\]
+      and {\bf (linearly) dependent} otherwise.
+    \item $\alpha$ is {\bf spanning} or {\bf spans} if
+      \[span \ \alpha = V.\]
+    \item $\alpha$ is a {\bf basis} of $V$ if it is both independent and spans.
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    Independence of a list $\alpha : v_1,...,v_n \in V$ says that no element $v_i \in \alpha$ can be expressed as another element multiplied by a scalar $\lambda$, or furthermore
+    \[\sum_{i = 1}^n \lambda_i v_i \not = \sum_{i = 1}^n \mu_i v_i.\]
+    unless $\lambda_i = \mu_i$ for all $i$, meaning there is a one-to-one mapping from the list $\lambda_1,...,\lambda_n$ to the span of $\alpha$.
+\end{remark}
+
+\begin{lemma} $ $
+    \begin{itemize}
+      \item A single vector $v$ is independent if $v \not = 0$
+      \item A two element list $v_1, v_2$ is dependent $\iff v_1 = \lambda v_2$ for some $\lambda \in \mathbb{F}$
+    \end{itemize}
+\end{lemma}
+
+\subsection{Spanning and Independence in $\mathbb{F}^n$}
+
+\begin{prop}
+  Let $\alpha: v_1, ..., v_n \in \mathbb{F}^M$ and define $A \in M_{M \times N}(\mathbb{F})$ by $col_i(A) = v_i$. Let $\hat{A}$ be an REF matrix obtained from $A$ by gaussian elimination. Then
+
+  \begin{itemize}
+    \item The list $\alpha$ is independent if and only if every column of $\hat{A}$ has a pivot.
+    \item $\alpha$ is spanning if $\hat{A}$ has no zero rows.
+  \end{itemize}
+\end{prop}
+\begin{proof} $ $
+    \begin{itemize}
+    \item $\alpha$ is independent $\iff$ $\sum_{i=1}^n \lambda_i v_i \not = 0$ for nonzero vector $\lambda$ $\iff$ $N_A = \{0\}$ $\iff$ $\hat{A}$ has a pivot in every collumn
+    \item $\alpha$ spanning $\iff$ $\forall v, v = \sum_{i = 1}^n \lambda_i v_i$ for some vector $\lambda$ $\iff$ $A x = b$ always has a solution $\iff$ $A$ has no zero rows
+    \end{itemize}
+\end{proof}
+
+\subsection{Bases and Isomorphisms}
+
+\begin{prop} 
+  Let $\alpha: v_1,...,v_n$ be a list in $V$ and define
+  $\phi_\alpha : \mathbb{F}^n \rightarrow V$
+  \[\phi_\alpha({\bf x}) \rightarrow \sum_{i=1}^n v_i x_i.\]
+  Then
+
+  \begin{itemize}
+    \item $\alpha$ is independent if and only if $\phi_\alpha$ is injective
+    \item $\alpha$ spans if and only if $\phi_\alpha$ is surjective.
+  \end{itemize}
+
+  Hence $\alpha$ is a basis if and only if $\phi_\alpha$ is an isomorphism.
+\end{prop}
+\begin{proof} $ $
+    \begin{itemize} 
+      \item $\alpha$ independent $\iff$ $\phi_\alpha(v) = 0 \implies v = 0$ $\iff$ $\phi_\alpha(v - w) = 0 \implies v - w = 0$ $\iff$ $\phi_\alpha(v)=\phi_\alpha(w) \implies v = w$ $\iff$ $\phi_\alpha$ injective.
+      \item $\alpha$ spans $\iff$ every $v$ can be written in terms of $\alpha$ $\iff$ $\forall w \exists v \phi_\alpha(v) = w$ $\iff$ $\phi_\alpha$ surjective.
+    \end{itemize}
+\end{proof}
+
+\begin{corollary}
+    A list $\alpha: v_1, ..., v_n \in V$ is a basis if and only if every $v \in V$ can be written as a linear combination
+    \[v = \sum_{i=1}^n x_i v_i\]
+    for unique $x_1,...,x_n \in \mathbb{F}.$
+\end{corollary}

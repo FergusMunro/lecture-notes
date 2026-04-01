@@ -1,0 +1,128 @@
+\begin{prop}
+    If $\phi : V \rightarrow V$ has a matrix $A$ with respect to a basis $\beta$. Then the following are equivalent:
+    \begin{itemize}
+      \item $\phi$ is diagonalisable
+      \item $\phi_A$ is diagonalisable
+      \item $A$ is diagonalisable
+    \end{itemize}
+\end{prop}
+\begin{proof}
+  $\phi_A = \phi_\beta^{-1} \circ \phi \circ \phi_\beta$. If $v \in V$ is an eigenvector $\phi$ with eigenvalue $\lambda$, then
+  \begin{align*}
+    \phi_A(\phi_\beta^{-1}(v)) &= \phi_\beta^{-1} \circ \phi \circ \phi_\beta(\phi_\beta^{-1}(v)) \\
+                               &= \phi_\beta^{-1}(\phi(v)) \\
+                               &= \phi_\beta^{-1}(\lambda v) \\
+                               &= \lambda \phi_\beta^{-1}(v)
+  .\end{align*}
+  So $\phi_\beta^{-1}(v)$ is a $\lambda-$eigenvector of $\phi_A$. Since $\phi_\beta^{-1}$ is an isomorphism any basis of $V$ will be mapped to a corresponding basis in $\mathbb{F}^n$, so if $\phi$ is diagonalisable so is $\phi_A$. Since $\phi = \phi_\beta \circ \phi_A \circ \phi_\beta^{-1}$, the same argument will work for in reverse.
+
+  If $A$ is diagonalisable, then there exists $P$ such that
+  \begin{align*}
+    P^{-1}AP = D &\iff AP = DP \\
+                 &\iff A col_j(P) = \lambda_j col_j(P) \quad \forall j\\
+                 &\iff \text{the columns of } P \text{ are an eigenbasis of } A
+  .\end{align*}
+  Since the columns of $P$ form a basis, $\phi_A$ is diagonalisable if and only if $A$ diagonalisable.
+\end{proof}
+
+\begin{remark}
+    Many matrices are not diagonalisable over $\mathbb{R}$, but are diagonalisable over $\mathbb{C}$. This happens when the characteristic polynomial has no real roots.
+\end{remark}
+
+\subsection{Applications of Diagonalisation}
+
+Diagonalisation can be extremely helpful for efficient calculation of powers of matrices.
+\begin{prop}
+    
+Suppose $A$ is diagonalisable, with $P^{-1}AP = D$ being diagonal.
+  Then $A = PDP^{-1}$, so for $k > 0$
+  \begin{align*}
+    A^k &= (PDP^{-1})(PDP^{-1})...(PDP^{-1}) \\
+        &= PD^kP^{-1}
+  .\end{align*}
+  with $D^k = \begin{pmatrix}
+  \lambda_1^k & \dots & 0\\
+  \vdots & \ddots & \vdots\\
+  0 & \dots & \lambda_n^k\\
+  \end{pmatrix}$. This allows us to calculate $A^k$ explicitly with only $2$ matrix mutliplications.
+\end{prop}
+
+\subsection{Multiplicity of Eigenvalues and Diagonalisation}
+
+We want a necessary and sufficient condition for a matrix or operator to be diagonalisable.
+
+
+If $\dim V = n$ and $\phi : V \rightarrow V$ is linear, then an eigenbasis needs $n$ linearly Independent eigenvectors.
+
+\begin{theorem}
+    If $v_1,...,v_n$ are eigenvectors $\phi$ with distinct eigenvalues $\lambda_1,...,\lambda_n$ then $v_1,...,v_n$ are independent.
+\end{theorem}
+\begin{proof}
+    By contradiction, suppose WLOG that $a_1 v_1 + ... + a_k v_k = 0$ is the smallest dependent list of eigenvectors. Then
+    \begin{align*}
+      0 = \lambda_1 \sum_{ i = 1}^{k} a_i v_i &= \phi(\sum_{ i = 1}^{n} a_i v_i) = \sum_{ i = 1}^{n} a_i \phi(v_i) \\
+       \sum_{ i = 1}^{k} a_i \lambda_k v_i &= \sum_{  i = 1}^{n} a_i \lambda_i v_i
+    .\end{align*}
+    Then, by subtracting the two sums, the $v_1$ cancels giving a smaller dependent list, a contradiction.
+\end{proof}
+
+\begin{remark}
+    This can be generalized: if we conbine independent list from each eigenspace we get an independent list.
+\end{remark}
+
+\begin{corollary}
+Let $n = \dim V$ and $\phi : V \rightarrow V$ be a linear operator. If 
+\[\Delta_\phi(t) = (t - \lambda_1)...(t - \lambda_n)\]
+with $\lambda_i$ distinct for all $i$, then $\phi$ is diagonalisable.
+\end{corollary} 
+\begin{proof}
+  Because there are $n$ distinct eigenvalues, there are $n$ distinct eigenvectors and since they are independent, they form an eigenbasis.
+\end{proof}
+
+
+\begin{definition}
+    Let $\lambda$ be an eigenvector of $\phi: V \rightarrow V$. Then
+    \begin{itemize}
+    \item the {\bf algebraic multiplicity} of $\lambda$ denoted $am(\lambda)$ is the largest $k$ such that $(\lambda - t)^k$ divides $\Delta_\phi(t)$.
+    \item the {\bf geometric multiplicity} of $\lambda$ is $gm(\lambda) := \dim E_\phi(\lambda)$.
+    \end{itemize}
+\end{definition}
+
+\begin{remark} $ $
+  \begin{itemize}
+  \item $\dim E_\phi(\lambda)$ is the maximal number of independent $\lambda-$eigenvectors.
+  \item Suppose $\lambda$ is a root of $\Delta_\phi(t)$. Then $(t - \lambda)$ divides $\Delta_\phi(t)$ so
+    \[am(\lambda) \geq 1.\]
+    If $E_\phi(\lambda) \not = 0$ then 
+    \[gm(\lambda) \geq 1.\]
+  \end{itemize}    
+\end{remark}
+
+\begin{prop}
+  For any $\lambda \in \mathbb{F}$ and any linear map $\phi$:
+    \[am(\lambda) \geq gm(\lambda).\]
+\end{prop}
+\begin{proof}
+  Let $v_1,...,v_k$ be a basis of $E_\phi(\lambda)$. Extend this list to be a basis of $V$. Then the matrix of $\phi$ from the standard basis to this basis is diagonal in the top corner, and so if $A$ is the matrix in the bottom corner, then 
+  \[\Delta_\phi(t) = (\lambda - t)^t \det(A -It).\]
+  Hence $(\lambda - t)$ divides $\Delta_\phi(t)$ at least $k$ times, so $am(\lambda) \geq gm(\lambda)$.
+\end{proof}
+
+\begin{theorem}
+    Let $\phi : V \rightarrow V$ be a linear operator. Then $\phi$ is diagonalisable if and only if $\Delta_\phi(t)$ is a product of linear factors and $am(\lambda) = gm(\lambda)$ for all $\lambda$.
+    \end{theorem}
+\begin{proof} $ $ \\
+  $(\implies)$ $\phi$ has a diagonal matrix wrt to its eigenbasis, and so in this diagonal matrix, $\Delta_\phi(t) = (\lambda_1 - t)...(\lambda_n - t)$. Then if $\lambda$ is not an eigenvector, $am(\lambda) = 0 = gm(\lambda)$. If $\lambda$ is an eigenvector, $gm(\lambda)$ is the number of $\lambda-$eigenvectors, and so the number of terms equal to $(\lambda - t)$ in $\Delta_\phi(t)$, which is $am(\lambda)$.
+  $ $ \\
+  $ $ \\
+  \noindent $(\Leftarrow)$ Suppose $\Delta_\phi(t) = (\lambda_1 - t)^{k_1}...(\lambda_m - t)^{k_m}$. Then since there are $n$ total terms in $\Delta_\phi(t)$
+  \[\sum_{ i = 1}^{m} k_i = n.\]
+  Each eigenvalue $\lambda_i$ has $k_i$ independent $\lambda_i-$eigenvectors. If these $n$ eigenvectors are independent, then there is a basis of eigenvectors of $\phi$ so $\phi$ is diagonalisable.
+
+  Suppose these vectors are dependent. Then
+  \begin{align*}
+    0 &= \sum_{ i = 1}^{m} \sum_{ j = 1}^{k_i} a_i v_{i_j} \\
+      &= \sum_{ i = 1}^{m} b_i v_i
+  .\end{align*}
+  for some $\lambda_i-$eigenvector $v_i$. However, since these eigenvectors have distinct eigenvalues, they are linearly independent, a contradiction.
+\end{proof}

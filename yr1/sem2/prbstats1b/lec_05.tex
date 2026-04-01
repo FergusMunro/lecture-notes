@@ -1,0 +1,73 @@
+\section{Modelling Data and Parameter Estimation}
+
+\subsection{Estimation by the Method of Moments}
+
+We start with the simple case of modelling the distribution of a single random variable.
+
+Here, we have to choose a suitable distribution and estimate parameters of this distribution.
+
+The method of moments tells us to fit the properties of chosen distribution to the properties of our sample, for example fitting $\mathbb{E}[X]$ and $Var[X]$.
+
+\begin{example}
+  The distance between two fish in a tank is believed to follow a $Beta(a, b)$ distribution. To estimate $a$ and $b$, we need two pieces of information, for example, $\mathbb{E}[X]$ and $\mathbb{E}[X^2]$.
+
+  With the observed values $x_1, ..., x_n$, we can calculate $\mathbb{E}[X]$ and $\mathbb{E}[X^2]$, using these to find $a$ and $b$.
+\end{example}
+
+\begin{definition}
+    For $k \geq 0$, the $k$th moment of a random variable $X$ is
+    \[\mu_k = \mathbb{E}[X^k] \quad \text{(if this exists)}.\]
+
+\end{definition}
+We assume $X_1, ..., X_n$ are i.i.d. (independent, identically distributed) and follow a distribution with unknown parameters $\theta_1,...,\theta_n$. We can then estimate $\mu_1,...,\mu_k$ from the observed data and use these to calculate $\theta_1,...,\theta_n$.
+
+\begin{definition}
+    Method of Moments Estimates of $\theta_1,...,\theta_p$ are the solutions to
+    \[\frac{1}{n} \sum_{i=1}^n x_i^k = \mu_k = \mu_k(\theta_1,...,\theta_p) \text{ for k } = 1,...,p\]
+    where $x_1,...,x_n$ denote the observed values of $X_1,...,X_n$
+\end{definition}
+
+\section{Estimates and Estimators}
+
+\begin{definition}
+  An {\bf estimate} is a real number computed from the data. An {\bf estimate} of the paramter $\theta$ based on observations $x_1,...,x_n$ can be written as
+  \[\hat{\theta} = h(x_1,...,x_n)\]
+  for an appropriate function $h$.
+\end{definition}
+
+\begin{definition}
+  An {\bf estimator} is a random variable, and is a function of the random variables $X_1,...,X_n$ that comprise the data. If the {\bf estimate} of $\theta$ based on observations $x_1,...,x_n$ is $\hat{\theta} = h(x_1,...,x_n)$, the {\bf estimator} $T$ is the random variable
+  \[T = h(X_1,...,X_n).\]
+\end{definition} 
+
+\subsection{Maximum Likelihook Estimation}
+
+Suppose the random variables $X_1, ..., X_n$ follow a certain type of distribution but the parameters of said distribution are unknown.
+\begin{definition}
+    Let $X_1, ..., X_n$ be i.i.d discrete random variables with PMF
+    \[P(X_i = x) =  p_X(\theta, x_i) \quad x_i \in \Omega \quad \text{for } i = 1,...,n\]
+    where $\theta$ denotes the parameter or a vector of parameters.
+
+    Syppose values $X_i = x_i, i=1,...,n$ are observed, and let ${bf x} = (x_1, ...,x_n)$.
+
+    The likelihood function for these discrete random variables is
+    \[L(\theta, x) = \prod_{i=1}^n p_X(\theta, x_i).\]
+\end{definition}
+\begin{definition}
+    Let $X_1, ..., X_n$ be i.i.d continuous random variables with PDF $f_X(\theta, x_i)$
+    where $\theta$ denotes the parameter or a vector of parameters.
+
+    Syppose values $X_i = x_i, i=1,...,n$ are observed, and let ${bf x} = (x_1, ...,x_n)$.
+
+    The likelihood function for these discrete random variables is
+    \[L(\theta, x) = \prod_{i=1}^n p_X(\theta, x_i).\]
+\end{definition}
+
+\begin{definition}
+    In both the continuous and discrete cases, the log-likelihood function is
+    \[ \mathcal{L} (\theta, x) = log\{L(\theta, x)\}.\]
+\end{definition}
+
+\begin{definition}
+  The {\bf Maximum Likelihood Estimate} (MLE) of a parameter of vector of parameters, $\theta$, is the value of $\theta$ that maximises the liklihood function $L(\theta, {\bf x})$ for the observed data.
+\end{definition}

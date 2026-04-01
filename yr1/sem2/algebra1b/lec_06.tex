@@ -1,0 +1,66 @@
+\begin{corollary} $ $
+
+  \begin{itemize}
+    \item If $P \in M_m(\mathbb{F})$ is invertible, then $\det (P_{-1}) = det(P)^{-1}$.
+    \item If $A$ and $B$ are similar, then $\det A = \det B$.
+  \end{itemize}
+\end{corollary}
+
+\begin{remark}
+
+  If $\phi : V \rightarrow V$ is a linear operator and $A, B$ are the matrices of $\phi$ with respect to two bases, then $A$ and $B$ are similar, so $\det A = \det B$.
+
+  Hence the following is well defined.
+\end{remark}
+
+\begin{definition}
+  Let $\phi : V \rightarrow V$ be a linear map, and $V$ be finite dimensional. The {\bf determinant} of $\phi$, $\det \phi$, is
+  \[\det \phi := \det A\]
+  where $A$ is the matrix of $\phi$ with respect to some basis.
+\end{definition}
+
+\subsection{Minors, Adjugates and Inverses}
+
+We introduce a method for computing the determinant, and the inverse of a matrix.
+
+\begin{definition}
+  For $A = (a_{ij}) \in M_n(\mathbb{F})$ the $(i, j)$-minor is
+  \[\mu_{ij} (A) := \det M_{ij}(A)\]
+  where $M_{ij}(A)$ is the matrix obtained by deleting the $i^{th}$ row and $j^{th}$ column of $A$.
+\end{definition}
+
+\begin{prop} (column expansion and row expansion of determinant)
+
+  \begin{itemize}
+    \item For any fixed column $j$
+      \[\det(A) = \sum_{i= 1}^n (-1)^{i + j} a_{ij}\mu_{ij}(A).\]
+    \item For any fixed row $i$
+      \[\det(A) = \sum_{j= 1}^n (-1)^{i + j} a_{ij}\mu_{ij}(A).\]
+
+  \end{itemize}
+    
+\end{prop}
+
+\begin{definition}
+  The {\bf adjugate} of a matrix $A \in M_N(\mathbb{F})$ is
+  \[adj(A) = (b_{ij}) \in M_N(\mathbb{F})\]
+where 
+\[b_{ij} = (-1)^{i + j} \mu_{ji}(A)\]
+
+We say $(-1)^{i + j} \mu_{ij}$ is the $(i, j)$-cofactor and so $adj(A)$ is the transpose of the cofactor matrix.
+\end{definition}
+
+\begin{theorem}
+  \[adj(A) A = \det(A) I.\]
+\end{theorem}
+
+\begin{corollary}
+    If $\det A \not = 0$ and then $A$ is invertible and
+    \[A^{-1} = \frac{1}{\det A} ajd (A).\]
+\end{corollary}
+
+\begin{remark}
+    By the product formula, if $A$ is invertible then $\det A \not = 0$. We also have the converse:
+    \[A \text{ is invertible } \iff \det A \not = 0.\]
+\end{remark}
+

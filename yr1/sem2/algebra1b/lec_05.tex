@@ -1,0 +1,98 @@
+\section{Determinants and Inverses}
+\subsection{Determinants: the Sum Formula}
+
+\begin{definition}
+  Let $A = (a_{ij}) \in M_N(\mathbb{F})$. The determinant of $A$, denoted $\det A$ or $|A|$ is
+  \[\det A = \sum_{\sigma \in S_n} sign(\sigma) a_{\sigma(1) 1} ... a_{\sigma(n) n}.\]
+
+  This is a signed product of one entry from each collummn, in a different row each time, all added together.
+\end{definition}
+
+\begin{remark}
+    The are $n!$ summands so this formula is not easy to use as $n$ gets larger. Fortunately, there are other ways to compute $\det A$.
+\end{remark}
+
+\begin{prop}
+    If $A = \begin{pmatrix}
+    A' & *\\
+    0 & A''\\
+    \end{pmatrix}$ with $A' \in M_N(\mathbb{F}), A'' \in M_M(\mathbb{F})$ is block diagonal (or upper triangular) then $\det A = \det A' \det A''$.
+    %% TODO: check this
+\end{prop}
+
+\begin{prop}
+    $\det A^T = \det A$.
+\end{prop}
+
+\subsection{Properties of Determinants}
+
+We view $\det A$ as a function of the columns of $A$:
+
+write $A = (\underline{c}_1, ..., \underline{c}_n) \quad \underline{c}_j = col_j(A)$ and view $\det : (\underline{c}_1 ,..., \underline{c}_n) \mapsto \det A$
+
+\begin{prop}
+    $\det A = \det (\underline{c}_1,..., \underline{c}_n)$ is
+    \begin{itemize}
+      \item {\bf multilinear} (linear in each slot separately): if $c_j = \lambda \underline{v} + \mu \underline{w}$ where $v, w$ are column vectors, $\lambda, \mu \in \mathbb{F}$, then $\forall j, 1 \leq j \leq n$
+        \[\det (\underline{c}_1, ..., \underline{c}_j, ..., \underline{c}_n) = \lambda \det(\underline{c}_1, ..., \underline{v},..., \underline{c}_n ) + \mu \det(\underline{c}_1, ..., \underline{w}, ..., \underline{c}_n) \quad \]
+    \item {\bf alternating}: if $\underline{c}_i = \underline{c}_j$ for some $i \not = j$, then
+        \[\det(\underline{c}_1,..., \underline{c}_n) = 0.\]
+    \end{itemize}
+\end{prop}
+
+\begin{corollary}
+  Considering $A \in M_{N}(\mathbb{F})$ as a list of row vectors $\underline{r}_1,...,\underline{r}_n \in M_N(\mathbb{F})$, and the function $\det A = \det (\underline{r}_1,...,\underline{r}_n)$ is
+    \begin{itemize}
+      \item {\bf multilinear} (linear in each slot separately): if $r_j = \lambda \underline{v} + \mu \underline{w}$ where $v, w$ are column vectors, $\lambda, \mu \in \mathbb{F}$, then $\forall j, 1 \leq j \leq n$
+        \[\det (\underline{r}_1, ..., \underline{r}_j, ..., \underline{r}_n) = \lambda \det(\underline{r}_1, ..., \underline{v},..., \underline{r}_n ) + \mu \det(\underline{r}_1, ..., \underline{r}, ..., \underline{r}_n) \quad \]
+    \item {\bf alternating}: if $\underline{r}_i = \underline{r}_j$ for some $i \not = j$, then
+        \[\det(\underline{r}_1,..., \underline{r}_n) = 0.\]
+    \end{itemize}   
+\end{corollary}
+
+\begin{prop}
+    If $\hat{A}$ is obtained from $A$ by
+    \begin{itemize}
+      \item $\underline{\hat{c}}_i = \lambda \underline{c}_i$ then $\det \hat{A} = \lambda \det A$
+      \item $\underline{\hat{c}}_i =\underline{c}_i + \lambda \underline{c}_j$ then $\det \hat{A} = \det A$
+      \item $\underline{c}_i \leftrightarrow \underline{c}_j, (i \not = j)$ (swap columns $i$ and $j$) then $\det \hat{A} = - \det A$
+    \end{itemize}
+\end{prop}
+
+\begin{remark}
+
+  Since $\det A^T = \det A$, this works just as well for EROs as it does for ECOs.  This gives us a method to compute the determinant:
+
+  Use guassian elmination (also using ECOs) to turn $A$ into an upper or lower triangular $\hat{A}$, keeping track of the changes to the determinant.
+\end{remark}
+
+\begin{corollary}
+    If $\hat{A}$ is obtained from $A$ by a mix of EROs and ECOs. Then
+    \[\det \hat{A} = 0 \iff \det A = 0.\]
+\end{corollary}
+
+\begin{corollary}
+    If $\hat{A}$ is obtained from $A$ by permuting the columns of $A$ (or the rows) by $\sigma \in S_n$ then
+    \[\det \hat{A} = \text{sign } \sigma \det A.\]
+\end{corollary}
+
+\subsection{Characterisation of det}
+
+Fix $n > 0$, and let $I := I_n \in M_n(\mathbb{F})$, the identity matrix.
+
+\begin{theorem}
+    Let $D : M_N(\mathbb{F}) \rightarrow \mathbb{F}$ be a function that is multilinear and alternating in columns. Then
+    \[D(A) = D(I) \det A.\]
+\end{theorem}
+
+\begin{corollary}
+    If $D : M_N(\mathbb{F}) \rightarrow \mathbb{F}$ is multilinear and alternating and $D(I) = 1$, then
+    \[D = \det.\]
+\end{corollary}
+
+\begin{theorem} (Product formula)
+
+  If $A, B \in M_n(\mathbb{F})$, then
+  \[\det(AB) = \det A \det B.\]
+    
+\end{theorem}

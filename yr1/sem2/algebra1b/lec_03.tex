@@ -1,0 +1,223 @@
+\begin{prop}
+    Let $\phi: \mathbb{F}^n \rightarrow V$ be an isomorphism. Then $\phi = \phi_\alpha$ where $\alpha : \phi(e_1),...,\phi(e_n) \in V$ is a basis.
+\end{prop}
+\begin{proof}
+  \[\phi(v) = \phi \left(\sum_{i=1}^n \lambda_i e_i\right) = \sum_{i=1}^n \lambda_i \phi(e_i) = \phi_\alpha(v)\]
+\end{proof}
+
+\subsection{Bases and Coordinates}
+
+A basis allows us to represent abstract vectors by lists of scalars (coordinates).
+
+\begin{definition}
+    Let $\alpha : v_1,...,v_n \in V$ be a basis of $V$. For $v \in V$, we call the vector $(x_1,...,x_n) \in \mathbb{F}^n$ defined by
+    \[v = \sum_{i = 1}^n x_i v_i.\]
+    This is the {\bf coordinate vector} of $v$ with respect to $\alpha$.
+\end{definition}
+
+\begin{remark} $ $
+      
+  \begin{itemize}
+    \item $v = \phi_\alpha (x_1,...,x_n)$ so
+      \[(x_1, ..., x_n) = \phi_\alpha^{-1}(v).\]
+    \item Reordering $\alpha$ gives a different basis with different coordinate vectors.
+  \end{itemize}
+
+\end{remark}
+
+\subsection{Bases, Linear Maps and Matrices}
+
+\begin{definition}
+    Let $V, W$ be vector spaces over $\mathbb{F}$, $\alpha : v_1,...,v_n \in V$ be a basis of $V$, $\beta: w_1,...,v_m \in W$ be a basis of W, and $\phi : V \rightarrow W$ is a linear map.
+
+    The {\bf matrix} of $\phi$ with respect to $\alpha, \beta$ is $A \in M_{m, n}(\mathbb{F})$ given by
+    \[\phi(v_j) = \sum_{i=1}^m A_{ij}w_i.\]
+
+
+    This means the $j^{th}$ column of $A$ is $\phi(v_j)$ written in terms of $\beta$.
+\end{definition}
+
+
+
+When $V = W$, we can take $\alpha = \beta$
+
+\begin{definition}
+  Let $V$ be a vector space over $\mathbb{F}$ with basis $\alpha = v_1,...,v_n$ and $\phi : V \rightarrow V$ is a linear map on $V$. The {\bf matrix} of $\phi$ with respect to $\alpha$ is $A \in M_n(\mathbb{F})$ given by
+    \[\phi(v_j) = \sum_{i = 1}^n A_{ij} v_i.\]
+\end{definition}
+
+\begin{prop}
+  Let $\alpha : v_1, ..., v_n$ be a basis of $V$, $\beta : w_1, ..., v_m$ be a basis of $W$, and $\phi: V \rightarrow W$ is a linear map with matrix $A$ with respect to $\alpha, \beta$.
+  \begin{itemize}
+    \item For $v \in V$ with coordinate vector $x$ with respect to $\alpha$, $\phi(v)$ has coordinates y with respect to $\beta$ where
+      \[\underline{y} = A \underline{x}.\]
+    \item We have
+      \[\phi = \phi_\beta \circ \phi_A \circ \phi_\alpha^{-1}\]
+      or, equivalently
+      \[\phi_A = \phi_\beta^{-1} \circ \phi \circ \phi_{\alpha}.\]
+      
+  \end{itemize}
+    
+\end{prop}
+\begin{proof} $ $
+  \begin{itemize}
+    \item To prove the first part:
+      \begin{align*}
+        \phi(v) &= \sum_{j = 1}^n x_j \phi(v_j) \\
+                &= \sum_{ j = 1}^{n} x_i (\sum_{ i = 1}^{m} A_{ij} w_i) \\
+                &= \sum_{ i = 1}^{m} \sum_{ j = 1}^{n} A_{ij} x_j w_i \\
+                &= \sum_{ i = 1}^{m} (A \underline{x})_i w_i
+      .\end{align*}
+      hence $\phi(v)$ has coordinates $A \underline{x}$ with respect to $\beta$, so $y = A \underline{x}$.
+    \item Let $w = \phi(v)$. Since $y = \phi_{\beta}^{-1}(w) = A \phi_\alpha^{-1}(v)$ we have
+      \[\phi_\beta^{-1} \circ \phi = \phi_A \circ \phi_\alpha^{-1}\]
+      from which we can obtain the necessary equations.
+  \end{itemize}
+\end{proof}
+
+\begin{prop}
+    Let $V, W , U$ be vector spaces over $\mathbb{F}$ with bases $\alpha, \beta, \gamma$ respectively. Let $\phi : V \rightarrow W$ and $\psi : W \rightarrow U$ be linear maps with matrices $A$ with respect to $\alpha, \beta$ and $B$ with respect to $\beta,\gamma$.
+
+    Then $\psi \circ \phi$ has matrix $BA$ with respect to $\alpha, \gamma$.
+\end{prop}
+\begin{proof}
+  \begin{align*}
+    \psi \circ \phi &= (\phi_\gamma \circ \phi_B \circ \phi_\beta^{-1}) \circ (\phi_\beta \circ \phi_A \circ \phi_\alpha^{-1}) \\
+    &= \phi_\gamma \circ \phi_B \circ (\phi_\beta^{-1} \circ \phi_\beta) \circ \phi_A \circ \phi_\alpha^{-1} \\
+    &= \phi_\gamma \circ \phi_B \circ  \phi_A \circ \phi_\alpha^{-1} \\
+    &= \phi_\gamma \circ \phi_{BA} \circ \phi_\alpha^{-1}
+  .\end{align*}
+  hence $\psi \circ \phi$ has matrix $BA$ with respect to $\alpha, \gamma$.
+
+\end{proof}
+
+\subsection{Change of Basis}
+
+What happens if we want to compose two linear maps that use different bases?
+
+\begin{definition}
+    Let $\alpha : v_1,...,v_n$ and $\alpha' : v_1',..., v_n'$ be two bases of $V$. Then the change of basis matrix with respect to $\alpha, \alpha'$ is $P \in M_n(\mathbb{F})$ such that
+    \[v_j' = \sum_{i = 1}^n P_{ij} v_i.\]
+
+    This means the $j^{th}$ column of $P$ is $v_j'$ written in terms of $\alpha$.
+\end{definition}
+
+\begin{lemma}
+  $\phi_P = \phi_\alpha^{-1} \circ \phi_{\alpha'}$ and so is an isomorphism, hence $P$ is invertible.
+\end{lemma}
+\begin{proof}
+    $\phi_P$ is the identity map with respect to $\alpha', \alpha$, hence
+    \begin{align*}
+      \phi_P &= \phi_\alpha^{-1} \circ \id_V \circ \phi_{\alpha'} \\
+             &= \phi_\alpha^{-1} \circ \phi_{\alpha'}
+    .\end{align*}
+    and as it is the composition of isomorphism, it is itself and isomorphism and hence invertible.
+\end{proof}
+\begin{corollary}
+  The change of basis matrix from $\alpha'$ to $\alpha$ is $P^{-1}$.
+\end{corollary}
+
+\begin{prop}
+    Let $P$ be a change of basis matrix from $\alpha$ to $\alpha'$. Let $v \in V$ have coordinate vector $x$ with respect to $\alpha$ and $x'$ with respect to $\alpha'$. Then
+    \[\underline{x} = P \underline{x'}.\]
+\end{prop}
+\begin{proof}
+  $P$ is the matrix of $\id_V$ with respect to $\alpha'$ and $\alpha$, so $\id_V = \phi_{\alpha} \circ \phi_P \circ \phi_{\alpha'}^{-1}$ or $\phi_P = \phi_\alpha^{-1} \circ \phi_{\alpha'}$. Since
+  \[\phi_{\alpha}(\underline{x}) = \phi_{\alpha'}(\underline{x}')\]
+  this means
+  \begin{align*}
+    \underline{x} &= \phi_\alpha^{-1} \circ \phi_{\alpha'}(\underline{x}') \\
+                  &= P \underline{x}'
+  .\end{align*}
+\end{proof}
+
+\begin{prop}
+    Let $\alpha, \alpha'$ be bases of $V$ with change of basis matrix $P$ from $\alpha$ to $\alpha'$. Let $\beta, \beta'$ be bases of $W$ with change of basis matrix $Q$ from $\beta$ to $\beta'$.
+
+    Let $\phi : V \rightarrow W$ is a linear map with matrix $A$ with respect to $\alpha, \beta$ and $A'$ with respect to $\alpha', \beta'$. Then
+    \[A' = Q^{-1} A P.\]
+\end{prop}
+\begin{proof}
+  We can say $\phi = \id_W \circ \phi \circ \id_V$, with matrices $Q^{-1}, A$ and $P$ respectively. Therefore $A' = Q^{-1} A P$.
+\end{proof}
+
+\begin{corollary}
+    If $\alpha, \alpha'$ are bases of $V$ with change of basis matrix $P$ from $\alpha$ to $\alpha'$, then, if $\phi : V \rightarrow W$ is a linear operator on $V$ with matrix $A$ with respect to $\alpha$ and $A'$ with respect to $\alpha'$, then
+    \[A' = P^{-1} A P.\]
+\end{corollary}
+
+These results prompt the following definition.
+\begin{definition} $ $
+
+  \begin{itemize}
+    \item Matrices $A, A' \in M_{M,N}(\mathbb{F})$ are {\bf equivalent} if there exists invertible matrices $Q \in M_M(\mathbb{F}), P \in M_N(\mathbb{F})$ such that
+      \[A' = Q^{-1} A P.\]
+    \item $A, A' \in M_{N}(\mathbb{F})$ are {\bf similar} if there exists invertible $P \in M_N(\mathbb{F})$ such that
+      \[A' = P^{-1} A P.\]
+  \end{itemize}
+    
+\end{definition}
+
+Both equivalence and similarity are equivalence relations.
+
+\subsection{Computations in $\mathbb{F}^n$}
+
+\begin{example}
+  When $\alpha$ is the standard mases of $\mathbb{F}^n$, and $\alpha': v'_1,...,v'_n$ another basis, then $P$ is easy to compute:
+  \[col_j(P) = v'_j.\]
+
+\end{example}
+The reason we care about all this: there may be a cunning choice of basis which gives a simpler matrix for a given linear map.
+
+\section{Dimension and Rank}
+\subsection{Dimension}
+
+\begin{lemma} (Fundamental Lemma)
+
+  Let $A \in M_{M,N}(\mathbb{F})$. If $n > m$ then there is a nonzero $x \in \mathbb{F}^n$ such that $A \underline{x} = 0$.
+    
+\end{lemma}
+
+\begin{theorem} $ $
+
+  \begin{itemize}
+    \item If $v_1,...,v_n \in V$ are an independent list of vector, and $w_1,...,w_m$ are a spanning list, then $n \leq m$.
+    \item If $v_1,...,v_n$ and $w_1,...,w_m$ are bases, then $n = m$.
+  \end{itemize}
+\end{theorem}
+\begin{proof} $ $
+  \begin{itemize}
+    \item We can write each $v_j = \sum_{ i = 1}^{m} A_{ij} w_i$ for some matrix $A \in M_{m, n}(\mathbb{F})$. Hence suppose
+      \[\sum_{ j = 1}^{n} \sum_{ i = 1}^{m} A_{ij} w_i = 0 = A \bf{w}\].
+      If $n > 0$, there will always be a nonzero solution, contradicting the independence of $v_1,...,v_n$. Therefore $n \leq m$.
+    \item Since both lists are a basis so both surjective and injective, $n \leq m$ and $m \leq n$. Therefore $n = m$.
+  \end{itemize}
+\end{proof}
+
+\begin{definition}
+    Let $V$ be a vector space.
+    \begin{itemize}
+      \item $V$ is {\bf finite dimensional} if it has a finite length basis and {\bf infinite dimensional} otherwise
+    \item If $V$ is finite dimensional, the {\bf dimension} of $V$, denoted $\dim V$ is the length of any basis of $V$.
+    \end{itemize}
+\end{definition}
+
+\begin{example} $ $
+    \begin{itemize}
+      \item $\dim \mathbb{F}^n = n$        
+      \item $\dim \mathbb{F}^0 = \dim \{0\} = 0$
+      \item $\dim \mathbb{F}[x] = \infty$
+    \end{itemize}
+\end{example}
+
+Dimension is preserved by isomorphism.
+
+\begin{prop}
+    Let $V$ be a vector space over $\mathbb{F}$. Then $\dim V = n$ if and only if $\mathbb{F}^n \cong V$.
+
+    In this case, if $W \cong V$ then W is finite dimensional also with $\dim W = n$.
+\end{prop}
+\begin{proof}
+  Any isomorphism $\phi : \mathbb{F}^n \rightarrow V$ creates a basis $\alpha$ of $V$ by applying $\phi$ to $e_i,...,e_n$, and is uniquely determined by this basis.
+  The second statement can be proved by composing the two isomorphisms, meaning $W \cong \mathbb{F}^n$ and so $\dim W = n$.
+\end{proof}

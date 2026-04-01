@@ -1,0 +1,32 @@
+\section{Vector Spaces and Linear Maps}
+\begin{definition}
+  A {\bf vector space} $V$ over a field $\mathbb{F}$ is a set $V$ with two operations, $+$ and $\times$.
+\end{definition}
+
+All algebraic manipulation in a vector space ultimately comes from the Vector Space Axioms and Field Axioms.
+
+\subsection{Subspaces}
+
+\begin{definition}
+  Let $V$ be a vector space over $\mathbb{F}$. A subset $U \subseteq V$ is a (linear) {\bf subspace} if
+    \begin{itemize}
+        \item $0 \in U$
+        \item $U$ is closed under linear combinations, meaning
+            \[\forall u,w \in U, \ \lambda, \mu \in \mathbb{F} \quad \lambda u + \mu w \in U.\]
+    \end{itemize}
+    In this case, we write $U \leq V$.
+\end{definition}
+
+\begin{remark}
+    Because addition and multiplication is defined, $U$ is a vector space in its own right.
+
+    Any $V$ has two special subspaces, $V$ itself and the trivial subspace $\{0\}$. A subspace $U$ with $U \not = V$ is said to be 'proper'.
+\end{remark}
+
+\subsection{Linear Maps}
+\begin{definition}
+  Let $V,W$ be vector spaces over $\mathbb{F}$. A map $\phi : V \rightarrow W$ is a {\bf linear map} if
+    \[\phi(\lambda v + \mu w) = \lambda \phi(v) + \mu \phi(w) \quad \lambda, \mu \in \mathbb{F}, \ v,w \in V.\]
+
+    If $V = W$, then $\phi$ is a linear operator on $V$.
+\end{definition}

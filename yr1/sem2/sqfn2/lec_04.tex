@@ -1,0 +1,88 @@
+\section{Continuity}
+
+\begin{definition}
+    Let $D \subseteq \mathbb{R}$, $c \in D$ and $f : D \rightarrow \mathbb{R}$. We say $f$ is continuous at $c$ if
+    \[\forall \epsilon > 0 \quad \exists \delta > 0 \quad \forall x \in D, \quad |x - c | < \delta\]
+    \[|f(x) - f(c) | < \epsilon.\]
+
+    We say $f$ is {\bf continuous} on $D$ if this holds true at every $c \in D$.
+\end{definition}
+
+\begin{theorem}
+    Let $D \subseteq \mathbb{R}$, $f : D \rightarrow \mathbb{R}$ and $c$ be a cluster point of $D$.
+
+    Then $f$ is continuous at $c$ if and only if
+    \[\lim_{x \rightarrow c} f(x) = f(c).\]
+\end{theorem}
+\begin{proof}
+    Suppose $f$ is continuous at $c$. Fix $\epsilon > 0$ and obtain $\delta$ from continuity of $f$. Then for all $x$ with $0 < |x - c| < \delta$, we have
+    \[|f(x) - f(c)| < \epsilon.\]
+    Thus $f$ converges to $f(c)$ at $\epsilon$. Now suppose $\lim_{x \rightarrow c}f(x) = f(c)$. Fix $\epsilon > 0$ and obtain $\delta$ from the limit of $f$. Then for all $0 < | x - c | < \delta$,
+    \[|f(x) - f(c) | < \epsilon.\]
+    For the case where $|x - c| = 0$, $x = c$ and $|f(c) - f(c)| = 0 < \delta$, so $f$ is continuous.
+\end{proof}
+
+\begin{remark}
+  The relation between continuity at $c$ and $\lim_{x\rightarrow c} f(x) = f(c)$ does not hold if $c$ is not a cluster point. However, functions are always continuous at points that are not cluster points of the domain.
+\end{remark}
+
+\begin{theorem} (Algebra of continuous functions)
+
+  Let $D \subseteq \mathbb{R}$, $c \in D$ and $\alpha \in \mathbb{R}$. Let $f, g : D \rightarrow \mathbb{R}$ be continuous at $c$, then
+  \begin{itemize}
+    \item $f + g$
+    \item $\alpha f$
+    \item $fg$
+  \end{itemize}
+  are all continuous at $c$.
+
+  If $g(c) \not = 0$, then $\frac{f}{g}$ is also continuous at $c$.
+    
+\end{theorem}
+
+\subsection{Composition of Continuous Functions}
+
+Given two sets $D, E \subseteq \mathbb{R}$, $f : D \rightarrow \mathbb{R}$ and $g : E \rightarrow D$, we can define the composite function \[(f \circ g)(x) := f(g(x)).\]
+
+\begin{theorem} (Continuity of Continuous Functions)
+
+  Let $D, E \subseteq \mathbb{R}$, and $c \in E$. Let $f : D \rightarrow \mathbb{R}$ and $g : E \rightarrow D$.
+
+  If $g$ is continuous at $c$ and $f$ is continuous at $g(c)$, then $f \circ g$ is continuous at $c$.
+    
+\end{theorem}
+
+\subsection{Continuity of Selected Functions}
+
+\begin{prop}
+  The following functions are all continuous.
+
+  \begin{itemize}
+    \item $f(x) = \alpha$ for $\alpha \in \mathbb{R}$.
+    \item $f(x) = x$
+    \item $f(x) = \exp(x)$
+    \item $f(x) = \sinh(x)$
+    \item $f(x) = \cosh(x)$
+    \item $f(x) = \sin(x)$
+    \item $f(x) = \cos(x)$
+    \item $f(x) = \sec(x), g(x) = \tan(x)$ where $f, g : \mathbb{R} \setminus \{ \frac{\pi}{2} + n \pi | n \in \mathbb{Z}\} \rightarrow \mathbb{R}$
+    \item $f(x) = \csc(x), g(x) = \cot(x)$ where $f, g : \mathbb{R} \setminus \{ n \pi | n \in \mathbb{Z}\} \rightarrow \mathbb{R}$
+
+  \end{itemize}
+
+\end{prop}
+
+\subsection{The Intermediatve Value Theorem}
+
+Let $D \subseteq \mathbb{R}$, $\alpha \in \mathbb{R}$ and $f: D \rightarrow \mathbb{R}$. Solving the equation $f(x) = \alpha$ can rarely be done explicitly. However, if $f$ is continuous on $D = [a, b]$, and if $\alpha$ is between $f(a)$ and $f(b)$, it is plausible that $f(x) = \alpha$ has a solution in $D$.
+
+\begin{theorem}
+    Let $a, b \in \mathbb{R}$ with $a < b$. Suppose
+    \begin{itemize}
+      \item $f:[a,b] \rightarrow \mathbb{R}$ is continuous
+      \item $f(a) \leq \alpha \leq f(b)$ or $f(b) \leq \alpha \leq f(a)$.
+    \end{itemize}
+
+    Then there exists $c \in [a, b]$ such that
+    \[f(c) = \alpha.\]
+\end{theorem}

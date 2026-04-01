@@ -1,0 +1,116 @@
+\section{Inner Product Spaces}
+
+\subsection{Inner Products}
+
+Recall that the dot (or scalar) product on $\mathbb{R}^n$ is the map
+\begin{align*}
+  \mathbb{R}^n \times \mathbb{R}^n &\rightarrow \mathbb{R} \\
+  x \cdot y &= \sum_{ i = 1}^{n} x_i y_i.
+.\end{align*}
+
+Then we can define the length of $x$ to be $|x| = x \cdot x$, and the angle between two vectors with $x \cdot y = |x||y| \cos \theta$.
+
+We also have the dot product on $\mathbb{C}^n$, defined as
+\[x \cdot y = \sum_{ i = 1}^{n} \bar{x}_i y_i.\]
+Note that $x \dot x = \sum_{ i = 1}^{n} \bar{x}_i x_i = \sum_{ i = 1}^{n} |x_i|^2$.
+
+\begin{definition}
+  Let $V$ be a vector space over $\mathbb{F}$ which we assume to be either $\mathbb{R}$ or $\mathbb{C}$. An {\bf inner product} on $V$ is a map $V \times V \rightarrow \mathbb{F} : (v, w) \mapsto \langle v, w \rangle$ which is
+  \begin{itemize}
+    \item {\bf congugate symmetric:} $\langle w, v \rangle = \overline{\langle v, w \rangle}$
+  \item {\bf linear in the second argument:} 
+    \[\langle v, \lambda u + \mu w \rangle = \lambda \langle v, u \rangle + \mu \langle v, w \rangle\]
+\item {\bf positive definite:} For all $v \in V, \langle v, v \rangle \geq 0$ with equality if and only if $v = 0$
+  \end{itemize}
+  A vector space with a fixed inner product is called an {\bf inner product space}.
+\end{definition}
+$ $ \\
+An inner product space comes with an inner product already defined, denoted $\langle \cdot, \cdot \rangle$.
+
+\begin{remark} $\langle v, v \rangle = \overline{\langle v, v \rangle}$ so the inner product of a vector on itself is always real.
+    \begin{itemize}
+      \item Suppose $\mathbb{F} = \mathbb{R}$. Then congugate symmetry is just symmetry, and so $\langle v, w \rangle = \langle w, v \rangle$. Furthermore this means the inner product is lienar in both arguments.
+      \item Now suppose $\mathbb{F} = \mathbb{C}$. Then
+        \[\langle \lambda u + \mu v, w \rangle = \bar{\lambda} \langle u, w \rangle + \bar{\mu} \langle v, w \rangle.\]
+    \end{itemize}
+\end{remark}
+
+
+\begin{definition}
+    Let $v$ be an inner product space over $\mathbb{R}$.
+    \begin{itemize}
+      \item The {\bf norm} of a vector $v$ is $\norm{v} = \sqrt{\langle v, v \rangle} \geq 0$.
+
+        If $\norm{v} = 1$ then we say $v$ is {\bf unit-length}, and $\frac{v}{ \norm{v}}$ is the {\bf normalisation} of $v$.
+      \item Let $v, w \in V$. If $ \langle v , w \rangle = 0$, then $v$ is {\bf orthogonal} to $w$, written $v \bot w$.
+    \end{itemize}
+\end{definition}
+
+\subsection{Cauchy-Schwarz Inequality}
+
+\begin{theorem}
+  Let $V$ be an inner product space. For $v, w \in V$,
+  \[| \langle v, w \rangle| \leq \norm{v} \norm{w}\]
+  with equality if and only if $v$ and $w$ are dependent.
+\end{theorem}
+
+\begin{corollary} (Triangle Inequality)
+  For $v, w \in V$ we have
+  \[\norm{v + w} \leq \norm{v} + \norm{w}\]
+  with equality if and only if $v$ and $w$ are dependent.
+\end{corollary}
+
+\subsection{Orthogonality}
+
+\begin{definition}
+  A list $u_1,...,u_k$ in an inner product space $V$ is {\bf orthonormal} if for $1 \leq i, j \leq k$
+  \[\langle u_i, u_j \rangle = \delta_{ij} = \left\{\begin{array}{lr}
+  1 & i = j\\
+  0 & 1 \not = j\\
+  \end{array} \right..\]
+\end{definition}
+
+\begin{remark}
+    A list is orthonormal if every $u_i$ has unit length and distinct $u_i,u_j$ are orthogonal.
+\end{remark}
+
+\begin{lemma}
+  For an orthonormal basis $u_1,...,u_n$ in an inner product space $V$, for a vector $v \in V$ we have
+    \[v = \sum_{i = 1}^n \langle u_i, v \rangle u_i.\]
+\end{lemma}
+
+\begin{lemma}
+    Any orthonormal list is linearly independent.
+\end{lemma}
+\begin{prop}
+    If $u_1,...,u_n$ is an orthonormal basis for $V$ and 
+    \begin{align*}
+      v &= \sum_{ i = 1}^{n} x_i u_i \\
+      w &= \sum_{ i = 1}^{n} y_i u_i
+    \end{align*}
+    then \[\langle v, w \rangle = \sum_{ i = 1}^{n} \bar{x}_i y_i = x \cdot y\]
+\end{prop}
+\begin{proof}
+    Expand using sesquilinearity.
+    \begin{align*}
+      \langle v, w \rangle &= \langle \sum_{ i = 1}^{n} x_i u_i, \sum_{ j = 1}^{n} y_j u_j \rangle \\
+                           &= \sum_{ i, j = 1}^{n} \bar{x}_i y_i \langle u_i, u_j \rangle \\
+                           &= \sum_{ i = 1}^{n} \bar{x}_i y_i
+    .\end{align*}
+\end{proof}
+
+\begin{theorem} (Gram-Schmitt Orthogonalisation)
+  Let $v_1, ..., v_n$ be an independent list in an inner product space $V$. Then there exists an orthonormal list $u_1,...,u_n$ such that for $1 \leq k \leq u$ we have
+  \[span \ \{v_1,...,v_k\} = span \ \{u_1,...,u_k\}.\]
+  We construct $u_1,...,u_k$ inductively.
+
+  For $k = 1$ we set $w_1 = v_1$, and $u_1 = \frac{w_1}{\norm{w_1}}$
+
+  
+  For $k > 1$, suppose we have defined $u_1,...,u_k$ already and set 
+  \begin{align*}
+    w_k &= v_k - \sum_{ j = 1}^{k - 1} \langle _j, v_k \rangle u_j \\
+    &= v_k - \sum_{ j = 1}^{n} \frac{\langle w_j, v_k \rangle}{\norm{w_j}^2}
+  .\end{align*}
+  and $u_k = \frac{w_k}{\norm{w_k}}$.
+\end{theorem}

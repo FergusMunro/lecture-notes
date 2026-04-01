@@ -1,0 +1,59 @@
+\subsection{The Gamma Distribution}
+
+\begin{definition}
+    The Gamma function is defined for $t > 0$ as
+    \[\Gamma(t) = \int_0^{\infty} x^{t - 1} e^{-x} dx.\]
+
+
+\end{definition}
+\begin{lemma}
+    \[\Gamma(t + 1) = \int_0^{\infty} x^t e{-x} dx \]
+    \[ = t \Gamma(t).\]
+    \[= t (t - 1) \Gamma(t - 1). \quad \text{ and so on }\]
+\end{lemma}
+\begin{proof}
+    Use integration by parts.
+\end{proof}
+
+We can calculate that $\Gamma(1) = 1$, and hence we can show that for positive integers
+\[\Gamma(t) = (t - 1) !.\]
+
+\begin{definition}
+    The random variable $X$ has a Gamma distribution with parameters $\lambda$ and $k$ $(\lambda > 0, k > 0)$, denoted $Gamma(\lambda, k)$, if it has PDF
+    \[f_X(x) = \left\{
+        \begin{array}{lr}
+          \frac{1}{\Gamma(k)} \lambda^kx^{k - 1} e^{-\lambda x} & x \geq 0\\
+          0 & \text{otherwise}
+        \end{array}
+    \right. .\]
+
+    The Gamma Distribution has $\mathbb{E}[X] = \frac{k}{\lambda}$ and $Var[X] = \frac{k}{\lambda^2}$
+
+    The $\Gamma(\lambda, 1)$ distribution is equal to the $Exp(\lambda)$ distribution.
+
+\end{definition}
+
+\begin{prop}
+    If $X \sim \Gamma(\lambda, k)$ and $Y = cX$, then
+    \[Y \sim \Gamma(\frac{\lambda}{c}, k).\]
+\end{prop}
+
+\begin{prop}
+    If $X_1,...,X_k$ are independent variables where $X_i \sim Exp(\lambda) \forall i$, then
+    \[\sum_{i=1}^k X_i \sim \Gamma(\lambda, k).\]
+
+    Hence for integers $k_1$ and $k_2$, if $Y_1 \sim \Gamma(\lambda, k_1)$ and $Y_2 \sim \Gamma(\lambda, k_2)$ then
+    \[Y_1 + Y_2 \sim \Gamma(\lambda, k_1 + k_2).\]
+\end{prop}
+
+\begin{prop} $ $
+
+  \begin{itemize}
+    \item If $X \sim N(0,1)$, then $X^2 \sim \Gamma( \frac{1}{2}, \frac{1}{2})$.
+    \item If $X_1,...,X_k$ are independent $N(0,1)$ random variables, then
+      \[\sum_{i=1}^k X_i^2 \sim \Gamma( \frac{1}{2}, \frac{k}{2}).\]
+  \end{itemize}
+
+  The second distribution is also known as the $\chi^2$ distribution on $k$ degrees of freedom.
+    
+\end{prop}

@@ -1,0 +1,125 @@
+\section{Important Families of Continuous Random Variables}
+
+\subsection{Uniform Distribution}
+
+%% TODO:
+
+\subsection{The Normal Distribution}
+\begin{definition}
+  The random variable $X$ has the {\bf normal distribution} with mean $\mu$ and variance $\sigma ^2$, denoted $X \sim N(\mu, \sigma^2)$ if it has pdf
+  \[f_X(x) = \frac{1}{\sqrt{2 \pi \sigma ^2}} e ^{\frac{- (x - \mu)^2}{2 \sigma^2}}.\]
+\end{definition}
+
+\begin{definition}
+    
+The random variable $Z$ is said to be {\bf standard normal} if it follows a $N(0, 1) $ distribution.
+
+  The pdf of the standard normal is denoted by $\phi(z)$, and the cdf denoted by $\Phi(z)$.
+\end{definition}
+
+\begin{theorem}
+  \[\int_{-\infty}^\infty e^{- \frac{x^2}{2}} = \sqrt(2\pi).\]
+\end{theorem}
+\begin{proof}
+  We must check that the integral of a normal distribution from $- \infty$ to $\infty$ is $1$. Let 
+  \[c = \int_{-\infty}^\infty e^{ - \frac{x^2}{2}} dx.\]
+  Then 
+  \begin{align*}
+    c^2 &= \int_{-\infty}^\infty e^{ - \frac{x^2}{2}} dx \int_{-\infty}^\infty e^{ - \frac{y^2}{2}} dy \\
+        &= \int_{-\infty}^\infty \int_{-\infty}^\infty e^{- \frac{x^2 + y^2}{2}} dx dy
+  .\end{align*}
+  Now let $x = r \cos \theta$, $y = r \sin \theta$. Then $dx dy = r dr d \theta$ and
+  \begin{align*}
+    c^2 &= \int_0^{2\pi} \int_{0}^\infty r e^{ - \frac{r^2}{2}} dr d\theta \\
+        &= \int_0^{2\pi} \left[ - e^{- \frac{r^2}{2}} \right]_0^{\infty} d\theta \\
+        &= \int_0^{2\pi} 1 d\theta \\
+        &= 2 \pi
+  .\end{align*}
+  Thus $c = \sqrt{2\pi}$.
+\end{proof}
+$ $ \\
+Then this implies that
+\[\int_{-\infty}^\infty e^{ - \frac{(x - \mu)^2}{\sigma^2}} dx = \int_{-\infty}^\infty \sqrt{ 2 \sigma^2}  e^{ - \frac{u^2}{2}} du = \sqrt{2 \pi \sigma^2}.\]
+Then, adding the reciprocal of this to the normal pdf guarantees it will always integrate to $1$.
+
+The standard normal, $Z \sim N(0, 1)$, has pdf $\phi$ and cdf $\Phi$.
+
+\begin{lemma} $ $
+  \begin{itemize}
+    \item $\phi(-z) = \phi(z)$
+    \item $\Phi(-z) = 1 - \Phi(z).$
+  \end{itemize}
+\end{lemma}
+\begin{proof}
+    By symetry.
+\end{proof}
+
+\begin{prop}
+    Suppose $Z \sim N(0,1)$ and $Y = \mu + \sigma Z$. Then $Y \sim N(\mu, \sigma^2)$.
+\end{prop}
+
+\begin{theorem}
+    Let $0 < p < 1$ and $S_n \sim Binom(n, p)$. Then for any $a \in \mathbb{R}$
+    \[\mathbb{P}\left(\frac{S_n - np}{\sqrt{np(1 - p)}} \leq a\right) \rightarrow \Phi(a) \text{ as } n \rightarrow \infty .\]
+
+\end{theorem}
+
+\subsection{Exponential Distribution}
+
+\begin{definition}
+    The random variable $X$ has an exponential distribtion with rate parameter $\lambda > 0$, denoted Exp($\lambda$), if it has pdf
+    \[
+      f_X(x) = \left\{\begin{array}{lr}
+          \lambda e^{-\lambda x} & x \geq 0\\
+          0 & \text{otherwise}
+      \end{array}\right.
+    \]
+    
+    and cdf
+    \[
+      F_X(x) = \left\{\begin{array}{lr}
+          1 - e^{- \lambda x} & x \geq 0\\
+          0 & \text{otherwise}
+      \end{array}\right.
+    \]
+    
+    It has expectation
+    \[\mathbb{E}[X] = \frac{1}{\lambda}\]
+    and variance
+    \[ Var[x] = \frac{1}{\lambda^2}.\]
+        
+\end{definition}
+
+\begin{prop}
+  Let $X$ be a random variable with $X \sim Exp(\lambda)$. Then $X$ is memoryless, meaning
+  \[\mathbb{P}(X > t + s | X > t) = \mathbb{P}(X > s).\]
+\end{prop}
+
+\begin{definition}
+    The hazard rate at time $t$ of survial time distribution is
+    \[h(t) = \lim_{\delta t \rightarrow 0} \frac{1}{\delta t} \mathbb{P}(X \in (t, t + \delta t) | X > t).\]
+
+    This can be viewed as the instantaneous rate of survival... % TODO: go over this
+
+    If $X$ is continuous, then
+    \[\mathbb{P}(X \in (t, t + \delta t)) = f_x(t).\]
+
+    Thus,
+    \[h(t) = \frac{f_X(t)}{1 - F_X(t)}.\]
+
+    For an exponential distribution, $h(t) = \lambda$. Indeed, the exponential distribution is derived from the properties of constant hazard rate and memorylessness.
+\end{definition}
+
+\begin{definition}
+    The random variable $X$ has a Weibull distribution with parameters $\lambda$ and $\beta$, denoted $Weib(\lambda, \beta)$, if it has pdf
+    \[f_X(x) = \left\{
+    \begin{array}{lr}
+      \lambda \beta x^{\beta - 1} e^{- \lambda x^\beta} & x \geq 0\\
+      0 & \text{otherwise}
+    \end{array}
+\right.\]
+
+    The value of $\beta$ shapes the hazard rate function $h(t)$. For $\beta = 1, h(t)$ is constant, and $Weib(\lambda, 1) = Exp(\lambda)$. For $\beta > 1$, $h(t)$ increase with $t$, old items are more likely to fail than new ones, for $\beta < 1, h(t)$ decreases with $t$, old items are less likely to fail than new ones.
+
+\end{definition}
+

@@ -1,0 +1,151 @@
+\subsection{The Weierstrass Extreme Value Theorem}
+
+\begin{definition}
+  Let $D \subseteq \mathbb{R}$ and $f : D \rightarrow \mathbb{R}$.
+  \begin{itemize}
+    \item We say $c \in D$ is a {\bf minimum point} of $f$ in $D$ if 
+      \[f(c) \leq f(x) \quad \forall x \in D.\]
+  \item We say $c \in D$ is a {\bf maximum point} of $f$ in $D$ if
+      \[f(c) \geq f(x) \quad \forall x \in D .\]
+  \end{itemize}
+  We say $f$ {\bf attains} its maximum or minimum in $D$ if a maximum or minimum point exists in $D$.
+\end{definition}
+
+\begin{theorem}
+    Let $a, b \in \mathbb{R}$ with $a < b$. Suppose $f : [a, b] \rightarrow \mathbb{R}$ is continuous. Then
+    \begin{itemize}
+      \item there exists finite $L > 0$ such that
+        \[|f(x) | \leq L \quad \forall x \in [a, b].\]
+      \item $f$ attains its maximum and minimum in $[a, b]$.
+    \end{itemize}
+\end{theorem}
+
+\subsection{The Natural Logarithm}
+
+Before we can define the inverse of the exponential function, we must show that it is a bijection.
+\begin{prop} The exponential function is bijective.
+\end{prop}
+\begin{proof} We first prove injectivity and then surjectivity.
+  \begin{itemize}
+    \item  Let $x, y \in \mathbb{R}$ with $x > y$. Then
+    \begin{align*}
+      \frac{\exp(x)}{\exp(y)} &= \exp(x - y) \\
+                              &= 1 + \sum_{n=1}^{\infty} \frac{(x - y)^n}{n!} > 1
+    .\end{align*}
+    Therefore, as the sum is positive, $\exp(x) > \exp(y)$. This implies that $\exp : \mathbb{R} \rightarrow (0, \infty)$ is injective.
+  \item Fix $y > 0$. Then
+    \[\exp(y) = 1 + y + \sum_{n=2}^{\infty} \frac{y^n}{n!} > y.\]
+    This implies, for $y > 0$, $\exp(\frac{1}{y}) > \frac{1}{y} \implies \frac{1}{\exp(y)} = \exp(- \frac{1}{y}) < y$.
+
+    Hence, $\exp(- \frac{1}{y}) < y < \exp(y)$, so by the intermediate value theorem
+    \[\exists c \in [ - \frac{1}{y}, y] \quad \text{such that} \quad \exp(c) = y.\]
+  \end{itemize}
+\end{proof}
+
+\begin{definition}
+
+  The function $\log : (0, \infty) \rightarrow \mathbb{R}$ is the inverse of $\exp : \mathbb{R} \rightarrow (0, \infty)$.
+    
+\end{definition}
+
+\begin{prop}
+    For $x, y \in (0, \infty)$
+    \begin{itemize}
+      \item $\log(xy) = \log x + \log y$
+      \item $\log( \frac{x}{y}) = \log x - \log y$
+    \end{itemize}
+\end{prop}
+\begin{proof} $ $
+  \begin{itemize}
+    \item For the first proof
+      \begin{align*}
+        \exp(\log x + \log y) &= \exp(\log x)\exp(\log y) \\
+                               &= xy \\
+                               &= \exp(\log(x y))
+    .\end{align*}
+    so by injectivity $\log xy = \log x + \log y$
+  \item Because $\exp(0) = 1$ this means $\log 1 = 0$.
+    \begin{align*}
+      \log( \frac{y}{y}) &= \log y + \log( \frac{1}{y}) \\
+                      0  &= \log y + \log( \frac{1}{y})
+    \end{align*}
+    so
+    \[\log (\frac{1}{y}) = -\log y.\]
+
+    Hence
+    \begin{align*}
+      \log( \frac{x}{y}) &= \log x + \log (\frac{1}{y}) \\
+                         &= \log x - \log y
+    .\end{align*}
+  \end{itemize}
+\end{proof}
+
+\begin{definition}
+  For $a > 0$ and $x \in \mathbb{R}$
+  \[a^x = \exp(x \log a).\]
+\end{definition}
+
+\section{Derivatives}
+
+\begin{definition}
+Suppose $S \subseteq \mathbb{R}$. A point $c \in S$ is called an {\bf interior point} of $S$ if $\exists \delta > 0$ such that
+\[(c - \delta, c + \delta) \subseteq S.\]
+\end{definition}
+
+\begin{definition}
+  Let $D \subseteq \mathbb{R}$ and $f: D \rightarrow \mathbb{R}$. Suppose $c \in D$ is an interior point of $D$. We say $f$ is {\bf differentiable} at $c$ if
+  \[\lim_{h \rightarrow 0} \frac{f(c + h) - f(c)}{h} \quad \text{exists}.\]
+
+  The number $f'(c) = \lim_{h \rightarrow 0} \frac{f(c + h) - f(c)}{h}$ is called {\bf the derivative} of $f$ at $c$.
+
+  If $f$ is differentiable at every $c \in D$, we say $f$ is {\bf differentiable} on $D$.
+\end{definition}
+
+\begin{prop}
+    Let $D \subseteq \mathbb{R}$ and let $c \in D$ be an interir point of $D$. If $f:D \rightarrow \mathbb{R}$ is differentiable at $c$, then it is continuous at $c$.
+\end{prop}
+\begin{proof}
+  Suppose $\lim_{h \rightarrow 0} \frac{f(c + h) - f(c)}{h}$ exists. Using a substition of $x = c + h$, this can be rewritten as
+  \[\lim_{x \rightarrow c} \frac{f(x) - f(c)}{x - c} = f'(c)\]
+  Hence, by the algebra of limits
+  \begin{align*}
+    \lim_{x \rightarrow c}\left(f(x) - f(c)\right) &= \lim_{c \rightarrow c}\left(\frac{f(x) - f(c)}{x - c}(x - c)\right) \\
+    &= \lim_{x \rightarrow c} \frac{f(x) - f(c)}{x - c} \lim_{x \rightarrow c} (x - c) \\ 
+    &= f'(c)(0) = 0
+  .\end{align*} 
+  so $\lim_{x \rightarrow c} f(x) = f(c)$, so $f$ is continuous at $c$.
+\end{proof}
+
+\subsection{The Algebra of Derivatives}
+
+\begin{theorem}
+    Let $D \subseteq \mathbb{R}$ and let $c \in D$ be an interior point. Suppose that $f, g : D \rightarrow \mathbb{R}$ are differentiable at $c$. Then
+    \begin{itemize}
+      \item $f + g$ is differentiable at $c$ with
+        \[(f + g)'(c) = f'(c) + g'(c).\]
+      \item $f - g$ is differentiable at $c$ with 
+        \[(f - g)'(c) = f'(c) - g'(c).\]
+      \item $\alpha f$ is differentiable at $c$ with $(\alpha f)'(c) = \alpha f'(c)$
+      \item (Product rule) $fg$ is differentiable at $c$ with
+        \[(fg)'(c) = f'(c)g(c) - f(c)g'(c).\]
+      \item (Quotient rule). If $g(c) \not = 0$ then $\frac{f}{g}$ is differentiable at $c$ with
+        \[\left(\frac{f}{g}\right)'(c) = \frac{f'(c)g(c) - f(c)g'(c)}{(g(c))^2}.\]
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    The first three points can be proven relatively easily using the algebra of function limits.
+    \begin{itemize}
+      \item First, it is easy to show that
+        \[(fg)(x + h) - (fg)(x) = \left(f(x + h) - f(x)\right)g(x + h) + f(x)\left(g(x + h) - g(x)\right).\]
+        Now, taking the limit of this expression divided by $h$ gives
+        \[\lim_{h \rightarrow 0} \frac{\left(f(x + h) - f(x)\right)g(x + h)}{h} + \frac{f(x)\left(g(x + h) - g(x)\right)}{h}.\]
+        Since $g$ is differentiable and therefore continuous, $\lim_{h \rightarrow 0}g(x + h) = g(x)$, so by the algebra of function limits the product rule is obtained.
+      \item We only need to prove that $\left( \frac{1}{g}\right)'(c) = \frac{-g'(c)}{(g(c))^2}$, and can then apply this with the product rule to prove the quotient rule. We also need to use the continuity of $g$ to prove $g(x + h) \not = 0$ less than some distance $\delta$ away. Finally
+        \begin{align*}
+          \lim_{h \rightarrow 0} \frac{ \left(\frac{1}{g}\right)(x + h) - \left(\frac{1}{g}\right)(x)}{h} &= \lim_{h \rightarrow 0} \frac{g(x) - g(x + h)}{hg(x)g(x + h)} \\
+          &= \lim_{h \rightarrow 0} - \frac{g'(x)}{g(x)g(x + h)}
+        \end{align*}
+        as required.
+    \end{itemize}
+    
+\end{proof}

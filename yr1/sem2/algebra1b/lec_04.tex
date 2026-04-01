@@ -1,0 +1,267 @@
+\begin{prop} $ $
+
+  \begin{itemize}
+    \item If $v_1,...,v_n$ span $V$ and $v_n \in span\{v_1,...,v_{n-1}\}$ then $v_1,...,v_{n-1}$ span $V$.
+    \item If $v_1,...,v_{n-1}$ is an independent list and $v_n \not \in span\{v_1,...,v_{n-1}\}$ then $v_1,...,v_n$ is also independent.
+  \end{itemize}
+    
+\end{prop}
+\begin{proof}
+  \begin{align*}
+    V &= span \{v_1,...,v_n\} \\ &= \{ \sum_{ i = 1}^{n} \lambda_i v_i | \lambda_1,..., \lambda_n \in \mathbb{F}, v_1,...,v_n \in V\} \\
+    &= \{ \sum_{ i = 1}^{n - 1} \lambda_i v_i + v_n | \lambda_1,..., \lambda_n \in \mathbb{F}, v_1,...,v_n \in V\} \\
+    &= \{ \sum_{ i = 1}^{n - 1} \lambda_i v_i + \sum_{ i = 1}^{n - 1} \mu_i v_i | \lambda_1,..., \lambda_n \in \mathbb{F}, \mu_1,..., \mu_n \in \mathbb{F}, v_1,...,v_n \in V\} \\
+    &= \{ \sum_{ i = 1}^{n - 1} (\lambda_i + \mu_i) v_i | \lambda_1,..., \lambda_n \in \mathbb{F}, \mu_1,..., \mu_n \in \mathbb{F}, v_1,...,v_n \in V\} \\
+    &= span \{v_1, ..., v_{n-1}\}
+  .\end{align*}
+  For the second statement, suppose $\sum_{ i = 1}^{n-1} \lambda_i v_i + v_n = 0$. Then if not independent, $v_n$ can be written as some linear combination of $v_1,...,v_{n-1}$, so it would be in the span of those vectors, which is a contradiction.
+\end{proof}
+
+\begin{definition}
+    Let $\alpha$ be a list of vectors in $V$.
+
+    \begin{itemize}
+      \item a {\bf sublist} of $\alpha$ is a list obtained by deleting some elements of $\alpha$
+      \item a list $\beta$ {\bf extends} $\alpha$ if $\beta$ is obtained by appending vectors to $\alpha$.
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}
+    Let $\beta$ be a finite spanning list of vectors in a vector space $V$ extending a (possibly empty) independent list $\alpha$. Then there is a basis $\gamma$ of $V$ which 
+    \begin{itemize}
+      \item extends $\alpha$
+      \item is a sublist of $\beta$.
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+     Let $\gamma$ be the longest independent sublist of $\beta$. If all elements of $\beta$ can be written in terms of $\gamma$, it is a basis. If one cannot, then appending this vector to $\gamma$ gives an independent sublist of $\beta$, contradicting $\gamma$'s maximal length.
+\end{proof}
+
+\begin{corollary} $ $
+  \begin{itemize}
+    \item Any finite spanning list contains a basis
+    \item If $V$ is finite dimensional, any independent list can be extended to a basis.
+  \end{itemize}
+    
+\end{corollary}
+
+\begin{corollary}
+    Let $\dim V = n$.
+    \begin{itemize}
+      \item Any spanning list of length $n$ is a basis.
+      \item Any independent list of length $n$ is a basis.
+    \end{itemize}
+\end{corollary}
+\begin{proof}
+    Both lists contain a length $n$ sublist that is a basis. Since they are themselves length $n$, that sublist is just the entire list.
+\end{proof}
+
+\begin{theorem}
+    Let $V$ be finite dimensional and $W \leq V$. Then $W$ is finite dimensional also and $\dim W \leq \dim V$.
+
+    Futheremore, $\dim W = \dim V$ $\iff$ $W = V$.
+\end{theorem}
+\begin{proof}
+    Any independent list in $W$ has length $n \leq \dim V$. Consider an independent list $\alpha$ of maximum length in $W$. If it does not span $W$, a longer independent list exists so there is a contradiction. Therefore, this list is a basis of $W$ with $\dim W \leq \dim V$. If $\dim W = \dim V$, $\alpha$ is a basis of $V$ with $W = span \ \alpha = V$.
+\end{proof}
+
+\begin{remark}
+    If two vector spaces have the same dimension, they are only equal if one is a subspace of the other. Equal dimension alone is not enough to show they are equal.
+\end{remark}
+
+\begin{prop}
+  Let $\alpha: v_1,...,v_n \in \mathbb{F}^m$ and define $A \in M_{m,n}(\mathbb{F})$ by $col_j(A) = \bar{v}_j$.
+
+  Let $\hat{A}$ be a REF matrix obtained from $A$ by gaussian elimination with $r$ pivots in cols $j_1 < j_2 <... < j_r$. Then $v_{j_1},...,v_{j_r}$ is a basis for $span \ \alpha \leq \mathbb{F}^M$.
+\end{prop}
+\begin{proof}
+  Consider the matrix $B \in M_{m, r}(\mathbb{F})$ with columns from the list $\beta: v_{j_1},...,v_{j_r}$. Then since EROs act on each column separately, $\hat{B}$ has a pivot in every column, thus $\beta$ is independent.
+
+  To show $span \ \alpha = span \ \beta$, this is the same as proving that for every $v_j$, there exists $x^j$ such that
+  \[B \bf{x}^j = v_j.\]
+  Suppose this is unsolvable. This is trivially solvable for $v_j$ in $\beta$, so suppose $v_j$ is not. Then the REF of the augmented matrix ($B | v_j$) has a row where all entries in $B$-columns are zero and the $v_j$ entry is nonzero. This means this column contains a pivot, so $v_j$ would be in $\beta$, a contradiction.
+\end{proof}
+
+\subsection{Rank}
+
+\begin{definition}
+  The {\bf rank} of a linear map $\phi : V \rightarrow W$ is
+  \[rank \ \phi := \dim \Ima \phi.\]
+\end{definition}
+
+\begin{lemma}
+  Given $\phi : V \rightarrow W$ and isomorphisms $f : V' \rightarrow V$ and $g : W' \rightarrow W$, set $\phi' = g^{-1} \circ \phi \circ f : V' \rightarrow W'$. Then
+  \[rank \ \phi = rank \ \phi'.\]
+\end{lemma}
+\begin{proof}
+  Since $f$ is surjective, $\Ima (\phi \circ f) = \Ima \phi$. Then restricting $g$ to domain $\Ima \phi$ and codomain $\Ima (g \circ \phi)$ gives an isomorphism, hence the two images are isomorphic and so $\phi$ and $\phi'$ have the same rank.
+\end{proof}
+
+\begin{definition} Let $A \in M_{M,N}(\mathbb{F})$.
+  \begin{itemize}
+    \item The {\bf column space} of $A$ is the span of the columns of $A$.
+      \[colspace \ A := \left\{\sum_{j=1}^n x_j col_j(A) \\ | \\ x_1,...,x_n \in \mathbb{F}\right\}.\]
+    The {\bf column rank} of $A$ is $colrank \ A := dim \ colspace \ A$.
+
+    \item The {\bf row space} of $A$ is the span of the rows of $A$
+      \[rowspace \ A := \left\{\sum_{j=1}^m x_j row_j(A) \\ | \\ x_1,...,x_n \in \mathbb{F}\right\}.\]
+      The {\bf row rank} of $A$ is $row \ rank \ A := dim \ rowspace \ A$.
+    \item $rank \ A$ is the number of pivots in the REF of $A$.
+      
+  \end{itemize}
+
+\end{definition}
+
+\begin{theorem}
+  Let $A \in M_{m,n}(\mathbb{F})$. Then $rank \ A$ is equal to:
+  \begin{itemize}
+    \item $rank \ \phi_A$
+    \item $colrank \ A$
+    \item $rowrank \ A$
+    \item The smallest number $r$ such that
+      \[A = BC\]
+      with $B \in M_{M, r}, C \in M_{r, N}$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  Firstly, $colspace \ A = \Ima A$ so $colrank \ A = rank \ \phi_A$. If each column of $A$ represents a list of vectors $\alpha$, the columns with pivots in $\hat{A}$ form a basis of $span \ \alpha$, so $rank \ A = colrank \ A$. It is possible to factorize $A = BC$ with $B \in M_{m,r}$ and $C \in M_{r,n}$ with $r = colrank \ A$, by setting the columns of $B$ to be a basis of the column space. Now suppose $r$ is not minimal, so there exists $s < r$. Then \[col_k(A) = \sum_{ j = 1}^{s} c_{jk}col_j(B)\]
+  thus there exists a basis of length $s$ for $colspace \ A$, which is a contradiction. Therefore $r$ is the smallest value to factorize $A$. A similar argument can be used with the row rank.
+\end{proof}
+
+\begin{corollary}
+  For $A \in M_{M, N}$, $rank \ A = rank \ A^T$.
+\end{corollary}
+\begin{proof}
+    $rank \ A = rowspace \ A = colspace A^T = rank \ A^T$.
+\end{proof}
+
+\begin{remark}
+    To find the rank of a matrix $A$, and the 'smallest' matrices $B$ and $C$ such that $A = BC$, reduce $A$ into RREF. Then the number of pivots is $r = rank \ A$. The columns of $B$ are the columns of $A$ where there is a pivot in $\hat{A}$, and the columns of $C$ are the first $r$ rows of $\hat{A}$.
+\end{remark}
+
+\begin{prop} $ $
+  \begin{itemize}
+    \item Let $\phi : V \rightarrow W$ be a linear map with matrix $A$ with respect to some bases $\alpha, \beta$. Then
+      \[rank \ A =\rank \phi.\]
+    \item Let $A, B \in M_{M,N}(\mathbb{F})$ be equivalent. Then 
+      \[\rank A = \rank B.\]
+  \end{itemize}
+\end{prop}
+\begin{proof} $ $
+  \begin{itemize}
+    \item $\phi = \phi_\beta \circ \phi_A \circ \phi_\alpha^{-1}$. Then because $\phi_\beta$ and $\phi_\alpha$ are isomorphisms
+      \[\rank \phi = \rank \phi_A = \rank A.\]
+    \item Let $A = QBP^{-1}$ for invertible $P, Q$. Then
+      \[\phi_A = \phi_Q \circ \phi_B \circ \phi_P^{-1}\]
+      thus
+      \[\rank A = \rank \phi_A = \rank \phi_B = \rank B.\]
+  \end{itemize}
+\end{proof}
+
+\begin{remark}
+    The above statement has a converse: If $\rank A = r$ then
+    $A$ is equivalent to $\begin{pmatrix}
+    I_r & 0\\
+    0 & 0\\
+    \end{pmatrix}$  Additionaly, matrices of the same size and rank are equivalent under an equivalence relation.
+\end{remark}
+
+\subsection{The Rank-Nullity Theorem}
+
+\begin{definition}
+  The {\bf nullity} of a linear map $\phi$ is
+    \[null \ \phi = \dim \ker \phi.\]
+\end{definition}
+
+\begin{theorem} (Rank-Nullity Theorem)
+
+  If $V$ is finite dimensional and $\phi : V \rightarrow W$ is linear, then
+  \[rank \ \phi + null \ \phi = dim \ V.\]
+    
+\end{theorem}
+\begin{proof}
+Let $\dim V = n$, $\dim \ker \phi = k$. Then we must prove $\dim \Ima \phi = n - k$. Consider a basis of $\ker \phi v_1,...,v_k$ extended by $v_{k+1},...,v_n$ to form a basis of $V$, and we want to prove that $\phi(v_{k+1}), ..., \phi(v_n)$ is a basis of $\Ima \phi$.
+  \begin{itemize}
+    \item (Independence). Suppose 
+      \begin{align*}
+        \sum_{ k+1 = 1}^{n} \lambda_i \phi(v_i) &= 0 \\
+        \phi \left( \sum_{ i = k+1}^{n} \lambda_i v_i \right) &= 0 \\
+        \phi(w) &= 0
+      .\end{align*}
+      so $w \in \ker \phi$. However this means that it could be written in terms of $v_1,..,v_k$, but this is a contradiction as the two sublists are independent due to being a basis of $V$.
+    \item (Spanning). Let $v \in V$. Then
+      \begin{align*}
+        \sum_{ i = 1}^{n} \lambda_i \phi(v_i) &= v \\
+        \sum_{ i = 1}^{k} \lambda_i \phi(v_i) + \sum_{ k+1 = 1}^{n} \lambda_i \phi(v_i) &= v \\
+        \sum_{ k+1 = 1}^{n} \lambda_i \phi(v_i) &= v \\
+      .\end{align*}
+      so $v_{k+1},...,v_k$ is a basis of $\Ima \phi$. Hence
+      \[\rank \phi + \nullity \phi = \dim V.\]
+  \end{itemize}
+\end{proof}
+
+\begin{remark}
+    The dimension of $W$ need not be finite.
+\end{remark}
+
+\begin{theorem}
+  Let $\phi : V \rightarrow V$ be a linear operator on finite dimensional $V$. Then the following are equivalent:
+  \begin{itemize}
+    \item $\phi$ is an isomorphism
+    \item $\phi$ is surjective
+    \item $\phi$ is injective
+    \item $\ker \phi = \{0\}$
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  $\phi$ is surjective $\iff$ $\Ima \phi = V$ $\iff$ $\rank \phi = \dim V$ $\iff$ $\nullity \phi = 0$ $\iff$ $\ker \phi = \{0\}$ $\iff$ $\phi$ is injective.
+\end{proof}
+
+\begin{remark}
+    This result fails if $V$ is infinite dimensional.
+\end{remark}
+
+\subsection{Applications to Sums and Products}
+
+\begin{definition}
+  Let $V, W$ be vector spaces over $\mathbb{F}$. Then the {\bf product} of $V$ and $W$ is $V \times W$ with addition and scalar multiplication defined componentwise
+
+  \[(v, w) + (v', w') = (v + v', w + w')\]
+  \[\lambda (v, w) = (\lambda v, \lambda w).\]
+
+  $V \times W$ is a vector space over $\mathbb{F}$ with this addition and scalar multiplication.
+    
+\end{definition}
+
+\begin{prop}
+    If $V$, $W$ are finite dimensional, so is $V \times W$ and
+    \[\dim (V \times W) = \dim V + \dim W.\]
+\end{prop}
+\begin{proof}
+    Consider a linear projection map $\pi_V : (V \times W) \rightarrow V$, $\pi_(v, w) \mapsto v$. Then $\rank \pi_V = \dim V$ and $\nullity \pi_V = \dim W$. Thus
+    \[\dim (V \times W) = \dim V + \dim W.\]
+\end{proof}
+
+\begin{definition}
+  Let $U, W \leq V$. Then the {\bf sum} of $U$ and $W$ is
+  \[U + W := \{u + w | u \in U, w \in W\}.\]
+\end{definition}
+\begin{remark}
+    $U + W$ is itself a subspace of $V$.
+\end{remark}
+
+\begin{prop} (Dimensional Formula)
+
+  If $U, W \leq V$ are finite dimensional. Then
+  \[\dim (U + W) + \dim U \cap W = \dim U +\dim  W.\]
+    
+\end{prop}
+\begin{proof}
+   Consider $\phi : (U \times W) \rightarrow U + W$, $\phi(v, w) \mapsto u + w$. This clearly surjects so $\rank \phi = \dim (U + W)$, hence we just need to prove $\nullity \phi = \dim U \cap W$.
+   \begin{align*}
+     \phi(u, w) = u + w &= 0. \\
+     w &= -u
+   .\end{align*}
+   so $w \in u$ and $u \in W$. Thus $\ker \phi \cong U \cap W$ so they have the same dimension.
+\end{proof}
+

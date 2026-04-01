@@ -1,0 +1,62 @@
+\section{Functions}
+\subsection{Power Series}
+
+\begin{definition}
+  A {\bf power series} is a series of the form
+    \[\sum_{n=0}^{\infty} a_n x^n.\]
+    where $a_0,a_1,...$ are all real numbers, called the coefficients of the power series.
+\end{definition}
+\begin{theorem}
+
+    For any power series $\sum_{n=0}^{\infty} a_n x^n$ either
+    \begin{enumerate}
+        \item $\sum_{n=0}^{\infty} | a_n x^n| $ converges $\forall x \in \mathbb{R}$ 
+        \item $\sum_{n=0}^{\infty} | a_n x^n| $ diverges $\forall x \in \mathbb{R} \setminus \{0\}$
+        \item $\exists R \in (0, \infty)$ such that $\sum_{n=0}^{\infty} | a_n x^n| $ converges if $|x| < R$ and diverges if $|x| > R$.
+    \end{enumerate}
+    
+\end{theorem}
+\begin{proof}
+  Suppose their exists at least one $x > 0$ such that the power series converges and at least one $z > 0$ such that it doesn't.
+
+  Define $S := \{r \geq 0 \ | \ (|a_n| r^n)_{n \in \mathbb{N}_0} \text{ is bounded}\}$ and $R := \sup S$. Hence $x \in S$. Suppose there exists $r > z \in S$. Then
+  \begin{align*}
+    |a_n z^n| = \frac{|a_n|z^n}{|a_n|r^n} |a_n| r^n = (|a_n| r^n) \left(\frac{z^n}{r^n}\right) \leq M \left( \frac{z}{r} \right)^n
+  \end{align*}
+  for some $M$. Since this is less than a geometric sequence, the sum must converge, a contradiction. This means $z$ is an upper bound of $S$.
+
+  For any $x \in S$, we can choose a $x < r < R$. Then by the same argument as above, $\sum_{ n = 1}^{\infty} |a_n x^n|$ is less than a geometric series, so converges. If $x > R$, then $a_n x^n$ is unbounded and clearly does not converge.
+  
+\end{proof}
+
+\begin{remark}
+    In Case 3, the sequence may or may not converge if $|x| = R$, and it depends on the sequence $(a_n)_{n \in \mathbb{N}}$.
+\end{remark}
+
+\begin{definition} (Radius of Convergence)
+
+    \begin{itemize}
+      \item If $\sum_{n=0}^{\infty} | a_n x^n| $ converges $\forall x \in \mathbb{R}$, we define the {\bf radius of convergence} to be $\infty$
+        \item If $\sum_{n=0}^{\infty} | a_n x^n| $ diverges for all $|x| > 0$ we define the radius of convergence to be $0$.
+        \item If $\sum_{n=0}^{\infty} | a_n x^n| $ converges $|x| < R$ and diverges $|x| > R$, then the {\bf radius of convergence} is defined as $R$.
+    \end{itemize}
+    
+\end{definition}    
+Although we know the radius of convergence exists, we know nothing about it. The next theorem gives us some information about it.
+
+\begin{theorem}
+    For any power series $\sum_{n=0}^{\infty} | a_n x^n| $, if
+    \begin{itemize}
+        \item $a_n \not = 0 \quad \forall n \in \mathbb{N}_0$ and $R = \lim_{n\rightarrow \infty} \frac{|a_n|}{|a_{n+1}|}$ exists, then $R$ is the radius of convergence.
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+  By the ratio test
+    \[\frac{a_{n + 1} x^{n + 1}}{a_n x^n} = x \left( \frac{a_{n + 1}}{a_n}\right)\]
+    If $R = \infty$, this always converges to $0$, so the power series is convergent for all $x$. Conversely, if $R = 0$, the ratio test gives $\infty > 1$ for all $x$. If $R = R$, then
+    \begin{align*}
+      \lim_{n \rightarrow \infty} x \left( \frac{a_{n + 1}}{a_n} \right) &< 1 \\
+      \frac{x}{R} &< 1 \\
+       x &< R
+    .\end{align*}
+  \end{proof}

@@ -1,0 +1,51 @@
+\section{Generating a Random Sample from a given Distribution}
+
+\subsection{Methods for Generating $Unif(0,1)$ Random Variables}
+
+If, for some large $m$, we can randomly arrange the numbers in the set $\{1,...,m - 1\}$ into a sequence $X_1, X_2, ...$, then we can treat $\frac{X_1}{m}, \frac{X_2}{m},... $ as samples from an independent $Unif(0,1)$ distribution.
+
+\begin{example}
+    
+A way to do this is the following algorithm:
+
+$ $
+
+Set 
+\[m = 2^N \quad \text{ for a large value of } N\]
+
+Choose
+\[c \quad \text{a prime number}\]
+\[a \quad \text{such that } a - 1 \text{ is divisible by c}.\]
+
+Set $X_1$ to be any value in $\{0,...,m -1 \}$
+
+Then proceed iteratively setting
+\[X_{n+1} = (aX_n + c) \pmod n.\]
+
+\end{example}
+
+\subsection{The Inverse CDF Method for Simulation}
+
+To turn a random sample from a $Unif(0,1)$ RV into a sample from a RV with CDF $g(x)$.
+
+$ $
+
+Consider the case where $g(x)$ is continuous and strictly increasing $g : [a, b] \rightarrow [0, 1]$ with $g(a) = 0$ and $g(b) = 1$.
+
+$ $
+
+Then the function $g^{-1} : [0, 1] \rightarrow [a, b]$ is well defined.
+
+\begin{lemma}
+  Suppose the continuous random variable $X$ has CDF $G(x)$, and $Y = G(X)$.
+
+    Then $Y \sim Unif(0,1)$.
+\end{lemma} 
+
+\begin{theorem}
+  Let $G(x)$ is a continuous, strictly increasing function from $[a, b] \rightarrow [0,1]$ with $G(a) = 0$ and $G(b) = 1$. The cases $a = - \infty$ and $b = \infty$ are also allowed.
+
+  Let $U \sim Unif(0,1)$ and set $X = G^{-1}(U)$.
+
+  Then $X$ is a random variable with CDF $G(x)$.
+\end{theorem} 
