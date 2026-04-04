@@ -16,13 +16,28 @@
     If $A = \begin{pmatrix}
     A' & *\\
     0 & A''\\
-    \end{pmatrix}$ with $A' \in M_N(\mathbb{F}), A'' \in M_M(\mathbb{F})$ is block diagonal (or upper triangular) then $\det A = \det A' \det A''$.
-    %% TODO: check this
+  \end{pmatrix}$ with $A' \in M_k(\mathbb{F}), A'' \in M_{n - k}(\mathbb{F})$ is block diagonal (or upper triangular) then $\det A = \det A' \det A''$.
 \end{prop}
+\begin{proof}
+  $a_{ij} = 0$ if $i > k$ and $j \leq k$, thus for the permutation to not vanish $\sigma(j) \leq k$ for all $j \leq k$. Therefore all non-zero permutations permute all $j \leq k$ to $\{1,...,k\}$ and all $j > k$ to $\{k+1,...,n\}$, thus every non-zero permutation can be written as the product of $\sigma' \in S_k$ and $\sigma'' \in S_{n-k}$, so the set of non-zero permutations, $S_n'$ is equal to $S_k \times S_{n - k}$. Therefore
+  \begin{align*}
+    \det A &= \sum_{ \sigma \in S_n'} \sign (\sigma' \circ \sigma'') a_{\sigma'(1) 1} ... a_{\sigma''(k+1) k +1} ... \\
+    \det A &= \left(\sum_{ \sigma \in S_k} \sign (\sigma') a_{\sigma'(1) 1} ...\right) \left( \sum_{ \sigma'' \in S_{n - k}}  \sign (\sigma'') a_{\sigma''(k+1) k +1} ...\right) \\
+    \det A &= \det A' \det A''
+  .\end{align*}
+\end{proof}
 
 \begin{prop}
     $\det A^T = \det A$.
 \end{prop}
+\begin{proof}
+  $a_{ij} = a_{ji}^T$. Furthermore
+  \begin{align*}
+    \det A^T &= \sum_{ \sigma \in S_n} \sign(\sigma) a^T_{\sigma(1) 1} .. \\
+    \det A^T &= \sum_{ \sigma \in S_n} \sign(\sigma) a_{1 \sigma(1)} .. \\
+  .\end{align*}
+  But if $j = \sigma(i), i = \sigma^{-1} (j)$, so $a_{1 \sigma(1)} ... a_{n \sigma(n)} = a_{\sigma^{-1}(1) 1}...a_{\sigma^{-1}(n) n}$ because $\{\sigma(1),...,\sigma(n)\} = \{1,...,n\}$. Additionally, since $\sigma^{-1} \in S_n$, we have $\det A^T = \det A$ as required.
+\end{proof}
 
 \subsection{Properties of Determinants}
 
@@ -39,6 +54,27 @@ write $A = (\underline{c}_1, ..., \underline{c}_n) \quad \underline{c}_j = col_j
         \[\det(\underline{c}_1,..., \underline{c}_n) = 0.\]
     \end{itemize}
 \end{prop}
+\begin{proof} $ $
+  \begin{itemize}
+    \item We have
+      \[ a_{\sigma(1)1}... a_{\sigma(j)j}... = a_{\sigma(1)1}... (\lambda v_{\sigma(j)} + \mu w_{\sigma(j)})\]
+      thus the necessary result can be obtained.
+    \item We can split $S_n$ into the set of even ($A_n$) and odd permutations. Since any odd permutations are of the form $\sigma \circ (ij)$ for some even $\sigma$, we have $S_n = A_n \cup A_n(ij)$.
+      Now, for any odd permutation $\tau := \sigma \circ (ij)$, we have
+      \[\tau(k) = \left\{\begin{array}{lr}
+      \sigma(k) & k \not = i, j\\
+      \sigma(i) & k = j\\
+      \sigma(j) & k = i\\
+      \end{array} \right..\]
+      Finally
+      \begin{align*}
+        \det(\underline{c}_1,...,\underline{c}_n) &= \sum_{\sigma \in A_n} a_{\sigma(1) 1} ... - \sum_{\sigma \in A_n} a_{\tau(1) 1} ... a_{\tau(i) i} ... a_{\tau(j) j} ... \\
+       &= \sum_{\sigma \in A_n} a_{\sigma(1) 1} ... a_- \sum_{\sigma \in A_n} a_{\sigma(1) 1} ... a_{\sigma (j) i} ... a_{\sigma (i) j} ...\\
+         &=  \sum_{\sigma \in A_n} a_{\sigma(1) 1} ... a_- \sum_{\sigma \in A_n} a_{\sigma(1) 1} ... a_{\sigma (j) i} ... a_{\sigma (i) i} ...\\
+         &= 0
+      .\end{align*}
+  \end{itemize}  
+\end{proof}
 
 \begin{corollary}
   Considering $A \in M_{N}(\mathbb{F})$ as a list of row vectors $\underline{r}_1,...,\underline{r}_n \in M_N(\mathbb{F})$, and the function $\det A = \det (\underline{r}_1,...,\underline{r}_n)$ is
@@ -58,6 +94,17 @@ write $A = (\underline{c}_1, ..., \underline{c}_n) \quad \underline{c}_j = col_j
       \item $\underline{c}_i \leftrightarrow \underline{c}_j, (i \not = j)$ (swap columns $i$ and $j$) then $\det \hat{A} = - \det A$
     \end{itemize}
 \end{prop}
+\begin{proof} $ $
+    \begin{itemize}
+      \item Since $\det(c_1,...,c_n)$ is multilinear, this comes automatically
+      \item Using multilinearity and alternating properties
+        \begin{align*}
+          \det(c_1,...,c_i + \lambda c_j,...,c_n) &= \det(c_1,...,c_n) + \lambda \det(c_1,...,c_j, c_j,...,c_n) \\
+                                                  &= \det A + 0
+        .\end{align*}
+      \item If we calculate the determinant of the matrix with cols $i$ and $j$ equal to $c_i + c_j$, then by alternating property it equals zero, and by the multilinear linear property we can show this equals $\det \hat{A} + \det A$.
+    \end{itemize}
+\end{proof}
 
 \begin{remark}
 
@@ -75,15 +122,25 @@ write $A = (\underline{c}_1, ..., \underline{c}_n) \quad \underline{c}_j = col_j
     If $\hat{A}$ is obtained from $A$ by permuting the columns of $A$ (or the rows) by $\sigma \in S_n$ then
     \[\det \hat{A} = \text{sign } \sigma \det A.\]
 \end{corollary}
+\begin{proof}
+    Write $\sigma$ as a product of transpositions. Since each swap flips the sign then $\det \hat{A} = \sign(\sigma) \det A$.
+\end{proof}
 
 \subsection{Characterisation of det}
 
 Fix $n > 0$, and let $I := I_n \in M_n(\mathbb{F})$, the identity matrix.
 
 \begin{theorem}
-    Let $D : M_N(\mathbb{F}) \rightarrow \mathbb{F}$ be a function that is multilinear and alternating in columns. Then
+    Let $D : M_n(\mathbb{F}) \rightarrow \mathbb{F}$ be a function that is multilinear and alternating in columns. Then
     \[D(A) = D(I) \det A.\]
 \end{theorem}
+\begin{proof}
+  Define $c_j = col_j(A) = \sum_{ i = 1}^{n} a_{ij} e_i$. Then
+  \[D(A) = D(c_1,...,c_n) = \sum_{ i_1 = 1}^{n} ... \sum_{ i_n = 1}^{n} a_{i_1 1} ... a_{i_n n} D(e_{i_1}, ..., e_{i_n})\]
+  Then because $D$ is alternating, to be nonzero $i_j \not = i_k$ for all $j, k$, so $\{i_1,...,i_n\}$ is a permutation of $\{1,...,n\}$. Therefore we can write it as
+  \[D(A) = \sum_{ \sigma \in S_n} a_{\sigma(1) 1} ... a_{\sigma(n) n} D(e_{\sigma(1)}, ..., e_{\sigma(n)}).\]
+  Since the matrix with columns $e_{\sigma(1)}, ..., e_{\sigma(n)})$ equals $I$ permuted by $\sigma$, then $D(...) = \sign(\sigma) D(I)$, thus the final result is obtained.
+\end{proof}
 
 \begin{corollary}
     If $D : M_N(\mathbb{F}) \rightarrow \mathbb{F}$ is multilinear and alternating and $D(I) = 1$, then
@@ -96,3 +153,8 @@ Fix $n > 0$, and let $I := I_n \in M_n(\mathbb{F})$, the identity matrix.
   \[\det(AB) = \det A \det B.\]
     
 \end{theorem}
+\begin{proof}
+    Consider $D : M_n(\mathbb{F}) \rightarrow \mathbb{F}, D: B \mapsto \det(AB)$. If $D$ is alternating and multilinear then $D = D(I) \det B = \det A \det B$. Because $B$ could be split into $\lambda B' + \mu B''$ which are identical except for a single column, 
+    \[\det(\lambda AB' + \mu AB'') = \lambda \det AB' + \mu \det AB''.\]
+    so $D$ is multilinear, and if two columns of $B$ were equal, the columns of $AB$ would also be equal thus $D(B) = 0$ so it is alternating.
+\end{proof}

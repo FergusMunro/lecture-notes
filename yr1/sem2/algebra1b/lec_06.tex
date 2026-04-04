@@ -1,10 +1,18 @@
 \begin{corollary} $ $
 
   \begin{itemize}
-    \item If $P \in M_m(\mathbb{F})$ is invertible, then $\det (P_{-1}) = det(P)^{-1}$.
+    \item If $P \in M_m(\mathbb{F})$ is invertible, then $\det (P^{-1}) = (\det P)^{-1}$.
     \item If $A$ and $B$ are similar, then $\det A = \det B$.
   \end{itemize}
 \end{corollary}
+\begin{proof} $ $
+   \begin{itemize}
+     \item Because $I = P P^{-1}$,
+       \[1 = \det I = \det P \det P^{-1}\]
+     \item Let $B = P^{-1} A P$, then
+       \[\det B = \det P^{-1} A P = \det P^{-1} \det A \det P = \det A.\]
+   \end{itemize} 
+\end{proof}
 
 \begin{remark}
 
@@ -29,7 +37,7 @@ We introduce a method for computing the determinant, and the inverse of a matrix
   where $M_{ij}(A)$ is the matrix obtained by deleting the $i^{th}$ row and $j^{th}$ column of $A$.
 \end{definition}
 
-\begin{prop} (column expansion and row expansion of determinant)
+\begin{prop} (Column and Row Expansion of Determinant)
 
   \begin{itemize}
     \item For any fixed column $j$
@@ -40,6 +48,15 @@ We introduce a method for computing the determinant, and the inverse of a matrix
   \end{itemize}
     
 \end{prop}
+\begin{proof}
+  Consider only cols, as by rows can then be proven by taking the transpose. Let $A_j[e_i]$ be the matrix identical to $A$ except $col_j(A) = e_i$. Then
+  \begin{align*}
+    A &= \sum_{ i = 1}^{n} a_{ij} A_j[e_i] \\
+    \det A &= \sum_{ i = 1}^{n} a_{ij} \det A_j[e_i]
+  .\end{align*}
+  By performing $j - 1$ swaps we can move col $j$ to the first column, and $i - 1$ swaps can move the $1$ in $e_i$ to the top, thus making $\hat{A}_j[e_i]$ block upper triangular, so $\det \hat{A}_j [e_i] = \mu_{ij}$ and 
+  \[\det A_j[e_i] = (-1)^{i + j - 2}\det \hat{A}_j[e_i] = (-1)^{i + j}\det \hat{A}_j[e_i]\]
+\end{proof}
 
 \begin{definition}
   The {\bf adjugate} of a matrix $A \in M_N(\mathbb{F})$ is
@@ -53,6 +70,19 @@ We say $(-1)^{i + j} \mu_{ij}$ is the $(i, j)$-cofactor and so $adj(A)$ is the t
 \begin{theorem}
   \[adj(A) A = \det(A) I.\]
 \end{theorem}
+\begin{proof}
+    We must show that
+    \[(ab)_{jk} = \sum_{ i = 1}^{n} b_{ki}a_{ij} = \left\{\begin{array}{lr}
+    \det A & k = j\\
+    0 & \text{otherwise}\\
+    \end{array} \right..\]
+    Since $b_{ki} = (-1)^{k + i}\mu_{ik}(A)$, if $k = j$ the sum equals the determinant using the column expansion formula. If $k \not = j$, then consider $A_k[c_j] = \hat{a}_{ij}$, which is $A$ with column $k$ replaced with column $j$. Then $\det A_k[c_j] = 0$ as it has two equal columns. By expanding it out on column $j$
+    \begin{align*}
+      0 &= \sum_{ i = 1}^{n} (-1)^{i + k} \hat{a}_{ik} \mu_{ik}(A_k[c_j]) \\
+        &= \sum_{ i = 1}^{n} (-1)^{i + k} a_{ij} \mu_{ik}(A) \\
+        &= \sum_{ i = 1}^{n} b_{ik}  a_{ij}
+    .\end{align*}
+\end{proof}
 
 \begin{corollary}
     If $\det A \not = 0$ and then $A$ is invertible and
