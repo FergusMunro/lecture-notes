@@ -3,7 +3,7 @@
 \subsection{Fundamental Theorem of Algebra}
 \begin{theorem} (Fundamental Theorem of Algebra)
 
-  Let $f(x) \in \mathbb{C}[x]$ be a non-constant polynomial of degree $d > 0$. The following equivalence statements hold:
+  Let $f(x) \in \mathbb{C}[x]$ be a non-constant polynomial of degree $d > 0$. The following equivalent statements hold:
   \begin{itemize}
     \item $f(x)$ has at least one complex root
     \item $f(x)$ has precisely $d$ roots counted with multiplicity
@@ -41,16 +41,12 @@ There is a method for computing eigenvectors!
     The eigenvalues of $A$ are the roots of $\Delta_A(t)$ in $\mathbb{F}$.
 \end{prop}
 \begin{proof}
-    Let $\lambda \in \mathbb{F}$. Then the following are equivalent:
-    \begin{itemize}
-      \item there exists non-zero $v \in \mathbb{F}^n$ such that $A v = \lambda v$.
-      \item there exists non-zero $v \in N_{A - \lambda I}$ i.e. $(A -\lambda I) v = 0$
-      \item $\ker \phi_{A - \lambda I} \not = 0$
-      \item $\phi_{A - \lambda I}$ is not bijective
-      \item $A - \lambda I$ is not invertible
-      \item $\det (A - \lambda I) = 0$
-      \item $\lambda$ is a solution of $\Delta_A(t) = 0$
-    \end{itemize}
+  Assuming $A$ has eigenvalues, we want to solve 
+  \begin{align*}
+    A \bf{v} &= \lambda \bf{v} \\
+    (A - \lambda I) \bf{v} &= 0
+  \end{align*}
+  This only happens when $\ker \phi_{A -\lambda I}$ is nonzero, thus $\phi_{A - \lambda I}$ is not bijective so its determinant equals zero. Thus any eigenvalue is a solution to $\det(A - t I)$ and the eigenvalues are the roots of $\Delta_A(t)$.
 \end{proof}
 
 \begin{lemma}
@@ -58,18 +54,7 @@ There is a method for computing eigenvectors!
     If $\mathbb{F} = \mathbb{C}$ then $\Delta_A(t)$ has precisely $n$ roots counted with multiplicity.
 \end{lemma}
 \begin{proof}
-    \[\begin{vmatrix}
-      a_{11} - t & a_{12} & ... & a_{1n}\\
-      a_{21} & a_{22} - t &  & \vdots \\
-    \vdots &  & \ddots & \vdots \\
-    a_{n1} & ... & ... & a_{nn} - t\\
-    \end{vmatrix}.\]
-    has degree $n$ with the term $t^n$ arising from the summand $\sigma = Id$ permutation.
-
-    The summand is $(a_{11} - t)(a_{22} - t)...(a_{nn} - t)$ so the leading term is $(-t)^n$, and leading coefficient $(-1)^n$.
-
-    Hence this polynomail has maximum $n$ roots, with exactly $n$ over $\mathbb{C}$.
-
+  The leading term of $\Delta_A(t)$ comes from the identity permutation, given by $(a_{1 1} - t)...(a_{n n} - t)$, thus the leading term will be $(-1)^n t^n$. As it is a degree $n$ polynomial, it has at most $n$ factors in $\mathbb{R}$ and exactly $n$ in $\mathbb{C}$.
 \end{proof}
 
 \begin{lemma}
@@ -78,8 +63,10 @@ There is a method for computing eigenvectors!
 \begin{proof}
   Suppose $A = P B P^{-1}$. Then
   \begin{align*}
-    \Delta_A(t) &= \det (A - t I) \\ &= \det(PBP^{-1} - tI) \\
-                &= \det(P (B - tI)P^{-1}) \\ &= \det(B - tI) = \Delta_B(t).
+    \Delta_A(t) &= \det (A - t I) \\ &= \det(PBP^{-1} - tP P^{-1}) \\
+                &= \det(P (B - tI)P^{-1}) \\ 
+                &= \det P \det (B - tI) \det P^{-1} \\
+                &= \det(B - tI) = \Delta_B(t)
   .\end{align*}
 \end{proof}
 
@@ -101,6 +88,15 @@ There is a method for computing eigenvectors!
 \begin{lemma}
     Let $A \in M_n(\mathbb{F})$, $V$ be a vector space over $\mathbb{F}$, $\phi : V \rightarrow V$ be a linear map. If $A$ is the matrix of $\phi$ in some basis $\alpha$ then $A,\phi$ have the same eigenvalues and eigenvectors.
 \end{lemma}
+\begin{proof} 
+$\phi = \phi_\alpha \circ \phi_A \circ \phi_\alpha^{-1}$. Thus if $v$ is a $\lambda-$eigenvector of $A$, then we claim $\phi(v)$ is a $\lambda-$eigenvector of $\phi$
+\begin{align*}
+  \phi(\phi_\alpha(v)) &= \phi_\alpha \circ \phi_A \circ \phi_\alpha^{-1}(\phi(v)) \\
+          &= \phi_\alpha (\phi_A(v)) \\
+          &= \lambda \phi_\alpha(v)
+.\end{align*}
+We can prove the converse easily using the fact that $\phi_A = \phi_\alpha^{-1} \circ \phi \circ \phi_\alpha$.
+\end{proof}
 
 \begin{definition}
 The {\bf characteristic polynomial} of $\phi : V \rightarrow V$ is
@@ -133,7 +129,4 @@ Let $\phi : V \rightarrow V$ be a linear map and $A \in M_n(\mathbb{F})$, the ma
   \end{itemize}
 \end{definition}
 
-\begin{remark}
-    $A \in M_n(\mathbb{F})$ is diagonalisable if and only if $\phi_A : \mathbb{F}^n \rightarrow \mathbb{F}^n$ is diagonalisable.
 
-\end{remark}
