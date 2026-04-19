@@ -1,0 +1,148 @@
+\section{Independence}
+
+\begin{definition}
+  The random variables $X$ and $Y$ are {\bf independent} if
+    \begin{align*}
+      \mathbb{P}(X \leq x, Y\leq y) &= \mathbb{P}(X \leq x)\mathbb{P}(Y \leq Y)
+      F_{X,Y}(x,y) &= F_X(x)F_Y(y)
+    .\end{align*}
+\end{definition}
+
+\begin{theorem}
+  Suppose the random variables $X$ and $Y$ are jointly continuous with joint PDF $f_{X,Y}(x,y)$ and marginal PDFs $f_X(x)$ and $f_Y(y)$. If
+  \[f_{X,Y}(x, y) = f_X(x) f_Y(y)\]
+  then $X$ and $Y$ are Independent.
+
+\end{theorem}
+\begin{proof}
+    Take $(x,y)$, then
+    \begin{align*}
+      F_{X,Y}(x,y) &= \int_{-\infty}^x \int_{-\infty}^y f_{X, Y}(u,v) \ du \ dv \\
+      &= \int_{-\infty}^x \int_{-\infty}^y f_{X}(u) f_Y(y) \ du \ dv \\
+      &= \int_{-\infty}^x f_{X}(u) \ du \int_{-\infty}^y  f_Y(y) \ dv \\
+      &= F_X(x) F_Y(y)
+    \end{align*}
+    so $X$ and $Y$ are independent.
+\end{proof}
+
+\begin{definition}
+We say $X_1,...,X_n$ are jointly continuous random variables if there exists a function $f_{X_1,...,X_n}(x_1,...,x_n): \mathbb{R}^n \rightarrow [0, \infty)$ such that for any region $A \subseteq \mathbb{R}^n$
+\[\mathbb{P}((X_1,...,X_n) \in A) = \int \int_A f_{X_1,...,X_n}(x_1,...,x_n) \ dx_1 \ dx_n.\]
+Then $f_{X_1,...,X_n}$ is called the joint PDF of $X_1,...,X_n$
+\end{definition}
+
+\begin{remark}
+If $X_1,...,X_n$ are independent then
+\[f_{X_1,...,X_n}(x_1,...,x_n) = \prod_{i= 1}^n f_{X_i}(x_i).\]
+\end{remark}
+\subsection{Expectation with Two Random Variables}
+
+\begin{theorem}
+  Suppose $X$ and $Y$ are continuous random variables with joint PDF $f_{X,Y}$ and $h : \mathbb{R}^2 \rightarrow \mathbb{R}$ is a continuous function.
+  Then
+  \[\mathbb{E}[h(X,Y)] = \int_{-\infty}^\infty \int_{-\infty}^\infty h(x, y) f_{X,Y}(x,y) \ dy \ dx.\]
+  as long as $\mathbb{E}[|h(X,Y)|] < \infty$.
+\end{theorem}
+\begin{proof}
+    Non-examinable.
+\end{proof}
+
+\begin{prop}
+    If $X$ and $Y$ are jointly continuous Random Variables, $a \in \mathbb{R}$ and $b \in \mathbb{R}$, then
+    \[\mathbb{E}[aX + bY] = a \mathbb{E}(X) + b \mathbb{E}(Y).\]
+\end{prop}
+\begin{proof}
+    \begin{align*}
+      \mathbb{E}[aX + bY] &= \int_{-\infty}^\infty  \int_{-\infty}^\infty (a x + b y) f_{X,Y}(x, y) \ dx \ dy \\
+      &=  a \int_{-\infty}^\infty x \int_{-\infty}^\infty f_{X,Y}(x, y) \ dy \ dx + b \int_{-\infty}^\infty y \int_{-\infty}^\infty f_{X,Y}(x,y) \ dx \ dy \\
+        &= a \int_{-\infty}^\infty f_X(x) \ dx + b \int_{-\infty}^\infty f_Y(y) \ dy
+       &= a \mathbb{E}(X) + b \mathbb{E}(Y)
+    .\end{align*}
+\end{proof}
+
+\begin{prop}
+    Suppose $X$ and $Y$ are independent, jointly continuous random variables and $g$ and $h$ are continuous functions defined $\mathbb{R} \rightarrow \mathbb{R}$, then if the relevant integrals exist
+    \begin{itemize}
+      \item $\mathbb{E}[XY] = \mathbb{E}(X)\mathbb{E}(Y)$
+      \item $\mathbb{E}[g(X) g(Y)] = \mathbb{E}(g(X))\mathbb{E}(h(Y))$
+    \end{itemize}
+\end{prop}
+\begin{proof}
+  \begin{align*}
+    \mathbb{E}[g(X) g(Y)] &= \int_{\mathbb{R}} \int_{\mathbb{R}} g(x) h(y) f_{X,Y} (x, y) \ dy \ dx \\
+     &= \int_{\mathbb{R}} \int_{\mathbb{R}} g(x) h(y) f_{X} (x) f_{Y}(y) \ dy \ dx \\
+     &= \int_{\mathbb{R}} \int_{\mathbb{R}} g(x) h(y) f_{X} (x) f_{Y}(y) \ dy \ dx \\
+     &= \int_{\mathbb{R}}  g(x)f_{X} \ dx   (x) \int_{\mathbb{R}} h(y) f_{Y}(y) \ dy  \\
+      &= \mathbb{E}(g(X))\mathbb{E}(h(Y))
+  .\end{align*}
+\end{proof}
+
+\subsection{Covariance}
+
+\begin{definition}
+  The {\bf covariance} of $X$ and $Y$ is
+  \[Cov(X, Y) = \mathbb{E}([X - \mathbb{E}[X]][Y-\mathbb{E}[Y]]).\]
+\end{definition}
+
+\begin{remark}
+    Note that
+    \[Cov(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y].\]
+\end{remark}
+
+\begin{definition}
+  The {\bf correlation} between $X$ and $Y$ is
+  \[Corr(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var(X) Var(Y)}}.\]
+\end{definition}
+
+\begin{prop} $ $
+  \begin{itemize}
+      
+\item $Cov(X,X) = Var(X)$
+\item $Cov(X, Y) = Cov(Y,X)$
+\item $Cov(a X + bY, Z) = a Cov(X,Z) + b Cov(Y,Z$
+\item $Var(a X + b Y) = a^2 Var(X) + 2abCov(X,Y) + b^2 Var(Y)$
+\item $-1 \leq Corr(X,Y) \leq 1$
+\item $Corr(X,Y) = \pm 1 \iff Y = a X + b$ with $a$ of the same sign
+\item If $X$ and $Y$ are independent then $Cov(X, Y) = 0$, but the converse is false
+
+  \end{itemize}
+\end{prop}
+\begin{proof} $ $
+    \begin{itemize}
+      \item To prove the formula for $Var(a X + b Y) $
+        \begin{align*}
+          Var(a X + b Y) &= Cov(a X + b Y, a X + b Y) \\
+           &= a Cov(X, a X + b Y) + b Cov (Y, a X + b Y) \\
+           &= a^2 Var(X) + 2abCov(X,Y) + b^2 Var(Y)
+        .\end{align*}
+      \item To prove that $|Corr(X, Y)| \leq 1$ is equivalent to proving
+        \begin{align*}
+          |Cov(X, Y)| &\leq \sqrt{Var(X) Var(Y)}
+        .\end{align*}
+        For any $\lambda$,
+        \begin{align*}
+          Var(X + \lambda y) &\geq 0  \\
+          Var(X) + 2\lambda Cov(X,Y) + \lambda^2 Var(Y) &\geq 0
+        .\end{align*}
+        Taking $\lambda = -\frac{Cov(X,Y)}{Var(Y)}$ minimizes this expression and gives us
+        \[Var(X) - \frac{(Cov(X,Y))^2}{Var(Y)} \geq 0\]
+        which can be rearanged for the desired result.
+      \item Suppose $Y = aX + b$. Then
+        \begin{align*}
+          Cov(X, Y) &= a Var(X) \\
+          Var(Y) &= a^2 Var(X)
+        .\end{align*}
+        Thus 
+        \begin{align*}
+          Corr(X,Y) &= \frac{a Var(X)}{\sqrt{a^2 Var(X)^2}}\\
+                    &= 1
+        .\end{align*}
+        Suppose $Corr(X,Y) = 1$. So $Cov(X,Y) = \sqrt{Var(X) Var(Y)}$. Then
+        \[Var \left[Y - X \sqrt{\frac{Var(Y)}{Var(X)}} \right] = Var(Y) + Var(Y) - 2 Var(Y) = 0.\]
+        This implies that for some $b$
+        \[\mathbb{P}\left(Y - X \sqrt{\frac{Var(Y)}{Var(X)}}= b \right) = 1\]
+        thus $Y$ must be of the form $aX + b$.
+
+        \noindent If $Corr(X,Y) = -1$ the argument is the same but...
+    \end{itemize}
+\end{proof}

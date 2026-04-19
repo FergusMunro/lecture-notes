@@ -1,0 +1,80 @@
+\section{Working With Derivatives}
+
+\subsection{Extremal Points}
+
+\begin{definition} $ $
+  \begin{itemize}
+    \item $c \in D$ is called a {\bf local maximum point} of $f : D \rightarrow \mathbb{R}$ if there exists $\delta > 0$ such that for all $x \in D$ with $0 < |x - c| < \delta$ we have
+    \[f(x) \leq f(c).\]
+\item $c \in D$ is called a {\bf local minimum point} of $f : D \rightarrow \mathbb{R}$ if there exists a $\delta > 0$ such that for all $x \in D$ with $0 < |x - c| < \delta$ we have
+    \[f(c) \leq f(x).\]
+  \end{itemize}
+\end{definition}
+
+\begin{theorem}
+    Let $D \subseteq \mathbb{R}$ and $f : D \rightarrow \mathbb{R}$. Suppose 
+    \begin{itemize}
+      \item $c$ is an interior point
+      \item $c$ is either a local maximum or a local minimum
+      \item f is differentiable at $c$.
+    \end{itemize}
+    Then \[f'(c) = 0.\]
+\end{theorem}
+\begin{proof}
+    Suppose $c$ is a local maximum. Using this and that $c$ is an interior point we can find $\delta$ such that
+    \[f(x) \leq f(c) \quad \forall \ x \in (c - \delta, c + \delta).\]
+    Then for all $n > \frac{1}{\delta}$ we have
+    \[f(c) \geq f(c - \frac{1}{n}), \quad f(c) \geq f(c + \frac{1}{n})\]
+    so
+    \[ \frac{f(c + \frac{1}{n}) - f(c)}{\frac{1}{n}} \leq 0 \leq \frac{f(c - \frac{1}{n}) - f(c)}{- \frac{1}{n}}.\]
+    Taking the limit to infinity then gives that $f'(c)= 0$ by the sandwich theorem.
+\end{proof}
+
+\subsection{The Mean Value Theorem}
+
+\begin{theorem} (Rolle's Theorem)
+
+  \noindent Let $a < b$ and $f : [a , b] \rightarrow \mathbb{R}$. Suppose $f$ is continuous on $[a,b]$ and differentiable on $(a, b)$. If $f(a) = f(b)$ then there exists $c \in (a, b)$ with $f'(c) = 0$.
+\end{theorem}
+\begin{proof}
+  By the Weierstrass sextreme value theorem $f$ has a global minimum $c_1 \in [a,b]$ and a global maximum $c_2 \in [a,b]$. If either of these are in $(a,b)$ we are done. Otherwise the minimum and maximum are equal so for any $x$,
+  \[f(a) \leq f(x) \leq f(x) \ \ \implies \ \ f(x) = f(a)\]
+  and $f'(x) = 0$.
+\end{proof}
+
+\begin{theorem} (Mean Value Theorem)
+    
+  \noindent Let $a < b$ and $f : [a,b] \rightarrow \mathbb{R}$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then there exists $c \in (a,b)$ such that
+  \[f'(c) = \frac{f(b) - f(a)}{b - a}.\]
+\end{theorem}
+\begin{proof}
+    Let $g(x) := f(x) - x \frac{f(b) - f(a)}{b - a}$. Then
+    \begin{align*}
+      g(b) - g(a) &= f(b) - f(a) - b \frac{f(b) - f(a)}{b -a} + a \frac{f(b) - f(a)}{b -a}\\
+       &= f(b) - f(a) - \frac{(b - a)(f(b) - f(a))}{b - a} \\
+      &= 0
+    .\end{align*}
+    Thus we can use Rolle's theorem to find $c$ with $g'(c) = 0$, which can be rearanged for the desired result.
+\end{proof}
+
+\begin{corollary}
+  Let $a < b$ and $f: [a,b] \rightarrow \mathbb{R}$ be continuous on $[a,b]$ and differentiable on $(a,b)$. If $f'(x) = 0$ for all $x \in (a,b)$ then $f$ is constant on $[a,b]$.
+\end{corollary}
+\begin{proof}
+  For $x \in (a, b]$, by the mean value theorem there exists $c \in (a, x)$ such that
+  \[f'(c) = 0 =  \frac{f(x) - f(a)}{x - a} \quad \implies f(x) = f(a).\]
+\end{proof}
+
+\begin{theorem}
+  Let $a < b$, and $f,g : [a,b] \rightarrow \mathbb{R}$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then there exists $c \in (a,b)$ such that
+  \[(f(b) -f(a))(g'(c)) = (g(b) - g(a))f'(c) \]
+  or alternatively that
+  \[\frac{f'(c)}{g'(c)} = \frac{f(c) - f(a)}{g(b) - g(a)}.\]
+\end{theorem}
+\begin{proof}
+  Consider $h: [a,b] \rightarrow \mathbb{R}$ with
+  \[h(x) = ( f(b) - f(a))g(x) - (g(b) - g(a))f(x).\]
+  Then it can be shown that
+  \[h(a) = f(b) g(a) - f(a) g(b) = h(b).\]
+  Then as $h$ is differentiable we can use Rolle's theorem to find a point c where $h'(c) = 0$ which can be rearanged for the desired result.
+\end{proof}

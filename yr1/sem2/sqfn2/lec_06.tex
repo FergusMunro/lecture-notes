@@ -1,9 +1,47 @@
+\subsection{Derivatives of Basic Functions}
+
+\begin{prop}
+  Let $f : D \rightarrow \mathbb{R}, f(x) = x^2$ where $D = \mathbb{R}$ if $n > 0$ and $\mathbb{R} \setminus \{0\}$ otherwise. Then $f$ is differentiable on $D$ with derivative
+  \[f'(x) = n x ^{n-1}.\]
+\end{prop}
+\begin{proof}
+    \begin{itemize}
+      \item Suppose $n \geq 0$. Then using induction on $n$, which is true $n = 0$, then assuming true for $n= k$, for $n = k + 1$
+        \begin{align*}
+          f'(x) &= \frac{d}{dx} (x)(x)^k  \\
+                &= x^k + (k)x^{k-1} x \\
+                &= (k + 1)x^k
+        .\end{align*}
+      \item Suppose $n < 0$. Then $f = \frac{1}{g}$ where $g(x) = x^{-n}$. Then using the quotient rule
+        \begin{align*}
+                &= - \frac{g'(x)}{g(x)^2} \\
+                &= n x^{n - 1}
+        .\end{align*}
+    \end{itemize}
+\end{proof}
+
 \begin{corollary}
 Let $p: \mathbb{R} \rightarrow \mathbb{R}$ be a polynomial with 
 \[P(x) = a_n x^n + ... + a_1 x + a_0.\]
 Then $P$ is differentiable on $\mathbb{R}$ and
 \[p'(x) = n a_n x^{n - 1} + ... + a_1.\]
 \end{corollary}
+
+\begin{prop}
+    The functions $\exp, \cos, \sin$ are differentiable with
+    \begin{itemize}
+      \item $\exp'(x) = \exp(x)$
+      \item $\cos'(x) = - \sin (x)$
+      \item $\sin'(x) = \cos(x)$
+    \end{itemize}
+\end{prop}
+\begin{proof}
+   The arguments for all three are similar, so let the desired function be $f : \mathbb{R} \rightarrow \mathbb{R}$.
+   \begin{itemize}
+     \item Step 1: Show $f$ is differentiable at $0$ and find $f'(0)$.
+     \item Step 2: In the derivative of $f(x)$, write $f(x + h)$ as a product of $f(h)$, then as this is already known it can be evaluated.
+   \end{itemize}
+\end{proof}
 
 \subsection{The Chain Rule}
 \begin{theorem}
@@ -20,23 +58,23 @@ Then $P$ is differentiable on $\mathbb{R}$ and
   Let $h \in \mathbb{R} \setminus \{0\}$ be such that $c + h \in E$. If $g(c + h) \not = g(c)$ then
   \begin{align*}
     \frac{(f \circ g)(c + h) - (f \circ g)(c)}{h} &= \frac{f(g(c + h)) - f(g(c))}{h} \\
-      &= \frac{f(g(c+h)) - f(g(c))}{g(c + h) - g(c)} \times \frac{g (c+h)- g(c)}{h}
+      &= \frac{f(g(c+h)) - f(g(c))}{g(c + h) - g(c)} \cdot \frac{g (c+h)- g(c)}{h}
   .\end{align*}
-  Define $q : D \rightarrow \mathbb{R}$ by
+  We need to define $q : D \rightarrow \mathbb{R}$ by
   \[q(y) = \left\{\begin{array}{lr}
       \frac{f(y) - f(g(c))}{y - g(c)} & y \in D \setminus \{g(c)\}\\
   f'(g(c)) & y = g(c)\\
-  \end{array} \right..\]
-  Then, if $g(c + h) \not = g(c)$,
+  \end{array} \right.\]
+  which lets us more easily prove properties needed. Then, 
   \begin{align*}
-    \frac{(f \circ g)(c + h) - (f \circ g)(c)}{h} &= q(g(c + h)) \times \frac{g(c + h) - g(c)}{h}
-  .\end{align*}
-  If $g(c + h) = g(c)$, then it equals $0$. Then 
+    \frac{(f \circ g)(c + h) - (f \circ g)(c)}{h} &= q(g(c + h)) \cdot \frac{g(c + h) - g(c)}{h}
+  \end{align*}
+  which is true for both cases of $q$, letting us avoid the case $g(c+h) = g(c)$. Then 
+  \[\lim_{y \rightarrow g(c)} q(y) = f'(g(c)) = q(g(c))\]
+  so $q$ is continuous, and so is $q \circ g$, therefore
   \begin{align*}
     ( f \circ g)'(c) &= \lim_{h \rightarrow 0} q(g(c + h)) \lim_{h \rightarrow 0} \frac{g(c + h) - g(c)}{h} \\
                      &= \lim_{h \rightarrow 0} q(g(c + h)) g'(c) \\
-                     &= \lim_{h \rightarrow 0} \frac{f(g(c + h)) - f(g(c))}{f(g(c + h)) - g(c)} g'(c) \\
-                     &= \lim_{h \rightarrow 0} \frac{f(g(c + h)) - f(g(c))}{h} g'(c) \\
                      &= f'(g(c)) g'(c)
   .\end{align*}
 \end{proof}
@@ -48,5 +86,7 @@ Then $P$ is differentiable on $\mathbb{R}$ and
   Let $D, E \subseteq \mathbb{R}$ and let $f : D \rightarrow E$ bijective function. Suppose $c \in D$ and $f(c) \in E$ are interior points. If $f$ is differentiable at $c$ with $f'(c) \not = 0$ then $f^{-1}$ is differentiable at $f(c)$ with
   \[(f^{-1})'(f(c)) = \frac{1}{f'(c)}.\]
 \end{theorem}
-
+\begin{proof}
+    Non examinable.
+\end{proof}
 

@@ -53,12 +53,43 @@ An inner product space comes with an inner product already defined, denoted $\la
   \[| \langle v, w \rangle| \leq \norm{v} \norm{w}\]
   with equality if and only if $v$ and $w$ are dependent.
 \end{theorem}
+\begin{proof}
+    If $v = 0$ both terms equal 0, otherwise let $w = \lambda v + u$, with $v \bot u$. Then
+    \begin{align*}
+      \langle v, \lambda v + u \rangle &= \lambda \langle v, v \rangle + \langle v, u \rangle \\
+                                       &= \lambda \norm{v}^2
+    \end{align*}
+    Thus $\lambda = \frac{\langle v, w \rangle}{ \norm{v}^2}$. Then using the positive definite property gives
+    \begin{align*}
+      0 \leq \norm{u}^2 &= \langle w - \lambda v, u \rangle \\
+                        &= \langle w, u \rangle - \lambda \langle v, u \rangle \\
+                        &= \langle w, w - \lambda v \rangle \\
+                        &= \norm{w}^2 - \lambda \langle w, v \rangle \\
+                        &= \norm{w}^2 - \frac{ \langle v, w \rangle \langle w, v \rangle}{ \norm{v}^2} \\
+                      |\langle v, w \rangle|^2  &\leq \norm{v}^2 \norm{w}^2
+    \end{align*}
+    and we can take the square root for the final result. Then if there is equality, $\norm{u}^2 = 0$ so $w = \lambda v$ thus they are dependent.
+\end{proof}
 
 \begin{corollary} (Triangle Inequality)
   For $v, w \in V$ we have
   \[\norm{v + w} \leq \norm{v} + \norm{w}\]
   with equality if and only if $v$ and $w$ are dependent.
 \end{corollary}
+\begin{proof}
+  By expanding out $\langle v + w, v+w \rangle$ it can be shown
+    \begin{align*}
+      \norm{v + w}^2 &= \langle v + w, v + w \rangle^2 \\
+       &= \norm{v}^2 + \norm{w}^2 + \langle v, w \rangle + \overline{ \langle v, w \rangle} \\
+       &= \norm{v}^2 + \norm{w}^2 + 2 Re (\langle v, w \rangle)
+    .\end{align*}
+    Then $Re( \langle v, w \rangle) \leq | \langle v, w \rangle| \leq \norm{v}\norm{w}$ so
+    \begin{align*}
+      \norm{v + w}^2 &\leq \norm{v}^2 + 2 \norm{v} \norm{w} \norm{w}^2 \\
+                     &= (\norm{v} + \norm{w})^2
+    \end{align*}
+    and the final result can be obtained by taking the square root.
+\end{proof}
 
 \subsection{Orthogonality}
 
@@ -66,7 +97,7 @@ An inner product space comes with an inner product already defined, denoted $\la
   A list $u_1,...,u_k$ in an inner product space $V$ is {\bf orthonormal} if for $1 \leq i, j \leq k$
   \[\langle u_i, u_j \rangle = \delta_{ij} = \left\{\begin{array}{lr}
   1 & i = j\\
-  0 & 1 \not = j\\
+  0 & i \not = j\\
   \end{array} \right..\]
 \end{definition}
 
@@ -78,10 +109,22 @@ An inner product space comes with an inner product already defined, denoted $\la
   For an orthonormal basis $u_1,...,u_n$ in an inner product space $V$, for a vector $v \in V$ we have
     \[v = \sum_{i = 1}^n \langle u_i, v \rangle u_i.\]
 \end{lemma}
+\begin{proof}
+  Since $u_1, ..., u_n$ are a basis $v = \sum_{ i = 1}^{n} \lambda_i u_i$. Furthermore
+  \begin{align*}
+    \langle u_i, v \rangle &= \sum_{ j = 1}^{n} \lambda_j \langle u_i, u_j \rangle \\
+                           &= 0 + ... + \lambda_i + ... + 0
+  .\end{align*}
+  Thus if every $\lambda_i = \langle u_i, v \rangle$ then the final result is obtained.
+\end{proof}
 
 \begin{lemma}
     Any orthonormal list is linearly independent.
 \end{lemma}
+\begin{proof}
+    If $v = 0$, then $\langle u_i, v \rangle = 0$ so all $\lambda_i = 0$ so the list must be independent.
+\end{proof}
+
 \begin{prop}
     If $u_1,...,u_n$ is an orthonormal basis for $V$ and 
     \begin{align*}
@@ -94,23 +137,48 @@ An inner product space comes with an inner product already defined, denoted $\la
     Expand using sesquilinearity.
     \begin{align*}
       \langle v, w \rangle &= \langle \sum_{ i = 1}^{n} x_i u_i, \sum_{ j = 1}^{n} y_j u_j \rangle \\
-                           &= \sum_{ i, j = 1}^{n} \bar{x}_i y_i \langle u_i, u_j \rangle \\
+                           &= \sum_{ i = 1}^{n} \sum_{ j = 1}^{n} \bar{x}_i y_i \langle u_i, u_j \rangle \\
                            &= \sum_{ i = 1}^{n} \bar{x}_i y_i
     .\end{align*}
 \end{proof}
 
-\begin{theorem} (Gram-Schmitt Orthogonalisation)
-  Let $v_1, ..., v_n$ be an independent list in an inner product space $V$. Then there exists an orthonormal list $u_1,...,u_n$ such that for $1 \leq k \leq u$ we have
+\begin{theorem} (Gram-Schmidt Orthogonalisation)
+  Let $v_1, ..., v_n$ be an independent list in an inner product space $V$. Then there exists an orthonormal list $u_1,...,u_n$ such that for all $1 \leq k \leq u$ we have
   \[span \ \{v_1,...,v_k\} = span \ \{u_1,...,u_k\}.\]
-  We construct $u_1,...,u_k$ inductively.
-
-  For $k = 1$ we set $w_1 = v_1$, and $u_1 = \frac{w_1}{\norm{w_1}}$
-
-  
-  For $k > 1$, suppose we have defined $u_1,...,u_k$ already and set 
+  We construct $u_1,...,u_k$ inductively:
+  \begin{itemize}
+    \item For $k = 1$ we set $w_1 = v_1$, and $u_1 = \frac{w_1}{\norm{w_1}}$
+    \item For $k > 1$, suppose we have defined $u_1,...,u_k$ already and set 
   \begin{align*}
-    w_k &= v_k - \sum_{ j = 1}^{k - 1} \langle _j, v_k \rangle u_j \\
-    &= v_k - \sum_{ j = 1}^{n} \frac{\langle w_j, v_k \rangle}{\norm{w_j}^2}
+    w_k &= v_k - \sum_{ j = 1}^{k - 1} \langle u_j, v_k \rangle u_j \\
+    &= v_k - \sum_{ j = 1}^{k-1} \frac{\langle w_j, v_k \rangle}{\norm{w_j}^2} w_j
   .\end{align*}
   and $u_k = \frac{w_k}{\norm{w_k}}$.
+
+  \end{itemize}
 \end{theorem}
+\begin{proof}
+  Using induction on $k$, we see the base case is trivial. Then given $u_1,...,u_{k-1}$ orthogonal with span equal to that of $v_1,...,v_{n-1}$. Then
+  \begin{align*}
+    \Span\{ u_1,...,u_k\} &= \Span \{v_1,...,u_k\} = \Span \{v_1,..., w_k\} \\
+     &= \Span \{v_1,..., v_k - \sum_{ i = 1}^{n} \langle u_j, v_k \rangle u_j\} \\
+     &= \Span \{v_1,...,v_n\}
+  .\end{align*}
+  Next, we need to show $w_k$ is orthogonal to all $u_i$, $i < k$. Then
+  \begin{align*}
+    \langle u_i, w_k \rangle &= \langle u_i, v_k - \sum_{ i = 1}^{k-1} \langle u_i, v_k \rangle u_j \rangle \\
+    f &= \langle u_i, v_k \rangle - \sum_{ j = 1}^{k-1} \langle u_j, v_k \rangle \langle u_i, u_j \rangle \\
+    f &= \langle u_i, v_k \rangle - \langle u_i, v_k \rangle = 0
+  .\end{align*}
+\end{proof}
+
+\begin{corollary}
+    Any finite dimensional inner product space has an orthonormal basis.
+\end{corollary}
+\begin{proof}
+  Apply Gram-Schmidt orthogonalisation to a basis of $V$.
+\end{proof}
+
+\begin{remark}
+    In practise it is easier to start with $v_1,...,v_n$, then product an $w_1,...,w_n$ satisfying $w_1 \bot w_j (i \not = j)$ then finally set $u_i = \frac{w_i}{ \norm{w_i}}$ for every $i$ to get an orthonormal list.
+\end{remark}

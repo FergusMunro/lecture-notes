@@ -1,0 +1,101 @@
+\begin{definition}
+  A matrix $Q \in M_n(\mathbb{R})$ is orthogonal if $Q^T Q = \mathbb{I}_n$
+\end{definition}
+
+\begin{remark}
+    $Q$ is orthogonal if and only if the columns of $Q$ are orthonormal with respect to the dot product.
+\end{remark}
+
+\begin{theorem} (QR Decomposition)
+  
+  Let $A \in M_{n}(\mathbb{R})$ be invertible. Then there exists orthogonal $Q$ and upper-triangular $R$ such that
+  \[A = QR.\]
+\end{theorem}
+\begin{proof}
+    Let $A$ have columns $v_1,...,v_n$. Then as $A$ is invertible these are a basis of $\mathbb{R}^n$. Applying the Gram-Schmidt process gives and orthonormal basis $u_1,...,u_n$. Then
+    \begin{align*}
+      v_1 &= \norm{w_1} u_1 \\
+      v_2 &= \norm{w_2} u_2 + \langle u_1, v_2 \rangle u_1 \\
+      ..&. \\
+      v_k &= \norm{w_k}v_k + \sum_{ j = 1}^{k} \langle u_j, u_k \rangle u_j
+    .\end{align*}
+    Then $u_1,...,u_n$ define the columns of $Q$ and let 
+    \[R_{ij} = \left\{\begin{array}{lr}
+    \langle u_i, v_j \rangle & i < j\\
+    \norm{w_i} & i = j\\
+    0 & i > j\\
+    \end{array} \right..\]
+    Then $A = QR$.
+\end{proof}
+
+\begin{remark}
+  To compute $Q$ and $R$ in practise it is simplest to first find $Q$, then at $Q^T = Q^{-1}$, we have 
+  \[R = Q^T A.\]
+\end{remark}
+
+\subsection{Orthogonal Complements}
+
+Let $V$ be an inner product space and let $U \leq V$. Recall $u, v \in V$ are orthogonal, $u \perp v$, if $\langle u, v \rangle = 0$.
+
+\begin{definition}
+  The {\bf orthogonal complement} $U^\perp$ of $u$ in $V$ is
+  \[U^\perp = \{ v \in V \ | \ \langle u, v \rangle = 0 \ \text{for} \ u \in U \}.\]
+\end{definition}
+
+\begin{prop} $ $
+
+  \begin{itemize}
+    \item $U^\perp$ is a subspace of $V$
+    \item $U \cap U^\perp = \{0\}$
+    \item $U \subseteq (U^\perp)^\perp$
+  \end{itemize}
+\end{prop}
+\begin{proof} $ $
+
+   \begin{itemize}
+     \item From the linearity in the second argument
+     \item Let $u \in U$ and $u \in U^\perp$. Then $\langle u, u \rangle = 0$ which implies $u=0$ by the positive definite axiom.
+     \item If $u \in U, w \in U^\perp$ then
+       \[\langle w, u \rangle = \overline{\langle u, w \rangle} = 0\]
+       so $u \in (U^\perp)^\perp$.
+   \end{itemize} 
+\end{proof}
+
+\begin{theorem}
+    If $U \leq v$ is a finite dimensional subspace then $V = U + U^\perp$.
+\end{theorem}
+\begin{proof}
+    It's sufficient to show for any $v \in V$ there exists $v_1 \in U$ and $v_2 \in U^\perp$ such that $v = v_1 + v_2$.
+    
+    \noindent Let $u_1,...,u_k$ be an orthonormal basis of $U$. Given $v \in V$ set
+    \begin{align*}
+      v_1 &= \sum_{ i = 1}^{k} \langle u_i, v \rangle u_i \\
+      v_2 &= v - v_1
+    .\end{align*}
+    Then $v_1 \in U$ and to show $v_2 \in U^\perp$:
+    \begin{align*}
+      \langle u_j, v_2 \rangle &= \langle u_j, v \rangle - \langle u_j, v_1 \rangle \\
+       &= \langle u_j, v \rangle - \sum_{ i = 1}^{k} \langle u_i, v \rangle \langle u_j, u_j \rangle \\
+       &= \langle u_j, v \rangle - \langle u_j, v \rangle = 0
+    .\end{align*}
+\end{proof}
+
+\begin{corollary}
+    Let $V$ be a finite dimensional inner product space.
+
+    \begin{itemize}
+      \item $\dim U^\perp = \dim V - \dim U$ 
+      \item $U = (U^\perp)^\perp$
+    \end{itemize}
+\end{corollary}
+\begin{proof} $ $
+  \begin{itemize}
+    \item As $V = U + U^\perp$, we have
+      \begin{align*}
+        \dim V &= \dim U + \dim U^\perp - \dim (U \cap U^\perp) \\
+               &= \dim U + \dim U^\perp - 0
+      .\end{align*}
+    \item $U \leq (U^\perp)^\perp$. As they have the same rank they are equal.
+  \end{itemize}
+\end{proof}
+

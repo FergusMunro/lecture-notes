@@ -1,0 +1,97 @@
+\section{Linear Operators on Inner Product Spaces}
+
+Continue to assume that $\mathbb{F}=  \mathbb{R}$ or $\mathbb{C}$.
+\subsection{Adjoints}
+
+Let $V$ be an inner product space.
+
+\begin{notation}
+  $L(V) := \{ f : V \rightarrow V \ | \ f \ \text{ linear} \}$. 
+\end{notation}
+\noindent Note that $L(V)$ is itself a vector space.
+
+\begin{lemma} (Nondegeneracy Lemma)
+
+  For $v \in V$ the following are equivalent.
+
+  \begin{itemize}
+    \item $ \langle v, V \rangle = \{0\}$
+    \item $v = 0$.
+  \end{itemize}
+\end{lemma}
+\begin{proof} $ $
+    \begin{itemize}
+      \item $(\Leftarrow)$. Let $v = 0$, then for $u \in U$
+        \[\langle v, u \rangle = \overline{ \langle u, v \rangle} = 0.\]
+      \item $(\implies)$. Let $\langle v, V \rangle = \{0\}$. Then
+        \[\langle v, v \rangle = 0\]
+        so by the positive definite axiom $v = 0$.
+    \end{itemize}
+\end{proof}
+
+\begin{definition}
+  Let $\phi \in L(V)$. An {\bf adjoint} to $\phi$ is as operator $\phi^* \in L(V)$ such that for $v, w \in V$
+  \[\langle \phi^*(v), u \rangle = \langle u, \phi(w) \rangle.\]
+  Equivalently,
+  \[\langle w, \phi^*(v) \rangle = \langle \phi(w), v \rangle.\]
+\end{definition}
+
+\begin{prop}
+    Let $\dim V < \infty$ and $\phi \in L(V)$. Then
+    \begin{itemize}
+      \item $\phi$ has a unique adjoint $\phi^*$
+      \item Let $\alpha: u_1,...,u_n$ be an orthonormal basis of $V$ with respect to which $\phi$ has matrix $A = (a_{ij})$. Then $\phi^*$ has matrix
+        \[A^\dag := \bar{A}^T.\]
+    \end{itemize}
+\end{prop}
+\begin{proof} $ $
+
+  \begin{itemize}
+
+    \item To prove uniqueness, we first need to prove that every $\phi$ which acts as we expect, and that if two maps are both adjoint to $\phi$ they must be equal. In an inner product space with orthonormal basis $u_1,...,u_n$ any $u \in V$ can be written as
+      \[u = \sum_{ i = 1}^{n} \langle u_i, u \rangle u_i.\]
+      In particular if $\phi^*$ is adjoint to $\phi$ then
+      \begin{align*}
+        \phi^*(v) &= \sum_{ i = 1}^{n} \langle u_i, \phi^*(v) \rangle u_i. \\
+                  &= \sum_{ i = 1}^{n} \langle \phi(u_i), v \rangle u_i
+      \end{align*}
+      so $\phi^*$ is uniquely determined by $\phi$. Now we need to prove it has the necessary properties.
+      $\phi^*$ is linear because of linearity in the second slot. Furthermore for $w \in V$
+      \[w = \sum_{ i = 1}^{n} \langle u_i, w \rangle u_i\]
+      so \[\phi(w) = \sum_{ i = 1}^{n} \langle u_i, w \rangle \phi(u_i).\]
+      Therefore 
+      \begin{align*}
+        \langle \phi^*(v), w \rangle &= \sum_{ i = 1}^{n} \overline{ \langle \phi(u_i), v \rangle} \langle u_i, w \rangle. \\
+         &= \sum_{ i = 1}^{n} \langle v, \phi(u_i) \rangle \langle u_i, w \rangle \\
+        &= \langle v, \sum_{ i = 1}^{n} \langle u_i, w \rangle \phi(u_i) \rangle = \langle v, \phi(w) \rangle
+      .\end{align*}
+      Now suppose $\phi^*_1$ and $\phi^*_2$ are both adjoint to $\phi$. Then the nondegeneracy lemma can show $\phi_1^* - \phi_2^* = 0$, so they are equal.
+    \item For an arbitary linear map $\psi$ with matrix $B = (b_{ij})$, we have
+      \[\langle u_k, \psi(u_j) \rangle = \sum_{ i = 1}^{n} b_{ij} \langle u_k, u_i \rangle = b_{kj}.\]
+      Then, for $\phi^*$, we have
+      \begin{align*}
+        c_{kj} = \langle u_k, \phi^*(u_j) \rangle &= \langle \phi(u_k), u_j \rangle \\
+         &= \sum_{ i = 1}^{n} \overline{a_{ik}} \langle u_i, v_j \rangle \\
+         &= \overline{a_{jk}}
+      .\end{align*} 
+  \end{itemize}
+\end{proof}
+
+\begin{corollary}
+  Let $A \in M_n(\mathbb{F})$. Then
+  \begin{align*}
+    (\phi_A)^* &= \phi_{\bar{A}^T} \quad \text{for } \mathbb{F} = \mathbb{C} \\
+    (\phi_A)^* &= \phi_{A^T} \quad \text{for } \mathbb{F} = \mathbb{R} 
+  .\end{align*}
+\end{corollary}
+
+\begin{prop}
+  Let $\phi, \psi \in L(V)$. Then
+  \begin{itemize}
+    \item $(\phi \circ \psi)^* = \psi^* \circ \phi^*$
+    \item $(\phi + \lambda \psi)^* = \phi^* + \bar{\lambda} \psi^*$
+    \item $(\phi^*)^* = \phi$
+    \item $\id_V^* = \id_V$
+  \end{itemize}
+\end{prop}
+

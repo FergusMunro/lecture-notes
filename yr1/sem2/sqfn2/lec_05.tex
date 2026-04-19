@@ -19,6 +19,20 @@
       \item $f$ attains its maximum and minimum in $[a, b]$.
     \end{itemize}
 \end{theorem}
+\begin{proof} $ $
+  \begin{itemize}
+    \item By contradiction, we have for any $n$, there exists an $x \in [a,b]$ such that
+      \[f(x) > n.\]
+      Define $(x_n)_{n \in \mathbb{N}}$ in this way. Then this sequence is clearly bounded so has a convergent subsequence $x_{n_k} \rightarrow c$. As $f$ is continuous
+      \[f(c) = \lim_{n \rightarrow \infty} f(x_{n_k}) = \infty\]
+      which is a contradiction as $f(c)$ is clearly bounded.
+    \item Let $M = \sup \{f(x) | x \in [a, b]\}$ which is bounded. Then for all $n$ there exists a $y$ such that
+      \[M - \frac{1}{n} \leq y \leq M\]
+      and define the sequence $y_n$ in this way, so $y_n \rightarrow M$. Since $y$ is bounded it has a convergent subsequence $y_{n_k} \rightarrow c \in [a,b]$ and also by continuity
+      \[f(c) = \lim_{n \rightarrow \infty} f(y_{n_k}) = M.\]
+      hence $f$ obtains a maximum. The same argument can be used for the supremum.
+  \end{itemize}    
+\end{proof}
 
 \subsection{The Natural Logarithm}
 
@@ -37,8 +51,7 @@ Before we can define the inverse of the exponential function, we must show that 
     \[\exp(y) = 1 + y + \sum_{n=2}^{\infty} \frac{y^n}{n!} > y.\]
     This implies, for $y > 0$, $\exp(\frac{1}{y}) > \frac{1}{y} \implies \frac{1}{\exp(y)} = \exp(- \frac{1}{y}) < y$.
 
-    Hence, $\exp(- \frac{1}{y}) < y < \exp(y)$, so by the intermediate value theorem
-    \[\exists c \in [ - \frac{1}{y}, y] \quad \text{such that} \quad \exp(c) = y.\]
+    Hence, $\exp(- \frac{1}{y}) < y < \exp(y)$, so there is a $c$ such that $\exp(c) = y$.
   \end{itemize}
 \end{proof}
 
@@ -67,16 +80,10 @@ Before we can define the inverse of the exponential function, we must show that 
   \item Because $\exp(0) = 1$ this means $\log 1 = 0$.
     \begin{align*}
       \log( \frac{y}{y}) &= \log y + \log( \frac{1}{y}) \\
-                      0  &= \log y + \log( \frac{1}{y})
+                      0  &= \log y + \log( \frac{1}{y})\\
+                      \log( \frac{1}{y}) &= -\log(y)
     \end{align*}
-    so
-    \[\log (\frac{1}{y}) = -\log y.\]
-
-    Hence
-    \begin{align*}
-      \log( \frac{x}{y}) &= \log x + \log (\frac{1}{y}) \\
-                         &= \log x - \log y
-    .\end{align*}
+    and the result follows.
   \end{itemize}
 \end{proof}
 
@@ -88,7 +95,7 @@ Before we can define the inverse of the exponential function, we must show that 
 \section{Derivatives}
 
 \begin{definition}
-Suppose $S \subseteq \mathbb{R}$. A point $c \in S$ is called an {\bf interior point} of $S$ if $\exists \delta > 0$ such that
+Suppose $S \subseteq \mathbb{R}$. A point $c \in S$ is called an {\bf interior point} of $S$ if there exists $\delta > 0$ such that
 \[(c - \delta, c + \delta) \subseteq S.\]
 \end{definition}
 
@@ -96,9 +103,9 @@ Suppose $S \subseteq \mathbb{R}$. A point $c \in S$ is called an {\bf interior p
   Let $D \subseteq \mathbb{R}$ and $f: D \rightarrow \mathbb{R}$. Suppose $c \in D$ is an interior point of $D$. We say $f$ is {\bf differentiable} at $c$ if
   \[\lim_{h \rightarrow 0} \frac{f(c + h) - f(c)}{h} \quad \text{exists}.\]
 
-  The number $f'(c) = \lim_{h \rightarrow 0} \frac{f(c + h) - f(c)}{h}$ is called {\bf the derivative} of $f$ at $c$.
+  The value $f'(c) := \lim_{h \rightarrow 0} \frac{f(c + h) - f(c)}{h}$ is called {\bf the derivative} of $f$ at $c$.
 
-  If $f$ is differentiable at every $c \in D$, we say $f$ is {\bf differentiable} on $D$.
+  If $f$ is differentiable at every point $c \in D$, we say $f$ is {\bf differentiable} on $D$.
 \end{definition}
 
 \begin{prop}
@@ -106,14 +113,12 @@ Suppose $S \subseteq \mathbb{R}$. A point $c \in S$ is called an {\bf interior p
 \end{prop}
 \begin{proof}
   Suppose $\lim_{h \rightarrow 0} \frac{f(c + h) - f(c)}{h}$ exists. Using a substition of $x = c + h$, this can be rewritten as
-  \[\lim_{x \rightarrow c} \frac{f(x) - f(c)}{x - c} = f'(c)\]
-  Hence, by the algebra of limits
   \begin{align*}
-    \lim_{x \rightarrow c}\left(f(x) - f(c)\right) &= \lim_{c \rightarrow c}\left(\frac{f(x) - f(c)}{x - c}(x - c)\right) \\
-    &= \lim_{x \rightarrow c} \frac{f(x) - f(c)}{x - c} \lim_{x \rightarrow c} (x - c) \\ 
-    &= f'(c)(0) = 0
-  .\end{align*} 
-  so $\lim_{x \rightarrow c} f(x) = f(c)$, so $f$ is continuous at $c$.
+    \lim_{x \rightarrow c} \frac{f(x) - f(c)}{x - c} &= f'(c) \\
+    \lim_{x \rightarrow c} f(x) - f(c) &= \lim_{x \rightarrow c} (x - c) f'(c) \\
+    \lim_{x \rightarrow c} f(x) - f(c) &= 0
+  \end{align*}
+  so $f$ is continuous at $c$.
 \end{proof}
 
 \subsection{The Algebra of Derivatives}
@@ -136,16 +141,18 @@ Suppose $S \subseteq \mathbb{R}$. A point $c \in S$ is called an {\bf interior p
     The first three points can be proven relatively easily using the algebra of function limits.
     \begin{itemize}
       \item First, it is easy to show that
-        \[(fg)(x + h) - (fg)(x) = \left(f(x + h) - f(x)\right)g(x + h) + f(x)\left(g(x + h) - g(x)\right).\]
-        Now, taking the limit of this expression divided by $h$ gives
-        \[\lim_{h \rightarrow 0} \frac{\left(f(x + h) - f(x)\right)g(x + h)}{h} + \frac{f(x)\left(g(x + h) - g(x)\right)}{h}.\]
-        Since $g$ is differentiable and therefore continuous, $\lim_{h \rightarrow 0}g(x + h) = g(x)$, so by the algebra of function limits the product rule is obtained.
-      \item We only need to prove that $\left( \frac{1}{g}\right)'(c) = \frac{-g'(c)}{(g(c))^2}$, and can then apply this with the product rule to prove the quotient rule. We also need to use the continuity of $g$ to prove $g(x + h) \not = 0$ less than some distance $\delta$ away. Finally
+        \[(fg)(c + h) - (fg)(c) = \left(f(c + h) - f(c)\right)g(c + h) + f(c)\left(g(c + h) - g(c)\right).\]
+        Then
         \begin{align*}
-          \lim_{h \rightarrow 0} \frac{ \left(\frac{1}{g}\right)(x + h) - \left(\frac{1}{g}\right)(x)}{h} &= \lim_{h \rightarrow 0} \frac{g(x) - g(x + h)}{hg(x)g(x + h)} \\
-          &= \lim_{h \rightarrow 0} - \frac{g'(x)}{g(x)g(x + h)}
-        \end{align*}
-        as required.
+          (fg)'(c) &= \lim_{h \rightarrow 0}\frac{\left(f(c + h) - f(c)\right)g(c + h) + f(c)\left(g(c + h) - g(c)\right)}{h} \\
+                   &= f'(c) g(c) + f(c) g'(c)
+        .\end{align*}
+      \item We only need to prove that $\left( \frac{1}{g}\right)'(c) = \frac{-g'(c)}{(g(c))^2}$, and can then use the product rule. Using the continuity of $g$ with $\epsilon = \frac{|g(c)|}{2}$, we can find a $\delta$ such that for all $h \in (c - \delta, c + \delta)$, $g(c + h) \not = 0$, so it is well defined. Then
+        \begin{align*}
+          \lim_{h \rightarrow 0} \frac{ ( \frac{1}{g})(c + h) - (\frac{1}{g})(c)}{h} &= \lim_{h \rightarrow 0} \frac{ \frac{1}{g(c +h)} - \frac{1}{g(c)}}{h} \\
+           &= - \lim_{h \rightarrow 0} \frac{g(c + h) - g(c)}{h} \cdot \frac{1}{g(c + h) g(c)} \\
+           &= - \frac{g'(c)}{g(c)^2}
+        .\end{align*}
     \end{itemize}
     
 \end{proof}

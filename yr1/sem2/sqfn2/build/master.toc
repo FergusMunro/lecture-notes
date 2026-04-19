@@ -6,9 +6,13 @@
 \contentsline {subsection}{\numberline {2.1}Composition of Continuous Functions}{8}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Continuity of Selected Functions}{8}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}The Intermediatve Value Theorem}{9}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}The Weierstrass Extreme Value Theorem}{9}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}The Natural Logarithm}{9}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Derivatives}{11}{section.3}%
-\contentsline {subsection}{\numberline {3.1}The Algebra of Derivatives}{12}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}The Chain Rule}{13}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}The derivative of inverse functions}{14}{subsection.3.3}%
+\contentsline {subsection}{\numberline {2.4}The Weierstrass Extreme Value Theorem}{10}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}The Natural Logarithm}{11}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Derivatives}{12}{section.3}%
+\contentsline {subsection}{\numberline {3.1}The Algebra of Derivatives}{13}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Derivatives of Basic Functions}{14}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}The Chain Rule}{15}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}The derivative of inverse functions}{16}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Working With Derivatives}{16}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Extremal Points}{16}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}The Mean Value Theorem}{17}{subsection.4.2}%

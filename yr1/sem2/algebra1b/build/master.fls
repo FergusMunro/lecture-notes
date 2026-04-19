@@ -518,12 +518,12 @@ INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stmaryrd/stmary10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stmaryrd/stmary7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stmaryrd/stmary5.tfm
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 OUTPUT build/master.toc
 INPUT ./lec_01.tex
 INPUT ./lec_01.tex
 INPUT lec_01.tex
-INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
-INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/ecsx1000.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
@@ -554,6 +554,12 @@ INPUT lec_08.tex
 INPUT ./lec_09.tex
 INPUT ./lec_09.tex
 INPUT lec_09.tex
+INPUT ./lec_10.tex
+INPUT ./lec_10.tex
+INPUT lec_10.tex
+INPUT ./lec_11.tex
+INPUT ./lec_11.tex
+INPUT lec_11.tex
 INPUT build/master.aux
 INPUT build/master.out
 INPUT build/master.out
