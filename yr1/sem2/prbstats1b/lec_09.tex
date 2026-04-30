@@ -1,0 +1,62 @@
+\section{Sums of Random Variables}
+
+\begin{prop} $ $
+  \[ \mathbb{E} \left(\sum_{ i = 1}^{n} X_i \right) = \sum_{ i = 1}^{n} \mathbb{E}(X_i).\]    
+\end{prop}
+
+\begin{prop}
+\[Var \left( \sum_{ i = 1}^{n} X_i \right) = \sum_{ i = 1}^{n} Var(X_i) + 2 \sum \sum_{1 \leq i < j \leq n} Cov(X_i, X_j).\]
+\end{prop}
+\begin{proof}
+    We have
+    \begin{align*}
+      Var \left( \sum_{ i = 1}^{n} X_i \right) &= Var \left( \sum_{ i = 1}^{n} X_i  - \mathbb{E}( \sum_{ i = 1}^{n} X_i)\right) \\ 
+       &= Var \left( \sum_{ i = 1}^{n} (X_i - \mathbb{E}(X_i))\right) \\
+       &= \mathbb{E}\left[ (\sum_{ i = 1}^{n} (X_i - \mathbb{E}(X_i)))^2\right] - \mathbb{E}\left[ \sum_{ i = 1}^{n} (X_i - \mathbb{E}(X_i))\right]^2 \\
+       &= \mathbb{E}\left[ (\sum_{ i = 1}^{n} (X_i - \mathbb{E}(X_i)))^2\right] - 0
+    .\end{align*}
+\end{proof}
+
+\begin{prop}
+    Suppose $X_1,...,X_n$ are independent random variables. Then
+    \[Var \left( \sum_{ i = 1}^{n} X_i \right) = \sum_{ i = 1}^{n} Var(X_i).\]
+\end{prop}
+
+\begin{prop}
+    Suppose $X_1,...,X_i$ are independent, identically distributed random variables. Then
+    \[Var( \bar{X}) = Var \left( \frac{1}{n} \sum_{ i = 1}^{n} X_i \right) = \frac{Var(X_i)}{n} .\]
+\end{prop}
+\begin{theorem}
+    Let $X$, $Y$ be random variables, and let $W = X + Y$. Then $W$ has pdf
+    \[f_W(w) = \int_{-\infty}^\infty f_{X,Y}(x, w - x) dx.\]
+\end{theorem}
+
+\begin{prop}
+    If $X$ and $Y$ are independent random variables, then their sum $W = x + Y$ has PDF
+    \[f_W(w) = \int_{-\infty}^\infty f_{X}(x) f_Y(w-x) dx.\]
+\end{prop}
+
+\begin{prop}
+    If $X$ and $Y$ are continuous random variables taking positive values, if $X,Y>0$ for all $X$ then $w$ has pdf
+    \[f_W(w) = \int_{0}^w f_{X,Y}(x, w - x).\]
+\end{prop}
+
+\subsection{Sums of Normal Distributions}
+\begin{prop}
+   If $X$ and $Y$ are independent and
+   \[X \sim N(\mu_X, \sigma_X^2) \text{ and } Y \sim N(\mu_Y, \sigma_Y^2).\]
+   Then
+   \[W = X + Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2.\]
+\end{prop}
+
+\begin{prop}
+    Suppose $X_i, ...,X_n$ are i.i.d. with $X_i \sim N(\mu, \sigma^2)$. Then
+    \[\sum_{ i = 1}^{n} X_i \sim N(n \mu, n \sigma^2).\]
+\end{prop}
+
+\subsection{Central Limit Theorem}
+
+\begin{theorem}
+  Suppose $X_1,X_2,...$ are i.i.d. with finite expectation and variance, with $\mathbb{E}(X_i) = \mu$ and $Var(X_i) = \sigma^2 > 0$. Let $S_n = X_1 + ... + X_n$. Then, for any number $a$
+  \[\mathbb{P}\left(\frac{S_n - n \mu}{\sqrt{n \sigma^2}} < a\right) \rightarrow \Phi (a) \text{ as } n \rightarrow \infty.\]
+\end{theorem}

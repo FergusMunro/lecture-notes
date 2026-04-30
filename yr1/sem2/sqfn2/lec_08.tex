@@ -1,0 +1,79 @@
+\subsection{Monotonicity}
+
+\begin{definition}
+    Let $D \subseteq \mathbb{R}$ be an interval and $f : D \rightarrow \mathbb{R}$.
+    \begin{itemize}
+    \item $f$ is {\bf increasing} on $D$ if
+        \[x < y \implies f(x) \leq f(y).\]
+      \item $f$ is {\bf decreasing} $D$ if
+        \[x < y \implies f(x) \geq f(y).\]
+    \item $f$ is {strictly \bf increasing} on $D$ if
+        \[x < y \implies f(x) < f(y).\]
+      \item $f$ is {\bf decreasing} $D$ if
+        \[x < y \implies f(x) < f(y).\]
+    \end{itemize}
+    If any of these conditions are satisfied we say $f$ is {\bf monotone}.
+\end{definition}
+
+\begin{remark}
+    If $f: D \rightarrow \mathbb{R}$ is strictly increasing or decreasing, then it follows that $f(x) \not = f(y)$ if $x \not = y$. Hence this function is injectvie.
+\end{remark}
+
+\begin{theorem}
+  Let $a < b$ and $f:[a,b] \rightarrow \mathbb{R}$. Suppose $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$.
+  \begin{itemize}
+    \item $f$ is increasing in $[a,b]$ if and only if $f'(x) \geq 0$ for all $x \in (a,b)$.
+    \item $f$ is decreasing in $[a,b]$ if and only if $f'(x) \leq 0$ for all $x \in (a,b)$
+    \item $f$ is strictly increasing in $[a,b]$ if $f'(x) > 0$ for all $x \in (a,b)$
+    \item $f$ is strictly decreasing in $[a,b]$ if $f'(x) < 0$ for all $x \in (a,b)$
+
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  We only prove the first statement.
+
+  \noindent $(\implies)$ Suppose $x \in (a,b)$ and consider $(x_n)_{n \in \mathbb{N}} \rightarrow x$ with $x_n = x + \frac{1}{n}$ for $n$ large enough so that $x_n \in (a,b)$. Then as $f$ is increasing
+  \[\frac{f(x + \frac{1}{n}) - f(x))}{\frac{1}{n}} \geq 0\]
+  thus taking the limit gives that $f'(x) \geq 0$.
+
+  \noindent $(\Leftarrow)$ Consider $x_2 > x_1 \in (a,b)$. Then by the mean value theorem there exists $c$ such that
+  \[f(x_2) - f(x_1) = f'(c)(x_2 - x_1) \geq 0.\]
+\end{proof}
+
+\begin{corollary}
+  Let $c$ be an interior point of $D \subseteq \mathbb{R}$ and $f : D \rightarrow \mathbb{R}$ differentiable on $(c - r) \cup (c, c+ r)$ for $r > 0$.
+  \begin{itemize}
+    \item If $f'(x) \geq 0$ for $x \in (c - r)$ and $f'(x) \leq 0$ for $x \in (c + r)$, $c$ is a local maximum of $f$. 
+    \item If $f'(x) \leq 0$ for $x \in (c - r)$ and $f'(x) \geq 0$ for $x \in (c + r)$, $c$ is a local minimum of $f$. 
+  \end{itemize}
+\end{corollary}
+\begin{proof}
+  For the first statement, if $x \in [c - \frac{r}{n}, c)$, then $f$ is increasing on $[x, c]$ so $f(x) \leq f(c)$, and if $x \in (c, c + \frac{r}{2}]$ then $f$ is decreasing on $[c, x]$ so $f(x) \leq f(c)$. If $x = c$ then clearly $f(x) \leq f(c)$. Thus $c$ is a maximum.
+\end{proof}
+
+\subsection{L'Hôpital's Rule}
+
+\begin{theorem}
+  Suppose $f, g : (a,b) \setminus \{c\} \rightarrow \mathbb{R}$ are differentiable and satisfy
+  \[\lim_{x \rightarrow c} f(x) = 0 \quad \text{ and } \quad \lim_{x \rightarrow c} g(x) = 0\]
+  but $g(x)\not = 0$ and $g'(x) \not = 0$ for all $x \in (a,b) \setminus \{c\}$.
+
+  \noindent If $\lim_{x \rightarrow c} \frac{f'(x)}{g'(x)}$ is defined then
+  \[\lim_{x \rightarrow c} \frac{f(x)}{g(x)} = \lim_{x \rightarrow c} \frac{f'(x)}{g'(x)}.\]
+\end{theorem}
+\begin{proof}
+    We extend $f$ and $g$ to $(a,b)$ by setting $f(c) = 0 = g(c)$. Therefore they are continuous on $(a,b)$. As 
+    \[\lim_{x \rightarrow c} \frac{f'(x)}{g'(x)} = L \quad \text{ and } c \in (a,b)\]
+    we see that for $\epsilon > 0$ there exists a $\delta > 0$ where $(c-\delta, c+\delta) \subseteq (a,b)$ and
+    \[0 < | z - c | < \delta \implies | \frac{f'(z)}{g'(z)} - L| < \epsilon.\]
+    Now, let $0 < |x -c| < \delta$.
+    \begin{itemize}
+      \item If $x> c$, apply the Cauchy mean value theorem on $[c,x]$. Then there exists a $y \in (c,x)$ such that
+        \[\frac{f'(y)}{g'(y)} = \frac{f(x) - f(c)}{g(x) - g(c)} = \frac{f(x)}{g(x)}.\]
+      \item If $x < c$, then the Cauchy mean value theorem says there exists $y \in (x,y)$ such that
+        \[\frac{f'(y)}{g'(y)} = \frac{f(x)}{g(x)}.\]
+    \end{itemize}
+    In both cases, $0 < |y - c| < |x - c| < \delta$, thus 
+    \[\left|\frac{f(x)}{g(x)} - L \right|= \left| \frac{f'(y)}{g'(y)} - L \right| < \epsilon.\]
+\end{proof}
+

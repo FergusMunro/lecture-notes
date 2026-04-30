@@ -560,6 +560,9 @@ INPUT lec_10.tex
 INPUT ./lec_11.tex
 INPUT ./lec_11.tex
 INPUT lec_11.tex
+INPUT ./lec_12.tex
+INPUT ./lec_12.tex
+INPUT lec_12.tex
 INPUT build/master.aux
 INPUT build/master.out
 INPUT build/master.out
@@ -577,6 +580,8 @@ INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm5.pfb
+INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb

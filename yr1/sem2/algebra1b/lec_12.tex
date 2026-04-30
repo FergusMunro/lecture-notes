@@ -1,0 +1,192 @@
+\begin{definition}
+    Let $V$ be an inner product space.
+
+    \begin{itemize}
+      \item Let $\phi \in L(V)$. 
+        \begin{itemize}
+          \item $\phi$ is {\bf self-adjoint} if $\phi = \phi^*$
+          \item $\phi$ is {\bf skew-adjoint} if $\phi = -\phi^*$
+        \end{itemize}
+    
+      \item Let $A \in M_n(\mathbb{F})$. If $\mathbb{F} = \mathbb{C}$
+        \begin{itemize}
+            
+      \item  We say $A$ in {\bf Hermitian} if
+        \[A = A^\dag = \bar{A}^T.\]
+    \item We say A is {\bf skew-Hermitian} if
+        \[A = - A^\dag = - \bar{A}^T.\]
+        If $\mathbb{F} =\mathbb{R}$:
+      \item We say $A$ is {\bf symmetric} if
+        \[A = A^T.\]
+      \item We say $A$ is {\bf skew-symmetric} if
+        \[A = - A^T.\]
+
+        \end{itemize}
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+  For $\phi \in L(V)$ and $A \in M_n(\mathbb{F})$
+    \[\phi \text{ is self-adjoint } \iff A \text{ is Hermitian or symmetric}.\]
+    Similarly,
+    \[\phi \text{ is skew-adjoint } \iff A \text{ is skew-Hermitian or skew-symmetric}.\]
+\end{remark}
+
+\begin{example} $ $
+  \begin{itemize}
+    \item $\id_V^* = \id_V$ so $\id_V$ is self adjoint
+    \item $\phi \circ \phi^*$ is self-adjoint
+      \[(\phi \circ \phi^*)^* = (\phi^*)^* \circ \phi^* = \phi \circ \phi^*.\]
+    \item for $\mathbb{F} = \mathbb{C}$ 
+      \[\phi \text{ is self-adjoint } \iff  i\phi \text{ is skew-adjoint}.\]
+  \end{itemize}    
+\end{example}
+
+\begin{definition} $ $
+
+  \begin{itemize}
+  \item We say $\phi \in L(V)$ is an {\bf orthogonal transformation} if $\phi^* = \phi^{-1}$ and $\mathbb{F} = \mathbb{R}$
+  \item We say $\phi \in L(V)$ is an {\bf unitary transformation} if $\phi^* = \phi^{-1}$ and $\mathbb{F} = \mathbb{C}$
+
+  \item We say $A \in M_n(\mathbb{F})$ is {\bf orthogonal} if
+    \[A^T A = \id \quad \text{ and } \quad \mathbb{F}= \mathbb{R}.\]
+  \item We say $A \in M_n(\mathbb{F})$ is {\bf unitary} if
+    \[\bar{A}^T A = \id \quad \text{ and } \quad \mathbb{F} =\mathbb{C}.\]
+  \end{itemize}
+\end{definition}
+
+\begin{remark} $ $
+    Let $\phi$ have matrix $A$ with respect to an orthormal basis. $\phi$ is orthogonal or unitary iff $A$ is orthogonal or unitary.
+\end{remark}
+
+\subsection{The Spectral Theorem}
+
+\begin{definition}
+  Let $\phi \in L(V)$. Then $U \leq V$ is {\bf $\phi$-invariant} if $\phi(U) \leq U$. In other words $\phi(u) \in U$ for $u \in U$.
+\end{definition}
+
+\begin{lemma}
+    If $\phi, \psi \in L(v)$ and
+    \[\phi \circ \psi = \psi \circ \phi\]
+    then $E_\phi(\lambda)$ is $\psi-$invariant for all $\lambda \in \mathbb{F}$.
+\end{lemma}
+\begin{proof}
+    Let $\lambda$ be an eigenvalue of $\phi$ and $v \in E_\phi(\lambda)$. Then
+    \begin{align*}
+      \phi(v) &= \lambda v \\
+      \psi( \phi(v)) &= \psi( \lambda v) \\
+      \phi (\psi(v)) &= \lambda \psi(v)
+    \end{align*}
+    so $\psi(v) \in E_\phi(\lambda)$, thus $E_\phi(\lambda)$ is $\psi-$invariant.
+\end{proof}
+
+\begin{lemma}
+  Let $V$ be finite dimensional and $\phi \in L(V)$. If $U \leq V$ is $\phi-$invariant then $U^\perp$ is $\phi^*-$invariant.
+\end{lemma}
+\begin{proof}
+    Let $v \in U^\perp$ so that for any $u \in U$, $\langle u, v \rangle = 0$.
+    \[\langle u, \phi^*(v) \rangle = \langle \phi(v), v \rangle = 0.\]
+\end{proof}
+
+\begin{definition}
+  Let $V$ be a finite dimensional inner product space. A linear operator $\phi$ is {\bf normal} if it commutes with its adjoint:
+  \[\phi \circ \phi^* = \phi^* \circ \phi.\]
+\end{definition}
+
+\begin{example} $ $
+
+    \begin{itemize}
+      \item Self adjoint and skew-adjoint operators are normal
+      \item Unitary and orthogonal transformations are normal.
+    \end{itemize}
+\end{example}
+
+\begin{prop}
+    Let $V$ be finite dimensional and $\phi \in L(V)$. If $\phi$ is normal then $E_\phi(\lambda)^\perp$ is $\phi-$invariant.
+\end{prop}
+\begin{proof}
+    Since $\phi$ and $\phi^*$ commute, $E_\phi(\lambda)$ is $\phi^*-$invariant. Then $E_\phi(\lambda)^\perp$ is $(\phi^*)^*-$invariant.
+\end{proof}
+
+\begin{definition}
+Let $V$ be finite dimensional. A linear operator $\phi \in L(V)$ is {\bf orthogonally diagonalisable} if $V$ admits an orthonormal basis of eigenvectors for $\phi$.
+\end{definition}
+
+\begin{prop}
+    Let $V$ be finite dimensional over $\mathbb{F}$. Let $\phi \in L(V)$ be orthogonally diagonalisable. Then $\phi$ is normal, and if $\mathbb{F} = \mathbb{R}$ then $\phi$ is self-adjoint.
+\end{prop}
+\begin{proof}
+  $\phi$ has matrix $A$ with respect to this orthonormal basis, which is diagonal with $a_{ii} = \lambda_i$. Then $(a^\dag)_{ii} = \bar{\lambda}_i$ and $A^\dag A = A A^\dag$ as diagonal matrices commute. Hence $\phi$ is normal and if $\mathbb{F} = \mathbb{R}$ $\phi$ is self-adjoint.
+\end{proof}
+
+\begin{theorem} (Spectral Theorem over $\mathbb{C}$)
+
+  \noindent Let $V$ be a finite-dimensional inner product space of dimension $n$ over $\mathbb{C}$, and let $\phi \in L(V)$.
+  \begin{itemize}
+
+    \item $\phi$ is orthogonally diagonalisable if and only if $\phi$ is normal
+    \item If $A \in M_n(\mathbb{C})$ is Hermitian then there is a unitary matrix $P$ where $P^{-1}AP$ which is diagonal.
+  \end{itemize}
+\end{theorem}
+\begin{proof} $ $
+
+  \begin{itemize}
+      
+    \item For the first part we proceed by induction on $n$. If $n = 1$ this is trivial. Now suppose for a vector space $U$ with $\dim U < n$, $\phi \in L(U)$ is orthogonally diagonalisable if it is normal.
+
+    As $\mathbb{F} = \mathbb{C}$, we know $\phi$ has at least one eigenvalue, $\lambda$, so $E_\phi(\lambda)$ is nonempty. Therefore $E_\phi(\lambda)^\perp$ has dimension less than $V$. It is $\phi-$invariant since $\phi$ is normal and, as $E_\phi(\lambda)$ is $\phi-$invariant, $E_\phi(\lambda)^\perp$ is also $\phi^*-$invariant. 
+
+    Therefore the restriction of $\phi$ to $E_\phi(\lambda)^\perp$ is normal and we can find an orthonormal basis of $\phi-$eigenvectors. Combining this with an orthonormal basis of $E_\phi(\lambda)$ we obtain an orthogonal basis of $\phi$-eigenvectors.
+  \item $\phi_A : \mathbb{C}^n \rightarrow \mathbb{C}^n$ is self-adjoint and thus normal with respect to the dot-product, so it is orthogonally diagonalisable with basis $u_1,...,u_n$. Let $P$ have columns $u_1,...,u_n$ which is an eigenbasis, so $P^{-1} A P$ is diagonal, and $P$ is unitary because its columns are orthonormal.
+  \end{itemize}
+\end{proof}
+
+Now, to prove the Spectral Theorem over $\mathbb{R}$ we need a way to guarantee a matrix has an eigenvector.
+
+\begin{lemma}
+    Let $V$ be a complex inner product space and let $\phi \in L(V)$ be self-adjoint.
+
+    \begin{itemize}
+      \item Every eigenvalue of $\phi$ is real
+      \item If $u, v$ are eigenvectors of eigenvalues $\lambda, \mu$ with $\lambda \not = \mu$ then $u \perp v$.
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    Since $\phi$ is self-adjoint
+    \begin{align*}
+      \langle \phi(v), w \rangle &= \langle v, \phi(w) \rangle \\
+      \bar{\lambda} \langle v, w \rangle &= \mu \langle v, w \rangle
+    \end{align*}
+    so $(\bar{\lambda} - \mu) \langle v, w \rangle = 0$. Then
+    \[(\bar{\lambda} - \lambda) \norm{v}^2 = 0\]
+    but $v$ is non-zero as it is an eigenvector so $\bar{\lambda} = \lambda$ and $\lambda \in \mathbb{R}$. Then $(\lambda - \mu) \langle v, w \rangle = 0$ and as $\lambda \not = \mu$ they must be orthogonal.
+\end{proof}
+
+\begin{prop}
+    A self-adjoint operator on a real finite dimensional inner product space $V$ has a real eigenvalue.
+\end{prop}
+\begin{proof}
+  Let $A$ be the matrix of $\phi$, and so $A^T = A$. Now consider $\phi^\mathbb{C}_A$ as the complex linear operator of $A$. Then as $\phi_A^\mathbb{C}$ is self-adjoint, so it has a real eigenvalue $\lambda$. Then
+  \begin{align*}
+    0 = \Delta_{\phi_A^\mathbb{C}}(\lambda) = \det(A - \lambda I) = \Delta_\phi(\lambda)
+  \end{align*}
+  so $\phi$ has a real eigenvector.
+\end{proof}
+
+\begin{remark}
+    The requirements for $\phi$ to be diagonalisable over $\mathbb{R}$ are stronger because we need stronger requirements to guarantee an eigenvalue exists.
+\end{remark}
+
+\begin{theorem} (Spectral Theorem over $\mathbb{R}$)
+
+  \noindent Let $V$ be a finite-dimensional inner product space of dimension $n$ over $\mathbb{F}$, and let $\phi \in L(V)$.
+
+  \begin{itemize}
+    \item $\phi$ is orthogonally diagonalisable if and only if $\phi$ is self-adjoint.
+    \item If $A \in M_n(\mathbb{R})$ is symmetric then there is an orthogonal matrix $P$ where $P^{-1}AP$ is diagonal.
+  \end{itemize}
+\end{theorem}
+\begin{proof} $ $ 
+    The proof is identical except that we obtain an eigenvalue using the fact that $\phi$ is self-adjoint instead.
+\end{proof}
+

@@ -548,6 +548,9 @@ INPUT lec_06.tex
 INPUT ./lec_07.tex
 INPUT ./lec_07.tex
 INPUT lec_07.tex
+INPUT ./lec_08.tex
+INPUT ./lec_08.tex
+INPUT lec_08.tex
 INPUT build/master.aux
 INPUT build/master.out
 INPUT build/master.out

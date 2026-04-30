@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1776439639.45494 "master.tex" "build/master.pdf" "master" 1776439643.41365 0
+["pdflatex"] 1777555543.2871 "master.tex" "build/master.pdf" "master" 1777555545.49626 0
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1775415801 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1775415801 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1775415801 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -316,17 +316,18 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1775415801 43569 fd570f2fa160877d211e859f687312ba ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1775503064 5385779 47c0c393a77fd4a098bacfd57d66b88a ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1775503060 2328182 2fa883255b0a901eac8fb0814c568690 ""
-  "build/master.aux" 1776439643.19451 19569 dd77f17e4b6b90f8889fb766f1543af0 "pdflatex"
-  "build/master.out" 1776439643.19651 3201 cc3022f6135d100fb60ccbefe9e84090 "pdflatex"
-  "build/master.toc" 1776439643.19651 1579 f8714df9c2522047676e24b7f6432537 "pdflatex"
+  "build/master.aux" 1777555545.34197 21607 37bf4f36d8c589bcbce47f78fc17a794 "pdflatex"
+  "build/master.out" 1777555545.34416 3463 672febe2df8d168ff26866b7c0406958 "pdflatex"
+  "build/master.toc" 1777555545.34416 1742 7f8bd2047730ee7a151a71f2fc85e9b1 "pdflatex"
   "lec_01.tex" 1774094293.58936 3179 9982b5848cbbb941dfbeea81d329dfc3 ""
   "lec_02.tex" 1774094638.21634 1634 735dab9d7fc610fc16bfef1559d5bf00 ""
   "lec_03.tex" 1774262943.05479 6851 060d34f136ad91b835afab13bf5b9b45 ""
   "lec_04.tex" 1775743432.53941 5918 ef46f5be62e63c62445c33cbb350692f ""
   "lec_05.tex" 1776248322.84437 7219 50e64dc4a82a3456994baaefd506b8ec ""
   "lec_06.tex" 1776438214.63363 3756 7df909f6c64245c005b27d59a7b94b91 ""
-  "lec_07.tex" 1776439639.03451 3746 4db1b637c958445a46dc1285609abead ""
-  "master.tex" 1776097169.14897 363 eaaf5b7e9fe860b49a900052da3adfcc ""
+  "lec_07.tex" 1776859993.68562 3738 cd264022968d0805dfe8c69df17a83b1 ""
+  "lec_08.tex" 1777555542.67731 4151 70da5318f9234dfaafa4bf1a142c8686 ""
+  "master.tex" 1777306422.28497 387 a8543474d7c81dba8da3871cebc40661 ""
   "preamble.tex" 1773505697.49575 8103 c36fcb7de255b6bb92b5cd9bf1d67adb ""
   (generated)
   "build/master.aux"

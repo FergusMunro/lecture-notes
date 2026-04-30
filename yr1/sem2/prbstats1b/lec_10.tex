@@ -1,0 +1,31 @@
+\section{Evaluation Estimators}
+
+\begin{definition}
+  The {\bf sampling distribution} of an estimator $T(X_1,...,X_n)$ is the distribution of the random variable $T$, which follows from the definition of $T$ and the joint distribution of $X_1,...,X_n$.
+\end{definition}
+
+\begin{definition}
+  The {\bf bias} of an estimator $T(X_1,...,X_n)$ of $\theta$ is
+  \[\text{Bias}(T) = \mathbb{E}[T] - \theta.\]
+An estimator $T(X_1,...,X_n)$ of $\theta$ is {\bf unbiased} if
+  \[\mathbb{E}[\theta] = \theta \quad \text{ for all } \theta.\]
+\end{definition}
+
+\begin{definition}
+  The {\bf precision} of an estimator $T(X_1,...,X_n)$ of $\theta$ is 
+  \[\text{Precision}(T) = \frac{1}{\text{Var}(T)}.\]
+\end{definition}
+
+\begin{definition}
+  The {\bf mean squared error} of an estimator $T(X_1,...,X_n)$ of $\theta$ is
+  \[\text{MSE}(T) = \mathbb{E}[(T - \theta)^2].\]
+\end{definition}
+
+\begin{remark}
+    The mean sqaure error can be calculated by
+    \[\text{MSE}(T) = \text{Var}(T) + (\text{Bias}(T))^2.\]
+\end{remark}
+
+\noindent There is a simple way to modify the maximum liklihood estimate to make it unbiased; define a new estimator $T'$, where $\mathbb{E}[T'] = \theta$.
+
+

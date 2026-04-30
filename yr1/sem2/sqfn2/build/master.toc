@@ -16,3 +16,5 @@
 \contentsline {section}{\numberline {4}Working With Derivatives}{16}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Extremal Points}{16}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}The Mean Value Theorem}{17}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Monotonicity}{18}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}L'Hôpital's Rule}{20}{subsection.4.4}%
